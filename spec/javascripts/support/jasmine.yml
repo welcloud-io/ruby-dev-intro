@@ -1,0 +1,20 @@
+src_files:
+  - views/*.js
+
+helpers:
+  - 'helpers/**/*.js'
+
+spec_files:
+  - 'Common/*[sS]pec.js'
+  - 'Slide/0*[sS]pec.js'
+  - 'Slide/*[sS]pec.js'
+  - 'SlideShow/0*[sS]pec.js'
+  - 'SlideShow/1*[sS]pec.js'
+  - 'SlideShow/2*[sS]pec.js'
+  - 'SlideShow/3*[sS]pec.js'
+  - 'TeacherSlideShow/0*[sS]pec.js'
+  - 'AttendeeSlideShow/0*[sS]pec.js'
+  - 'TeacherSlideShow/1*[sS]pec.js'
+  - 'TeacherSlideShow/2*[sS]pec.js'
+  - 'TeacherSlideShow/3*[sS]pec.js'
+  - '*[sS]pec.js'
