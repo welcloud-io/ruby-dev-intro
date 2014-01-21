@@ -2,7 +2,6 @@
 
 require_relative '../models/Poll'
 require_relative '../models/RunTime'
-require_relative '../models/Statistics'
 
 def question_id
   params[:splat][1]
@@ -16,9 +15,9 @@ def user_id
   session[:user_id]  
 end
 
-def next_id
+def next_user_id
   $db.execute_sql("update compteur set identifiant = identifiant + 1")
-  return $db.execute_sql("select identifiant from compteur").to_a[0]['identifiant'].to_i
+  $db.execute_sql("select identifiant from compteur").to_a[0]['identifiant'].to_i
 end
 
 def current_slide_id
