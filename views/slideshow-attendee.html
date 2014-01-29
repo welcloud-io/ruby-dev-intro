@@ -1,45 +1,137 @@
 <html>
   <head>
     <link href="slideshow.css" rel="stylesheet" media="screen"/>
+    <style>
+      .slide {
+        left: 1%;
+        top: 1%;
+        width: 98%;
+        height: 98%;
+        background-color: #222;
+        border-radius: 5px;
+      }
+      section {
+        margin-left: 1%;
+        margin-right: 1%;
+	margin-bottom: 1%;
+      } 
+      .code {
+        width:60%; 
+        height:60%;
+     }
+     .code_helper {
+       width:39%; 
+       height:60%;
+       white-space:nowrap;
+     }      
+     .code_result {
+      height:25%;
+      background-color: #332;      
+      color: yellow;      
+     }     
+     .code_helper.current {
+       background-color: #332;
+     }
+     input[type=button]#execute {
+       margin: 1%;
+     }   
+    </style>
   </head>
   <body>
   
     <div class="presentation">
     
       <div class="slide" id="coding">
+	    
+	    <section>
+	    
+            <div class="code" id="code_input">puts "BIENVENUE A L'INITIATTION RUBY"</div>
 
-            <h1>CODING EXERCISE 1</h1>
-            <h2>SHOULD DISPLAY A CODE EXECUTION SLIDE</h2>
+	    <div class="code_helper" id="code_helper">
+	    EXERCICE 1
+	    </br>
+	    </br>
+	    Affichez sur la sortie standard
+	    </br>
+	    </br>	    
+	    "BIENVENUE A L'INITIATION RUBY" 
+	    </div>
+
+	    <div class="code_helper" id="code_helper">
+	    EXERCICE 2
+	    </br>
+	    </br>
+	    Affichez sur la sortie standard
+	    </br>
+	    </br>	    
+	    "BIENVENUE A L'INITIATION RUBY" 
+	    </div>
 	    
-	    <section class="code">
+	    <div class="code_helper" id="code_helper">
+require 'test/unit'
+
+class TestsSession < Test::Unit::TestCase
+ 	    </br>
+	    </br>
+  def test03
+ 	    </br>
+    extension_hash = { 'html'    => 'text/html' }
+ 	    </br>
+    file_list = ["file.html"]
+ 	    </br>
+	    </br>   
+    assert_equal ["text/html"], mime_types(file_list, extension_hash)
+ 	    </br>     
+  end  
+	    </br>
+	    </br>
+  def test03
+	    </br>
+	    </br>  
+    extension_hash = { "html" => "text/html" }
+    	    </br>
+	    </br>
+    file_list = ["file.html"]
+    	    </br>
+	    </br>
+    assert_equal ["text/html"], mime_types(file_list, extension_hash)
+    	    </br>
+	    </br>
+  end  
+  	    </br>
+	    </br>
+  def test04
+  	    </br>
+	    </br>
+    extension_hash = { "html" => "text/html" }
+    	    </br>
+	    </br>
+    file_list = ["file.html", "file.gif"]
+    	    </br>
+	    </br>
+    assert_equal ["text/html", "UNKNOWN"], mime_types(file_list, extension_hash)
+    	    </br>
+	    </br>
+  end
+
+	    </div>	    
 	    
-            <textarea class="code" id="code_input"></textarea>
 	    <input type="button" id="execute" value="EXECUTE (ALT-R)">
-            <textarea class="code_result" id="code_output"></textarea>
+            <textarea class="code_result" id="code_output" readonly></textarea>
 	    
 	    </section>
 	
         </div>
-	
-        <div class="slide" id="coding">
-
-            <h1>CODING EXERCISE 2</h1>
-            <h2>SHOULD DISPLAY A CODE EXECUTION SLIDE</h2>
-	    
-	    <section class="code">
-	    
-            <textarea class="code" id="code_input"></textarea>
-	    <input type="button" id="execute" value="EXECUTE (ALT-R)">
-            <textarea class="code_result" id="code_output"></textarea>	    
-	    
-	    </section>
-	
-        </div>	
 
       </div> <!--presentation-->
 
+    <script src="ace-builds/src-min-noconflict/ace.js" type="text/javascript" charset="utf-8"></script>
     <script src="slideshow.js"></script>
     <script src="slideshow-attendee.js"></script>
+    <script>
+    attendeeSlideshow._slides[0].code_editor.setTheme("ace/theme/monokai");
+    attendeeSlideshow._slides[0].code_editor.getSession().setMode("ace/mode/ruby");
+    </script>
     
   </body>
 </html>
