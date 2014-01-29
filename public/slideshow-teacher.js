@@ -3,6 +3,7 @@
 // ----------------------------------
 var TeacherSlideShow = function(slides) {
   SlideShow.call(this, slides);
+  this._postCurrentIndex();	
 };
 
 TeacherSlideShow.prototype = {
@@ -14,8 +15,17 @@ TeacherSlideShow.prototype = {
       case RIGHT_ARROW:  
         this.next(); 
       break;
+      case DOWN_ARROW:
+        this.down();
+      break;
+      case UP_ARROW:
+        this.up();
+      break;	    
       case SPACE:  
-        this.synchronise(); 
+        this.synchronise();
+        currentSlide = this._slides[this._currentIndex];
+        if (currentSlide._isCodingSlide()) { currentSlide.updateEditorAndExecuteCode(); }
+        if (!this._isUp) { this._slides[this._numberOfSlides-1].updateEditorAndExecuteCode(); }
       break;	      
     }
   },	

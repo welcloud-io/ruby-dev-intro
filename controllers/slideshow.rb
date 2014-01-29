@@ -30,6 +30,12 @@ get '/poll_response_*_rate_to_*' do
   PollQuestion.new(question_id).rate_for(answer).to_s
 end
 
+get '/code_last_run' do
+  last_runtime_event = RunTimeEvent.find_all.last
+  return "" if last_runtime_event == nil
+  last_runtime_event.code_input
+end
+
 # ---------
 # POSTs
 # ---------
@@ -57,5 +63,5 @@ end
 
 post '/code_run_result' do
   code = request.env["rack.input"].read
-  run_ruby(code)
+  run_ruby(code, user_id)
 end
