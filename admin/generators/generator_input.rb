@@ -237,3 +237,138 @@ $mime_type =
 	image/png
 	UNKNOWN
 }
+
+TESTS=
+%Q{
+require 'test/unit'
+
+class TestMimeType < Test::Unit::TestCase
+
+  def test03
+    extension_hash = { "html" => "text/html" }
+    file_list = ["file.html"]
+    
+    assert_equal ["text/html"], mime_types(file_list, extension_hash)
+  end  
+
+  def test03
+    extension_hash = { "html" => "text/html" }
+    file_list = ["file.html"]
+    
+    assert_equal ["text/html"], mime_types(file_list, extension_hash)
+  end  
+  
+  def test04
+    extension_hash = { "html" => "text/html" }
+    file_list = ["file.html", "file.gif"]
+    
+    assert_equal ["text/html", "UNKNOWN"], mime_types(file_list, extension_hash)
+  end
+  
+  def test05
+    extension_hash = { "html" => "text/html", "gif" => "image/gif" }
+    file_list = ["file.html", "file.gif"]
+    
+    assert_equal ["text/html", "image/gif"], mime_types(file_list, extension_hash)
+  end  
+	
+  def test11
+    extension_hash = {"html" =>  "text/html", "png" => "image/png", "gif" => "image/gif" }
+    file_list = ["animated.gif", "portrait.png", "index.html"]
+    
+    assert_equal  ["image/gif", "image/png", "text/html"], mime_types(file_list, extension_hash)
+  end
+  
+  def test12
+    extension_hash = {"txt" => "text/plain", "xml" =>  "text/xml", "flv" => "video/x-flv" }
+    file_list = ["image.png", "animated.gif", "script.js", "source.cpp"]   
+    
+    assert_equal  ["UNKNOWN", "UNKNOWN", "UNKNOWN", "UNKNOWN"], mime_types(file_list, extension_hash)
+  end
+  
+  def test13
+    extension_hash = { "wav" => "audio/x-wav", "mp3" => "audio/mpeg", "pdf" => "application/pdf" }
+    file_list = ["a", "a.wav", "b.wav.tmp", "test.vmp3", "pdf", "mp3", "report..pdf", "defaultwav", ".mp3.", "final."]   
+    
+    assert_equal  ["UNKNOWN", "audio/x-wav", "UNKNOWN", "UNKNOWN", "UNKNOWN", "UNKNOWN", "application/pdf", "UNKNOWN", "UNKNOWN", "UNKNOWN"], mime_types(file_list, extension_hash)
+  end
+
+  def test14
+    #~ extension_hash = { "png" => "image/png", "TIFF" => "image/TIFF", "css" => "text/css", "TXT" => "text/plain"}
+    extension_hash = { "png" => "image/png", "tiff" => "image/TIFF", "css" => "text/css", "txt" => "text/plain"}
+    file_list = ["example.TXT", "referecnce.txt", "strangename.tiff", "resolv.CSS", "matrix.TiFF", "lanDsCape.Png", "extract.cSs"]   
+    
+    assert_equal  ["text/plain", "text/plain", "image/TIFF", "text/css", "image/TIFF", "image/png", "text/css"], mime_types(file_list, extension_hash)
+  end
+  
+  def test15
+    extension_hash = { }
+    file_list = []   
+    
+    assert_equal  [], mime_types(file_list, extension_hash)
+  end 
+  
+end
+
+}
+
+JAVA_CODE =
+%Q{
+#~ import java.util.*;
+#~ import java.io.*;
+#~ import java.math.*;
+
+#~ class Solution {
+class Solution
+
+	#~ public static void main(String args[]) {
+		
+		# read two first lines
+		#~ Scanner in = new Scanner(System.in);
+		#~ int n = Integer.valueOf(in.nextLine().trim());
+		#~ int q = Integer.valueOf(in.nextLine().trim());
+		#~ n = Math.max(0, Math.min(n, 10000));
+		#~ q = Math.max(0, Math.min(q, 10000));
+		
+		# put n next lines in a hash
+		#~ Map<String, String> table = new HashMap<String, String>();
+		#~ for (int i = 0; i < n; i++) {
+		    #~ String[] assoc = in.nextLine().split(" ");
+		    #~ table.put(assoc[0].toUpperCase(), assoc[1]);
+		#~ }
+		
+		table = {}
+		
+		q = 0
+		fichiers = ['..']
+		
+		# map each lines
+		#~ for (int i = 0; i < q; i++) {
+		for i in 0..q do
+		    #~ String nomFichier = in.nextLine().trim();
+		    nomFichier = fichiers[i]
+		    #~ if (nomFichier.lastIndexOf(".") < 0)
+		    if nomFichier.rindex(".") < 0
+			#~ System.out.println("UNKNOWN");
+			puts "UNKNOWN"
+		    #~ else {
+		    else
+			#~ String ext = nomFichier.substring(nomFichier.lastIndexOf(".") + 1).toUpperCase();
+			ext = nomFichier[nomFichier.rindex(".")..-1].upcase;
+			#~ if (table.containsKey(ext))
+			if table.has_key?(ext)
+			    #~ System.out.println(table.get(ext));
+			    puts table[ext]
+			else
+			    #~ System.out.println("UNKNOWN");
+			    puts "UNKNOWN"
+			#~ }
+			end
+		    end
+		#~ }
+		end
+		
+	#~ }
+#~ }
+end
+}
