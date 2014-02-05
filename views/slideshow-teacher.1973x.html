@@ -1,1311 +1,1488 @@
 <html>
-  <head>
-    <link href="slideshow.css" rel="stylesheet" media="screen"/>
-    <style>
-      .slide {
-        left: 1%;
-        top: 1%;
-        width: 98%;
-        height: 98%;
-        background-color: #000;
-        border-radius: 5px;
-      }
-      section {
-        margin-left: 1%;
-        margin-right: 1%;
-	margin-bottom: 1%;
-      } 
-      .code {
-        width:60%; 
-        height:60%;
-     }
-     .code_helper {
-       width:39%; 
-       height:60%;
-     }      
-     .code_result {
-      height:25%;
-      background-color: #332;      
-      color: yellow;      
-     }     
-     .code_helper.current {
-       background-color: #332;
-     }
-     input[type=button]#execute {
-       margin: 1%;
-     }   
-    </style>   
-  </head>
-  <body>
-  
-    <div class="presentation">
+<head>
+<link href="slideshow.css" rel="stylesheet" media="screen"/>
+<style>
+.slide {
+left: 1%;
+top: 1%;
+width: 98%;
+height: 98%;
+background-color: #fff;
+border-radius: 5px;
+}
+section {
+margin-left: 1%;
+margin-right: 1%;
+margin-bottom: 1%;
+} 
+.code {
+width:60%; 
+height:60%;
+}
+.code_helper {
+width:39%; 
+height:60%;
+}      
+.code_result {
+height:25%;
+background-color: #332;      
+color: yellow;      
+}     
+.code_helper.current {
+background-color: #fff;
+}
+input[type=button]#execute {
+margin: 1%;
+}   
+</style>   
+</head>
+<body>
 
-      <div class="slide" id="centered_title">
-        <section class='centered' >
-          <h3>INTRODUCTION A RUBY</h3>
-          <h3 style="color: red">CONNECTEZ VOUS SUR :</h3>
-          <h4 style="color: blue; font-size: 1.3em;">http://ruby-dev-intro.herokuapp.com</h4>
-        </section>
-      </div>
+<div class="presentation">
+
+<div class="slide" id="centered_title">
+<section class='centered' >
+  <h3>INTRODUCTION A RUBY</h3>
+  <h3 style="color: red">CONNECTEZ VOUS SUR :</h3>
+  <h4 style="color: blue; font-size: 1.3em;">http://ruby-dev-intro.herokuapp.com</h4>
+</section>
+</div>
 
 
 <!--   LES CHAINES DE CARACTERES   -->
 
-      <div class="slide">
-            <h1>INTRODUCTION A RUBY</h1>
-            <h2>HISTOIRE ET PHILOSOPHIE</h2>
-	    <section style="font-size:2em;">
-            <h3>- C'est un langage qui vient du Japon.</h3>
-	    <h3>- Créé par Yukihiro Matsumotio (actuellement employé chez Heroku).</h3>
-	    <h3>- Première version officielle (0.95) en 1995.</h3>
-	    <h3>- A ce jour (janvier 2014) la dernière version est la 2.1.0.</h3>	
-	</section>	    
-      </div>
+<div class="slide">
+    <h1>INTRODUCTION A RUBY</h1>
+    <h2>HISTOIRE ET PHILOSOPHIE</h2>
+    <section style="font-size:2em;">
+    <h3>- C'est un langage qui vient du Japon.</h3>
+    <h3>- Créé par Yukihiro Matsumoto (actuellement employé chez Heroku).</h3>
+    <h3>- Première version officielle (0.95) en 1995.</h3>
+    <h3>- A ce jour (janvier 2014) la dernière version est la 2.1.0.</h3>	
+</section>	    
+</div>
 
-      <div class="slide">
-            <h1>INTRODUCTION A RUBY</h1>
-            <h2>HISTOIRE ET PHILOSOPHIE</h2>
-	    <section style="font-size:2em;">
-            <h3>- Ruby est conçu pour la productivité et le plaisir du programmeur.</h3>
-	    <h3>- Il se focalise sur les besoins humains plutôt que sur les besoins de la machine.</h3>
-	    <h3>- Il est influencé par différents langages, en particulier Smalltalk, Lisp et Perl.</h3>
-	    </section>	    
-      </div>
+<div class="slide">
+    <h1>INTRODUCTION A RUBY</h1>
+    <h2>HISTOIRE ET PHILOSOPHIE</h2>
+    <section style="font-size:2em;">
+    <h3>- Ruby est conçu pour la productivité et le plaisir du programmeur.</h3>
+    <h3>- Il se focalise sur les besoins humains plutôt que sur les besoins de la machine.</h3>
+    <h3>- Il est influencé par différents langages, en particulier Smalltalk, Lisp et Perl.</h3>
+    </section>	    
+</div>
 
-      <div class="slide">
-            <h1>INTRODUCTION A RUBY</h1>
-            <h2>LES CHAINES DE CARACTERES</h2>
-	    <section style="font-size:2em;" class="centered">
-		</br>
-		</br>	    
-		Affichez 
-		</br>
-		</br>
-		<FONT COLOR="#FF0000">BIENVENUE A LA FORMATION RUBY</FONT>
-		</br>
-		</br>		
-		sur la sortie standard
-	    </section>		    
-      </div>
 
-      <div class="slide">
-            <h1>INTRODUCTION A RUBY</h1>
-            <h2>LES CHAINES DE CARACTERES</h2>
-	    <section style="font-size:2em;" class="centered">
-		</br>
-		</br>	    
-		Affichez 
-		</br>
-		</br>
-		<FONT COLOR="#FF0000">la 1ère lettre de la phrase
-		</br>
-		</br>		
-		"BIENVENUE A LA FORMATION RUBY"</FONT>
-		</br>
-		</br>		
-		sur la sortie standard
-	    </section>		    
-      </div>
-      
-      <div class="slide">
-            <h1>INTRODUCTION A RUBY</h1>
-            <h2>LES CHAINES DE CARACTERES</h2>
-	    <section style="font-size:2em;" class="centered">
-		</br>
-		</br>	    
-		Affichez 
-		</br>
-		</br>
-		<FONT COLOR="#FF0000">la 5ème lettre de la phrase
-		</br>
-		</br>		
-		"BIENVENUE A LA FORMATION RUBY"</FONT>
-		</br>
-		</br>		
-		sur la sortie standard
-	    </section>		    
-      </div>     
 
-      <div class="slide">
-            <h1>INTRODUCTION A RUBY</h1>
-            <h2>LES CHAINES DE CARACTERES</h2>
-	    <section style="font-size:2em;" class="centered">
-		</br>
-		</br>	    
-		Affichez 
-		</br>
-		</br>
-		<FONT COLOR="#FF0000">la dernière lettre de la phrase
-		</br>
-		</br>		
-		"BIENVENUE A LA FORMATION RUBY"</FONT>
-		</br>
-		</br>		
-		sur la sortie standard
-	    </section>		    
-      </div> 
+<div class="slide">
+    <h1>INITIATION A RUBY</h1>
+    <h2>LES CHAINES DE CARACTERES</h2>
+    <section style="font-size:2em;" class="centered">
+    
+	</br>
+	</br>	    
+	Affichez sur la sortie standard
+	
+	</br>
+	</br>	    
+	<FONT COLOR='#FF0000'>BIENVENUE A L'INITIATION RUBY</FONT>
+	
+    </section>		    
+</div>
 
-      <div class="slide">
-            <h1>INTRODUCTION A RUBY</h1>
-            <h2>LES CHAINES DE CARACTERES</h2>
-	    <section style="font-size:2em;" class="centered">
-		</br>
-		</br>	    
-		Affichez 
-		</br>
-		</br>
-		<FONT COLOR="#FF0000">l'index de le première apparition de la lettre E
-		</br>
-		</br>		
-		"BIENVENUE A LA FORMATION RUBY"</FONT>
-		</br>
-		</br>		
-		sur la sortie standard
-	    </section>		    
-      </div>
 
-      <div class="slide">
-            <h1>INTRODUCTION A RUBY</h1>
-            <h2>LES CHAINES DE CARACTERES</h2>
-	    <section style="font-size:2em;" class="centered">
-		</br>
-		</br>	    
-		Affichez 
-		</br>
-		</br>
-		<FONT COLOR="#FF0000">l'index de la deuxième apparition de la lettre E
-		</br>
-		</br>		
-		"BIENVENUE A LA FORMATION RUBY"</FONT>
-		</br>
-		</br>		
-		sur la sortie standard
-	    </section>		    
-      </div>
 
-      <div class="slide">
-            <h1>INTRODUCTION A RUBY</h1>
-            <h2>LES CHAINES DE CARACTERES</h2>
-	    <section style="font-size:2em;" class="centered">
-		</br>
-		</br>	    
-		Remplacez
-		</br>
-		</br>
-		<FONT COLOR="#FF0000">le mot BIENVENUE par WELCOME dans la phrase
-		</br>
-		</br>		
-		"BIENVENUE A LA FORMATION RUBY"</FONT>
-		</br>
-		</br>		
-		et affichez le sur la sortie standard
-	    </section>		    
-      </div>
-      
-      <div class="slide">
-            <h1>INTRODUCTION A RUBY</h1>
-            <h2>LES CHAINES DE CARACTERES</h2>
-	    <section style="font-size:2em;" class="centered">
-		</br>
-		</br>	    
-		Affichez
-		</br>
-		</br>
-		<FONT COLOR="#FF0000">le 3ème mot dans la phrase
-		</br>
-		</br>		
-		"BIENVENUE A LA FORMATION RUBY"</FONT>
-		</br>
-		</br>		
-		et affichez le sur la sortie standard
-	    </section>		    
-      </div>   
+<div class="slide">
+    <h1>INITIATION A RUBY</h1>
+    <h2>LES CHAINES DE CARACTERES</h2>
+    <section style="font-size:2em;" class="centered">
+    
+	</br>
+	</br>	    
+	Affichez sur la sortie standard
+	
+	</br>
+	</br>	    
+	<FONT COLOR='#FF0000'>la 1ère lettre de la phrase</FONT>
+	
+	</br>
+	</br>	    
+	<FONT COLOR='#FF0000'>"BIENVENUE A L'INITIATION RUBY"</FONT>
+	
+    </section>		    
+</div>
 
-      <div class="slide">
-            <h1>INTRODUCTION A RUBY</h1>
-            <h2>LES CHAINES DE CARACTERES</h2>
-	    <section style="font-size:2em;" class="centered">
-		</br>
-		</br>	    
-		Affichez
-		</br>
-		</br>
-		<FONT COLOR="#FF0000">La taille en de nombre de caractères de la phrase
-		</br>
-		</br>		
-		"BIENVENUE A LA FORMATION RUBY"</FONT>
-		</br>
-		</br>		
-		et affichez le sur la sortie standard
-	    </section>		    
-      </div>
 
-      <div class="slide">
-            <h1>INTRODUCTION A RUBY</h1>
-            <h2>LES CHAINES DE CARACTERES</h2>
-	    <section style="font-size:2em;" class="centered">
-		</br>
-		</br>	    
-		Affichez en inversé
-		</br>
-		</br>
-		<FONT COLOR="#FF0000">le 3ème mot dans la phrase
-		</br>
-		</br>		
-		"BIENVENUE A LA FORMATION RUBY"</FONT>
-		</br>
-		</br>		
-		et sur la sortie standard
-	    </section>		    
-      </div>
-      
-      <div class="slide">
-            <h1>INTRODUCTION A RUBY</h1>
-            <h2>LES CHAINES DE CARACTERES</h2>
-	    <section style="font-size:2em;" class="centered">
-		</br>
-		</br>	    
-		Remplacez
-		</br>
-		</br>
-		<FONT COLOR="#FF0000">le mot BIENVENUE par WELCOME dans la phrase
-		</br>
-		</br>		
-		"BIENVENUE A LA FORMATION RUBY"</FONT>
-		</br>
-		</br>		
-		et affichez le sur la sortie standard
-	    </section>		    
-      </div>   
-      
-<!--   LES VARIABLES   -->
 
-      <div class="slide">
-            <h1>INTRODUCTION A RUBY</h1>
-            <h2>LES VARIABLES</h2>
-	    <section style="font-size:2em;" class="centered">
-		</br>
-		</br>	    
-		Déclarez une variable chaine_de_caracteres et initialisez la avec le mot "RUBY"
-		</br>
-		</br>		
-		affichez la sur la sortie standard
-	    </section>		    
-      </div>      
+<div class="slide">
+    <h1>INITIATION A RUBY</h1>
+    <h2>LES CHAINES DE CARACTERES</h2>
+    <section style="font-size:2em;" class="centered">
+    
+	</br>
+	</br>	    
+	Affichez sur la sortie standard
+	
+	</br>
+	</br>	    
+	<FONT COLOR='#FF0000'>la 5ème lettre de la phrase</FONT>
+	
+	</br>
+	</br>	    
+	<FONT COLOR='#FF0000'>"BIENVENUE A L'INITIATION RUBY"</FONT>
+	
+    </section>		    
+</div>
 
-      <div class="slide">
-            <h1>INTRODUCTION A RUBY</h1>
-            <h2>LES VARIABLES</h2>
-	    <section style="font-size:2em;" class="centered">
-		</br>
-		</br>	    
-		Affichez
-		</br>
-		</br>
-		<FONT COLOR="#FF0000">La classe de la variable chaine_de_caracteres
-		</br>
-		</br>		
-		et affichez le sur la sortie standard
-	    </section>		    
-      </div>
 
-      <div class="slide">
-            <h1>INTRODUCTION A RUBY</h1>
-            <h2>LES VARIABLES</h2>
-	    <section style="font-size:2em;" class="centered">
-		</br>
-		</br>	    
-		Affichez
-		</br>
-		</br>
-		<FONT COLOR="#FF0000">les méthodes de la variable chaine_de_caracteres
-		</br>
-		</br>		
-		et affichez le sur la sortie standard
-	    </section>		    
-      </div>
 
-<!--   LES ENTIERS   -->
+<div class="slide">
+    <h1>INITIATION A RUBY</h1>
+    <h2>LES CHAINES DE CARACTERES</h2>
+    <section style="font-size:2em;" class="centered">
+    
+	</br>
+	</br>	    
+	Affichez sur la sortie standard
+	
+	</br>
+	</br>	    
+	<FONT COLOR='#FF0000'>la dernière lettre de la phrase</FONT>
+	
+	</br>
+	</br>	    
+	<FONT COLOR='#FF0000'>"BIENVENUE A L'INITIATION RUBY"</FONT>
+	
+    </section>		    
+</div>
 
-      <div class="slide">
-            <h1>INTRODUCTION A RUBY</h1>
-            <h2>LES ENTIERS</h2>
-	    <section style="font-size:2em;" class="centered">
-		</br>
-		</br>	    
-		Déclarez une variable un_entier et initialisez la avec valeur -12
-		</br>
-		</br>		
-		affichez la sur la sortie standard
-	    </section>		    
-      </div> 
-      
-      <div class="slide">
-            <h1>INTRODUCTION A RUBY</h1>
-            <h2>LES ENTIERS</h2>
-	    <section style="font-size:2em;" class="centered">
-		</br>
-		</br>	    
-		Affichez la class de la variable un_entier
-		</br>
-		</br>		
-		affichez la sur la sortie standard
-	    </section>		    
-      </div>  
 
-      <div class="slide">
-            <h1>INTRODUCTION A RUBY</h1>
-            <h2>LES ENTIERS</h2>
-	    <section style="font-size:2em;" class="centered">
-		</br>
-		</br>	    
-		Affichez la class de la variable un_entier
-		</br>
-		</br>		
-		affichez la sur la sortie standard
-	    </section>		    
-      </div> 
 
-      <div class="slide">
-            <h1>INTRODUCTION A RUBY</h1>
-            <h2>LES ENTIERS</h2>
-	    <section style="font-size:2em;" class="centered">
-		</br>
-		</br>	    
-		Affichez la valeur absolue de la variable un_entier
-		</br>
-		</br>		
-		affichez la sur la sortie standard
-	    </section>		    
-      </div> 
+<div class="slide">
+    <h1>INITIATION A RUBY</h1>
+    <h2>LES CHAINES DE CARACTERES</h2>
+    <section style="font-size:2em;" class="centered">
+    
+	</br>
+	</br>	    
+	Affichez sur la sortie standard
+	
+	</br>
+	</br>	    
+	<FONT COLOR='#FF0000'>les 4 premières lettres de la phrase</FONT>
+	
+	</br>
+	</br>	    
+	<FONT COLOR='#FF0000'>"BIENVENUE A L'INITIATION RUBY"</FONT>
+	
+    </section>		    
+</div>
 
-      <div class="slide">
-            <h1>INTRODUCTION A RUBY</h1>
-            <h2>LES ENTIERS</h2>
-	    <section style="font-size:2em;" class="centered">
-		</br>
-		</br>	    
-		Afficher le nombre de secondes dans une année de 365 jours
-		</br>
-		</br>		
-		affichez la sur la sortie standard
-	    </section>		    
-      </div> 
 
-<!--   COMPOSITION ENTIER et CHAINES DE CARACTERES   -->
 
-      <div class="slide">
-            <h1>INTRODUCTION A RUBY</h1>
-            <h2>COMPOSITION ENTIER et CHAINES DE CARACTERES</h2>
-	    <section style="font-size:2em;" class="centered">
-		</br>
-		</br>	    
-		Afficher la phrase "Dans un année de 365 jours il y a ** secondes"
-		</br>
-		** représente le nombre de secondes en chiffres
-		</br>		
-		affichez la sur la sortie standard
-	    </section>		    
-      </div> 
+<div class="slide">
+    <h1>INITIATION A RUBY</h1>
+    <h2>LES CHAINES DE CARACTERES</h2>
+    <section style="font-size:2em;" class="centered">
+    
+	</br>
+	</br>	    
+	Affichez sur la sortie standard
+	
+	</br>
+	</br>	    
+	<FONT COLOR='#FF0000'>La taille en de nombre de caractères de la phrase</FONT>
+	
+	</br>
+	</br>	    
+	<FONT COLOR='#FF0000'>"BIENVENUE A L'INITIATION RUBY"</FONT>
+	
+    </section>		    
+</div>
 
-      <div class="slide">
-            <h1>INTRODUCTION A RUBY</h1>
-            <h2>COMPOSITION ENTIER et CHAINES DE CARACTERES</h2>
-	    <section style="font-size:2em;" class="centered">
-		</br>
-		</br>	    
-		Affichez à lasuite 15 fois la chaine de caractère "Ruby !"
-		</br>
-		** représente le nombre de secondes en chiffres
-		</br>		
-		affichez la sur la sortie standard
-	    </section>		    
-      </div> 
 
-<!--   LES LISTES   -->
 
-      <div class="slide">
-            <h1>INTRODUCTION A RUBY</h1>
-            <h2>LES LISTES</h2>
-	    <section style="font-size:2em;" class="centered">
-		</br>
-		</br>	    
-		Déclarer une variable les_cinq_premiers_chiffres_romains et intialisez là avec 'I', 'II', 'III', 'IV', 'V'	
-	    </section>		    
-      </div> 
-      
-      <div class="slide">
-            <h1>INTRODUCTION A RUBY</h1>
-            <h2>LES LISTES</h2>
-	    <section style="font-size:2em;" class="centered">
-		</br>
-		</br>	    
-		Affichez le chiffre romain correspondant à 3	
-	    </section>		    
-      </div> 
+<div class="slide">
+    <h1>INITIATION A RUBY</h1>
+    <h2>LES VARIABLES</h2>
+    <section style="font-size:2em;" class="centered">
+    
+	</br>
+	</br>	    
+	Déclarez une variable
+	
+	</br>
+	</br>	    
+	<FONT COLOR='#FF0000'>chaine_de_caracteres</FONT>
+	
+	</br>
+	</br>	    
+	<FONT COLOR='#FF0000'>initialisez la avec le mot "RUBY"</FONT>
+	
+	</br>
+	</br>	    
+	<FONT COLOR='#FF0000'>affichez la sur la sortie standard</FONT>
+	
+    </section>		    
+</div>
 
-      <div class="slide">
-            <h1>INTRODUCTION A RUBY</h1>
-            <h2>LES LISTES</h2>
-	    <section style="font-size:2em;" class="centered">
-		</br>
-		</br>	    
-		Déclarer une variable les_cinq_premiers_chiffres_romains et intialisez là avec 'I', 'II', 'III', 'IV', 'V'	
-	    </section>		    
-      </div> 
-      
-      <div class="slide">
-            <h1>INTRODUCTION A RUBY</h1>
-            <h2>LES LISTES</h2>
-	    <section style="font-size:2em;" class="centered">
-		</br>
-		</br>	    
-		Affichez le chiffre romain correspondant à 3	
-	    </section>		    
-      </div>
-      
-      <div class="slide">
-            <h1>INTRODUCTION A RUBY</h1>
-            <h2>LES LISTES</h2>
-	    <section style="font-size:2em;" class="centered">
-		</br>
-		</br>	    
-		Affichez le chiffre romain correspondant à 12	
-	    </section>		    
-      </div>      
-      
-      <div class="slide">
-            <h1>INTRODUCTION A RUBY</h1>
-            <h2>LES LISTES</h2>
-	    <section style="font-size:2em;" class="centered">
-		</br>
-		</br>	    
-		Affichez le chiffre romain correspondant à l'addition 3 + 2	
-	    </section>		    
-      </div>
 
-      <div class="slide">
-            <h1>INTRODUCTION A RUBY</h1>
-            <h2>LES LISTES</h2>
-	    <section style="font-size:2em;" class="centered">
-		</br>
-		</br>	    
-		Affichez le chiffre décimal correspondant au chiffre romain 'IV'
-	    </section>		    
-      </div>
 
-<!--   LES DICTIONNAIRES   -->
+<div class="slide">
+    <h1>INITIATION A RUBY</h1>
+    <h2>LES VARIABLES</h2>
+    <section style="font-size:2em;" class="centered">
+    
+	</br>
+	</br>	    
+	Affichez sur la sortie standard la classe de la variable
+	
+	</br>
+	</br>	    
+	<FONT COLOR='#FF0000'>chaine_de_caracteres</FONT>
+	
+    </section>		    
+</div>
 
-      <div class="slide">
-            <h1>INTRODUCTION A RUBY</h1>
-            <h2>LES DICTIONNAIRES</h2>
-	    <section style="font-size:2em;" class="centered">
-		</br>
-		</br>	    
-		Déclarez une variable types_de_contenu_par_type_de_fichier et l'initialisée avec (mp3: "audio", ...) 
-		</br>
-		</br>
-		Affichez là sur la sortie standard
-	    </section>		    
-      </div> 
-      
 
-<!--   LES STRUCTURES DE CONTROLE  : LES CONDITIONS -->
 
-      <div class="slide">
-            <h1>INTRODUCTION A RUBY</h1>
-            <h2>LES CONDITIONS</h2>
-	    <section style="font-size:2em;" class="centered">
-		</br>
-		</br>	    
-		Déclarez une variable age est initialisée la à 5
-		Affichez 'MINEUR' si  age inférieur égal à 18 et 'MAJEUR' sinon
-		Modifier la variable et donnez lui la valeur 34
-		</br>
-		</br>
-		Affichez là sur la sortie standard
-	    </section>		    
-      </div>
-      
-     <div class="slide">
-            <h1>INTRODUCTION A RUBY</h1>
-            <h2>LES CONDITIONS </h2>
-	    <section style="font-size:2em;" class="centered">
-		</br>
-		</br>	    
-		Déclarez une variable age est initialisée la à 5
-		Affichez 'MINEUR' si age inférieur à 18
-		</br>
-		</br>
-		Affichez là sur la sortie standard
-	    </section>		    
-      </div>      
-      
-      <div class="slide">
-            <h1>INTRODUCTION A RUBY</h1>
-            <h2>LES CONDITIONS </h2>
-	    <section style="font-size:2em;" class="centered">
-		</br>
-		</br>	    
-		Déclarez une variable age est initialisée la à 5
-		Affichez 'MINEUR' sauf si age supérieur à 18
-		</br>
-		</br>
-		Affichez là sur la sortie standard
-	    </section>		    
-      </div>
-      
-      <div class="slide">
-            <h1>INTRODUCTION A RUBY</h1>
-            <h2>LES CONDITIONS </h2>
-	    <section style="font-size:2em;" class="centered">
-		</br>
-		</br>	    
-		Déclarez une variable ages et initialisée la à 1, 2, 3, 4, 5
-		Déclarez une variable index et intialisée la à 0
-		Affichez 'OK' si ages[index] existe, 'KO' sinon
-		</br>
-		</br>
-		Affichez là sur la sortie standard
-	    </section>		    
-      </div>      
-      
-<!--   LES STRUCTURES DE CONTROLE  : LES BOUCLES -->
+<div class="slide">
+    <h1>INITIATION A RUBY</h1>
+    <h2>LES VARIABLES</h2>
+    <section style="font-size:2em;" class="centered">
+    
+	</br>
+	</br>	    
+	Affichez sur la sortie standard les méthodes de la variable chaine_de_caracteres
+	
+	</br>
+	</br>	    
+	<FONT COLOR='#FF0000'>chaine_de_caracteres</FONT>
+	
+    </section>		    
+</div>
 
-      <div class="slide">
-            <h1>INTRODUCTION A RUBY</h1>
-            <h2>LES BOUCLES</h2>
-	    <section style="font-size:2em;" class="centered">
-		</br>
-		</br>	    
-		Déclarez une variable chiffres_décimaux est initialisée la à 0, 1, 2, 3, 4, 5, 6, 7, 8, 9
-		Affichez les nombres pair en utilisant l'index
-		</br>
-		</br>
-		Affichez là sur la sortie standard
-	    </section>		    
-      </div>
 
-      <div class="slide">
-            <h1>INTRODUCTION A RUBY</h1>
-            <h2>LES BOUCLES</h2>
-	    <section style="font-size:2em;" class="centered">
-		</br>
-		</br>	    
-		Déclarez une variable chiffres_décimaux est initialisée la à 0, 1, 2, 3, 4, 5, 6, 7, 8, 9
-		Affichez les nombres pair en utilisant l'index
-		</br>
-		</br>
-		Affichez là sur la sortie standard
-	    </section>		    
-      </div>
 
-<!--   LES BLOCKS -->
+<div class="slide">
+    <h1>INITIATION A RUBY</h1>
+    <h2>LES ENTIERS</h2>
+    <section style="font-size:2em;" class="centered">
+    
+	</br>
+	</br>	    
+	Déclarez la variable
+	
+	</br>
+	</br>	    
+	<FONT COLOR='#FF0000'>un_entier</FONT>
+	
+	</br>
+	</br>	    
+	<FONT COLOR='#FF0000'>initialisez la avec valeur -12</FONT>
+	
+	</br>
+	</br>	    
+	affichez la sur la sortie standard
+	
+    </section>		    
+</div>
 
-      <div class="slide">
-            <h1>INTRODUCTION A RUBY</h1>
-            <h2>LES BOUCLES</h2>
-	    <section style="font-size:2em;" class="centered">
-		</br>
-		</br>	    
-		Déclarez une variable chiffres_décimaux est initialisée la à 0, 1, 2, 3, 4, 5, 6, 7, 8, 9
-		Affichez les nombres pair sans utiliser d'index, ni l'instruction for
-		</br>
-		</br>
-		Affichez là sur la sortie standard
-	    </section>		    
-      </div>
 
-      <div class="slide">
-            <h1>INTRODUCTION A RUBY</h1>
-            <h2>LES BOUCLES</h2>
-	    <section style="font-size:2em;" class="centered">
-		</br>
-		</br>	    
-		Déclarez une variable chiffres_décimaux est initialisée la à 0, 1, 2, 3, 4, 5, 6, 7, 8, 9
-		Affichez le carré de chaque chiffre
-		</br>
-		</br>
-		Affichez là sur la sortie standard
-	    </section>		    
-      </div>
-      
-      <div class="slide">
-            <h1>INTRODUCTION A RUBY</h1>
-            <h2>LES BOUCLES</h2>
-	    <section style="font-size:2em;" class="centered">
-		</br>
-		</br>	    
-		Déclarez une variable chiffres_décimaux est initialisée la à 0, 1, 2, 3, 4, 5, 6, 7, 8, 9
-		Selectionnez les chiffres pair
-		</br>
-		</br>
-		Affichez là sur la sortie standard
-	    </section>		    
-      </div>      
-      
-<!--   LES METHODES -->
 
-      <div class="slide">
-            <h1>INTRODUCTION A RUBY</h1>
-            <h2>LES BOUCLES</h2>
-	    <section style="font-size:2em;" class="centered">
-		</br>
-		</br>	    
-		Déclarez une variable chiffres_décimaux est initialisée la à 0, 1, 2, 3, 4, 5, 6, 7, 8, 9
-		Définissez la methode carre_de(x)
-		afficher le carre de chaque chiffre
-		</br>
-		</br>
-		Affichez là sur la sortie standard
-	    </section>		    
-      </div>
+<div class="slide">
+    <h1>INITIATION A RUBY</h1>
+    <h2>LES ENTIERS</h2>
+    <section style="font-size:2em;" class="centered">
+    
+	</br>
+	</br>	    
+	Affichez sur la sortie standard, la classe de la variable
+	
+	</br>
+	</br>	    
+	<FONT COLOR='#FF0000'>un_entier</FONT>
+	
+    </section>		    
+</div>
 
-<!--   LE PUZZLE -->
 
-      <div class="slide">
-            <h1>INTRODUCTION A RUBY</h1>
-            <h2>PUZZLE TDD ALONE</h2>
-	    <section style="font-size:2em;" class="centered">
-		</br>
-		</br>	    
-		Ecrire le programme qui passe tous les tests
-		</br>
-		</br>
-		Affichez là sur la sortie standard
-	    </section>		    
-      </div>
-      
-      <div class="slide">
-            <h1>INTRODUCTION A RUBY</h1>
-            <h2>PUZZLE TDD REFACTORING TOGETHER</h2>
-	    <section style="font-size:2em;" class="centered">
-		</br>
-		</br>	    
-		Remanier le programme pour qu'il soit le plus court possible et proche de la philosophie ruby
-		</br>
-		</br>
-		Affichez là sur la sortie standard
-	    </section>		    
-      </div>      
+
+<div class="slide">
+    <h1>INITIATION A RUBY</h1>
+    <h2>LES ENTIERS</h2>
+    <section style="font-size:2em;" class="centered">
+    
+	</br>
+	</br>	    
+	Affichez sur la sur la sortie standard
+	
+	</br>
+	</br>	    
+	<FONT COLOR='#FF0000'>la valeur absolue de la variable</FONT>
+	
+	</br>
+	</br>	    
+	<FONT COLOR='#FF0000'>un_entier</FONT>
+	
+    </section>		    
+</div>
+
+
+
+<div class="slide">
+    <h1>INITIATION A RUBY</h1>
+    <h2>LES ENTIERS</h2>
+    <section style="font-size:2em;" class="centered">
+    
+	</br>
+	</br>	    
+	Affichez sur la sur la sortie standard
+	
+	</br>
+	</br>	    
+	<FONT COLOR='#FF0000'>le nombre de secondes dans une année de 365 jours</FONT>
+	
+    </section>		    
+</div>
+
+
+
+<div class="slide">
+    <h1>INITIATION A RUBY</h1>
+    <h2>COMPOSITION ENTIER et CHAINES DE CARACTERES</h2>
+    <section style="font-size:2em;" class="centered">
+    
+	</br>
+	</br>	    
+	Affichez sur la sur la sortie standard, la phrase 
+	
+	</br>
+	</br>	    
+	<FONT COLOR='#FF0000'>En 2014 il y aura ** secondes</FONT>
+	
+	</br>
+	</br>	    
+	<FONT COLOR='#FF0000'>** représente le nombre de secondes en chiffres</FONT>
+	
+    </section>		    
+</div>
+
+
+
+<div class="slide">
+    <h1>INITIATION A RUBY</h1>
+    <h2>COMPOSITION ENTIER et CHAINES DE CARACTERES</h2>
+    <section style="font-size:2em;" class="centered">
+    
+	</br>
+	</br>	    
+	Affichez sur la sur la sortie standard, la phrase 
+	
+	</br>
+	</br>	    
+	<FONT COLOR='#FF0000'>15 fois de suite la chaine de caractère 'Ruby !'</FONT>
+	
+    </section>		    
+</div>
+
+
+
+<div class="slide">
+    <h1>INITIATION A RUBY</h1>
+    <h2>LES LISTES</h2>
+    <section style="font-size:2em;" class="centered">
+    
+	</br>
+	</br>	    
+	Déclarer une variable
+	
+	</br>
+	</br>	    
+	<FONT COLOR='#FF0000'>cinq_chiffres_romains</FONT>
+	
+	</br>
+	</br>	    
+	<FONT COLOR='#FF0000'>et intialisez là avec 'I', 'II', 'III', 'IV', 'V'</FONT>
+	
+    </section>		    
+</div>
+
+
+
+<div class="slide">
+    <h1>INITIATION A RUBY</h1>
+    <h2>LES LISTES</h2>
+    <section style="font-size:2em;" class="centered">
+    
+	</br>
+	</br>	    
+	Déclarer une variable
+	
+	</br>
+	</br>	    
+	<FONT COLOR='#FF0000'>Affichez le chiffre romain correspondant à 3</FONT>
+	
+    </section>		    
+</div>
+
+
+
+<div class="slide">
+    <h1>INITIATION A RUBY</h1>
+    <h2>LES LISTES</h2>
+    <section style="font-size:2em;" class="centered">
+    
+	</br>
+	</br>	    
+	Déclarer une variable
+	
+	</br>
+	</br>	    
+	<FONT COLOR='#FF0000'>Affichez le chiffre romain correspondant à l'addition 3 + 2</FONT>
+	
+    </section>		    
+</div>
+
+
+
+<div class="slide">
+    <h1>INITIATION A RUBY</h1>
+    <h2>LES LISTES</h2>
+    <section style="font-size:2em;" class="centered">
+    
+	</br>
+	</br>	    
+	Déclarer une variable
+	
+	</br>
+	</br>	    
+	<FONT COLOR='#FF0000'>Affichez le chiffre décimal correspondant au chiffre romain 'IV'</FONT>
+	
+    </section>		    
+</div>
+
+
+
+<div class="slide">
+    <h1>INITIATION A RUBY</h1>
+    <h2>LES DICTIONNAIRES</h2>
+    <section style="font-size:2em;" class="centered">
+    
+	</br>
+	</br>	    
+	Déclarez une variable types_de_contenu_par_type_de_fichier
+	
+	</br>
+	</br>	    
+	l'initialisée avec (mp3: 'audio', ...) 
+	
+	</br>
+	</br>	    
+	<FONT COLOR='#FF0000'>Affichez là sur la sortie standard</FONT>
+	
+    </section>		    
+</div>
+
+
+
+<div class="slide">
+    <h1>INITIATION A RUBY</h1>
+    <h2>LES CONDITIONS</h2>
+    <section style="font-size:2em;" class="centered">
+    
+	</br>
+	</br>	    
+	Déclarez une variable age
+	
+	</br>
+	</br>	    
+	initialisée la à 5
+	
+	</br>
+	</br>	    
+	Affichez 'MINEUR' si  age inférieur à 18 et 'MAJEUR' sinon
+	
+	</br>
+	</br>	    
+	Modifier la variable et donnez lui la valeur 34
+	
+	</br>
+	</br>	    
+	Affichez là sur la sortie standard
+	
+    </section>		    
+</div>
+
+
+
+<div class="slide">
+    <h1>INITIATION A RUBY</h1>
+    <h2>LES CONDITIONS</h2>
+    <section style="font-size:2em;" class="centered">
+    
+	</br>
+	</br>	    
+	Déclarez une variable age est initialisée la à 5
+	
+	</br>
+	</br>	    
+	Affichez 'MINEUR' si age inférieur à 18 sinon ne rien afficher
+	
+    </section>		    
+</div>
+
+
+
+<div class="slide">
+    <h1>INITIATION A RUBY</h1>
+    <h2>LES CONDITIONS</h2>
+    <section style="font-size:2em;" class="centered">
+    
+	</br>
+	</br>	    
+	Déclarez une variable age est initialisée la à 5
+	
+	</br>
+	</br>	    
+	Affichez 'MINEUR' sauf si age supérieur égal à 18
+	
+	</br>
+	</br>	    
+	Affichez là sur la sortie standard
+	
+    </section>		    
+</div>
+
+
+
+<div class="slide">
+    <h1>INITIATION A RUBY</h1>
+    <h2>LES CONDITIONS</h2>
+    <section style="font-size:2em;" class="centered">
+    
+	</br>
+	</br>	    
+	Déclarez une variable ages et initialisée la à 1, 2, 3, 4, 5
+	
+	</br>
+	</br>	    
+	Déclarez une variable index et intialisée la à 0
+	
+	</br>
+	</br>	    
+	Affichez 'OK' si ages[index] existe, 'KO' sinon
+	
+    </section>		    
+</div>
+
+
+
+<div class="slide">
+    <h1>INITIATION A RUBY</h1>
+    <h2>LES BOUCLES</h2>
+    <section style="font-size:2em;" class="centered">
+    
+	</br>
+	</br>	    
+	Déclarez une variable chiffres
+	
+	</br>
+	</br>	    
+	Initialisée la à 0, 1, 2, 3, 4, 5, 6, 7, 8, 9
+	
+	</br>
+	</br>	    
+	Affichez les nombres impairs en utilisant l'index
+	
+    </section>		    
+</div>
+
+
+
+<div class="slide">
+    <h1>INITIATION A RUBY</h1>
+    <h2>LES BOUCLES</h2>
+    <section style="font-size:2em;" class="centered">
+    
+	</br>
+	</br>	    
+	Déclarez une variable chiffres
+	
+	</br>
+	</br>	    
+	Initialisée la à 0, 1, 2, 3, 4, 5, 6, 7, 8, 9
+	
+	</br>
+	</br>	    
+	Affichez les nombres impairs sans utiliser d'index
+	
+    </section>		    
+</div>
+
+
+
+<div class="slide">
+    <h1>INITIATION A RUBY</h1>
+    <h2>LES BOUCLES</h2>
+    <section style="font-size:2em;" class="centered">
+    
+	</br>
+	</br>	    
+	Déclarez une variable chiffres
+	
+	</br>
+	</br>	    
+	Initialisée la à 0, 1, 2, 3, 4, 5, 6, 7, 8, 9
+	
+	</br>
+	</br>	    
+	Affichez les nombres impairs sans utiliser d'index, ni l'instruction for
+	
+    </section>		    
+</div>
+
+
+
+<div class="slide">
+    <h1>INITIATION A RUBY</h1>
+    <h2>LES BOUCLES</h2>
+    <section style="font-size:2em;" class="centered">
+    
+	</br>
+	</br>	    
+	Déclarez une variable chiffres
+	
+	</br>
+	</br>	    
+	Initialisée la à 0, 1, 2, 3, 4, 5, 6, 7, 8, 9
+	
+	</br>
+	</br>	    
+	Afficher les chiffres impairs sans utiliser 'each'
+	
+    </section>		    
+</div>
+
+
+
+<div class="slide">
+    <h1>INITIATION A RUBY</h1>
+    <h2>LES BOUCLES</h2>
+    <section style="font-size:2em;" class="centered">
+    
+	</br>
+	</br>	    
+	Déclarez une variable chiffres
+	
+	</br>
+	</br>	    
+	Initialisée la à 0, 1, 2, 3, 4, 5, 6, 7, 8, 9
+	
+	</br>
+	</br>	    
+	Affichez le carré de chaque chiffre sans utiliser 'each'
+	
+    </section>		    
+</div>
+
+
+
+<div class="slide">
+    <h1>INITIATION A RUBY</h1>
+    <h2>LES BOUCLES</h2>
+    <section style="font-size:2em;" class="centered">
+    
+	</br>
+	</br>	    
+	Déclarez une variable chiffres
+	
+	</br>
+	</br>	    
+	Initialisée la à 0, 1, 2, 3, 4, 5, 6, 7, 8, 9
+	
+	</br>
+	</br>	    
+	Définissez la methode carre_de(x)
+	
+	</br>
+	</br>	    
+	Afficher le carre de chaque chiffre
+	
+    </section>		    
+</div>
+
+
+
+<div class="slide">
+    <h1>INITIATION A RUBY</h1>
+    <h2>PUZZLE en TDD</h2>
+    <section style="font-size:2em;" class="centered">
+
+	
+	Le type MIME est utilisé dans de nombreux protocoles internet pour associer un type de média (html, image, vidéo, ...) avec le contenu envoyé.
+	</br>   
+	Ce type MIME est généralement déduit de l'extension du fichier à transférer.
+	</br>
+	Vous devez écrire un programme qui permet de détecter le type MIME d'un fichier à partir de son nom.
+	</br>      
+	Une table qui associe un type MIME avec une extension de fichier vous est fournie. Une liste de noms de fichier à transférer vous sera aussi fournie et vous devrez déduire pour chacun d'eux, le type MIME à utiliser.
+	</br>
+	L'extension d'un fichier se définit par la partie du nom qui se trouve après le dernier point qui le compose.
+	</br>
+	Si l'extension du fichier est présente dans la table d'association (la casse ne compte pas. ex : TXT est équivalent à txt), alors affichez le type MIME correspondant . S'il n'est pas possible de trouver le type MIME associé à un fichier, ou si le fichier n'a pas d'extensions, affichez UNKNOWN.       
+	</br>
+	EXEMPLE :
+	Entrée
+	html text/html
+	png image/png
+	test.html
+	noextension
+	portrait.png
+	doc.TXT
+	Sortie
+	text/html
+	UNKNOWN
+	image/png
+	UNKNOWN
+
+	
+	"Ecrire le programme qui passe tous les tests"
+				
+	</section>		    
+</div>
+
+<div class="slide">
+    <h1>INITIATION A RUBY</h1>
+    <h2>PUZZLE en TDD</h2>
+    <section style="font-size:2em;" class="centered">
+    
+	
+	Le type MIME est utilisé dans de nombreux protocoles internet pour associer un type de média (html, image, vidéo, ...) avec le contenu envoyé.
+	</br>   
+	Ce type MIME est généralement déduit de l'extension du fichier à transférer.
+	</br>
+	Vous devez écrire un programme qui permet de détecter le type MIME d'un fichier à partir de son nom.
+	</br>      
+	Une table qui associe un type MIME avec une extension de fichier vous est fournie. Une liste de noms de fichier à transférer vous sera aussi fournie et vous devrez déduire pour chacun d'eux, le type MIME à utiliser.
+	</br>
+	L'extension d'un fichier se définit par la partie du nom qui se trouve après le dernier point qui le compose.
+	</br>
+	Si l'extension du fichier est présente dans la table d'association (la casse ne compte pas. ex : TXT est équivalent à txt), alors affichez le type MIME correspondant . S'il n'est pas possible de trouver le type MIME associé à un fichier, ou si le fichier n'a pas d'extensions, affichez UNKNOWN.       
+	</br>
+	EXEMPLE :
+	Entrée
+	html text/html
+	png image/png
+	test.html
+	noextension
+	portrait.png
+	doc.TXT
+	Sortie
+	text/html
+	UNKNOWN
+	image/png
+	UNKNOWN
+
+	
+	"Remanier le programme pour qu'il soit le plus court possible et proche de la philosophie ruby",
+				
+	</section>		    
+</div>
 
 <!--   #####  LAST SLIDE : CODING SLIDE   ##### -->
-      
-      <div class="slide" id="coding">
-	    
-	    <section>
-	    
-            <div class="code" id="code_input">puts "BIENVENUE A L'INITIATTION RUBY"</div>
-	    
-      <div class="code_helper">
-        <section class='centered' >
-          <h3>INTRODUCTION A RUBY</h3>
-          <h3 style="color: red">CONNECTEZ VOUS SUR :</h3>
-          <h4 style="color: blue; font-size: 1.3em;">http://ruby-dev-intro.herokuapp.com</h4>
-        </section>
-      </div>
-      
-<!--   LES CHAINES DE CARACTERES   -->
 
-      <div class="code_helper">
-            <h3>- C'est un langage qui vient du Japon.</h3>
-	    <h3>- Créé par Yukihiro Matsumotio (actuellement employé chez Heroku).</h3>
+<div class="slide" id="coding">
+    
+    <section>
+    
+    <div class="code" id="code_input">puts "CONNEXION REUSSIE, BIENVENUE"</div>
+    
+	<div class="code_helper">
+	<section class='centered' >
+	  INTRODUCTION A RUBY
+	  </br>
+	  </br>
+	  CONNECTEZ VOUS SUR :
+	  </br>
+	  </br>
+	  http://ruby-dev-intro.herokuapp.com
+	</section>
+	</div>
+
+	<!--   LES CHAINES DE CARACTERES   -->
+
+	<div class="code_helper">
+	    <h3>- C'est un langage qui vient du Japon.</h3>
+	    <h3>- Créé par Yukihiro Matsumoto (actuellement employé chez Heroku).</h3>
 	    <h3>- Première version officielle (0.95) en 1995.</h3>
 	    <h3>- A ce jour (janvier 2014) la dernière version est la 2.1.0.</h3>		    
-      </div>
+	</div>
 
-      <div class="code_helper">
-            <h3>- Ruby est conçu pour la productivité et le plaisir du programmeur.</h3>
+	<div class="code_helper">
+	    <h3>- Ruby est conçu pour la productivité et le plaisir du programmeur.</h3>
 	    <h3>- Il se focalise sur les besoins humains plutôt que sur les besoins de la machine.</h3>
 	    <h3>- Il est influencé par différents langages, en particulier Smalltalk, Lisp et Perl.</h3>  
-      </div>
+	</div>
 
-      <div class="code_helper">
-		<center>CHAINES DE CARACTERES</center>
-		</br>
-		</br>
-		</br>
-		</br>	    
-		<center>Affichez </center>
-		</br>
-		</br>
-		<center><FONT COLOR="#FF0000">BIENVENUE A LA FORMATION RUBY</FONT></center>
-		</br>
-		</br>		
-		<center>sur la sortie standard</center>		    
-      </div>
+	
+	<div class="code_helper">
+	
+	    <center>LES CHAINES DE CARACTERES<center>
 
-      <div class="code_helper">
-		</br>
-		</br>	    
-		Affichez 
+	    
 		</br>
 		</br>
-		<FONT COLOR="#FF0000">la 1ère lettre de la phrase
-		</br>
-		</br>		
-		"BIENVENUE A LA FORMATION RUBY"</FONT>
-		</br>
-		</br>		
-		sur la sortie standard		    
-      </div>
-      
-      <div class="code_helper">
-		</br>
-		</br>	    
-		Affichez 
+		<center>Affichez sur la sortie standard</center>	
+		
 		</br>
 		</br>
-		<FONT COLOR="#FF0000">la 5ème lettre de la phrase
-		</br>
-		</br>		
-		"BIENVENUE A LA FORMATION RUBY"</FONT>
-		</br>
-		</br>		
-		sur la sortie standard    
-      </div>     
+		<center><FONT COLOR='#FF0000'>BIENVENUE A L'INITIATION RUBY</FONT></center>	
+		
+		
+	</div>
+	
+	<div class="code_helper">
+	
+	    <center>LES CHAINES DE CARACTERES<center>
 
-      <div class="code_helper">
-		</br>
-		</br>	    
-		Affichez 
+	    
 		</br>
 		</br>
-		<FONT COLOR="#FF0000">la dernière lettre de la phrase
+		<center>Affichez sur la sortie standard</center>	
+		
 		</br>
-		</br>		
-		"BIENVENUE A LA FORMATION RUBY"</FONT>
 		</br>
-		</br>		
-		sur la sortie standard	    
-      </div> 
+		<center><FONT COLOR='#FF0000'>la 1ère lettre de la phrase</FONT></center>	
+		
+		</br>
+		</br>
+		<center><FONT COLOR='#FF0000'>"BIENVENUE A L'INITIATION RUBY"</FONT></center>	
+		
+		
+	</div>
+	
+	<div class="code_helper">
+	
+	    <center>LES CHAINES DE CARACTERES<center>
 
-      <div class="code_helper">
-            LES CHAINES DE CARACTERES
-		</br>
-		</br>	    
-		Affichez 
+	    
 		</br>
 		</br>
-		<FONT COLOR="#FF0000">l'index de le première apparition de la lettre E
+		<center>Affichez sur la sortie standard</center>	
+		
 		</br>
-		</br>		
-		"BIENVENUE A LA FORMATION RUBY"</FONT>
 		</br>
-		</br>		
-		sur la sortie standard	    
-      </div>
+		<center><FONT COLOR='#FF0000'>la 5ème lettre de la phrase</FONT></center>	
+		
+		</br>
+		</br>
+		<center><FONT COLOR='#FF0000'>"BIENVENUE A L'INITIATION RUBY"</FONT></center>	
+		
+		
+	</div>
+	
+	<div class="code_helper">
+	
+	    <center>LES CHAINES DE CARACTERES<center>
 
-      <div class="code_helper">
-            <h1>INTRODUCTION A RUBY</h1>
-            <h2>LES CHAINES DE CARACTERES</h2>
-	    <section style="font-size:2em;" class="centered">
-		</br>
-		</br>	    
-		Affichez 
+	    
 		</br>
 		</br>
-		<FONT COLOR="#FF0000">l'index de la deuxième apparition de la lettre E
+		<center>Affichez sur la sortie standard</center>	
+		
 		</br>
-		</br>		
-		"BIENVENUE A LA FORMATION RUBY"</FONT>
 		</br>
-		</br>		
-		sur la sortie standard
-	    </section>		    
-      </div>
+		<center><FONT COLOR='#FF0000'>la dernière lettre de la phrase</FONT></center>	
+		
+		</br>
+		</br>
+		<center><FONT COLOR='#FF0000'>"BIENVENUE A L'INITIATION RUBY"</FONT></center>	
+		
+		
+	</div>
+	
+	<div class="code_helper">
+	
+	    <center>LES CHAINES DE CARACTERES<center>
 
-      <div class="code_helper">
-            <h1>INTRODUCTION A RUBY</h1>
-            <h2>LES CHAINES DE CARACTERES</h2>
-	    <section style="font-size:2em;" class="centered">
-		</br>
-		</br>	    
-		Remplacez
+	    
 		</br>
 		</br>
-		<FONT COLOR="#FF0000">le mot BIENVENUE par WELCOME dans la phrase
-		</br>
-		</br>		
-		"BIENVENUE A LA FORMATION RUBY"</FONT>
-		</br>
-		</br>		
-		et affichez le sur la sortie standard
-	    </section>		    
-      </div>
-      
-      <div class="code_helper">
-            <h1>INTRODUCTION A RUBY</h1>
-            <h2>LES CHAINES DE CARACTERES</h2>
-	    <section style="font-size:2em;" class="centered">
-		</br>
-		</br>	    
-		Affichez
+		<center>Affichez sur la sortie standard</center>	
+		
 		</br>
 		</br>
-		<FONT COLOR="#FF0000">le 3ème mot dans la phrase
+		<center><FONT COLOR='#FF0000'>les 4 premières lettres de la phrase</FONT></center>	
+		
 		</br>
-		</br>		
-		"BIENVENUE A LA FORMATION RUBY"</FONT>
 		</br>
-		</br>		
-		et affichez le sur la sortie standard
-	    </section>		    
-      </div>   
+		<center><FONT COLOR='#FF0000'>"BIENVENUE A L'INITIATION RUBY"</FONT></center>	
+		
+		
+	</div>
+	
+	<div class="code_helper">
+	
+	    <center>LES CHAINES DE CARACTERES<center>
 
-      <div class="code_helper">
-            <h1>INTRODUCTION A RUBY</h1>
-            <h2>LES CHAINES DE CARACTERES</h2>
-	    <section style="font-size:2em;" class="centered">
-		</br>
-		</br>	    
-		Affichez
+	    
 		</br>
 		</br>
-		<FONT COLOR="#FF0000">La taille en de nombre de caractères de la phrase
+		<center>Affichez sur la sortie standard</center>	
+		
 		</br>
-		</br>		
-		"BIENVENUE A LA FORMATION RUBY"</FONT>
 		</br>
-		</br>		
-		et affichez le sur la sortie standard
-	    </section>		    
-      </div>
+		<center><FONT COLOR='#FF0000'>La taille en de nombre de caractères de la phrase</FONT></center>	
+		
+		</br>
+		</br>
+		<center><FONT COLOR='#FF0000'>"BIENVENUE A L'INITIATION RUBY"</FONT></center>	
+		
+		
+	</div>
+	
+	<div class="code_helper">
+	
+	    <center>LES VARIABLES<center>
 
-      <div class="code_helper">
-            <h1>INTRODUCTION A RUBY</h1>
-            <h2>LES CHAINES DE CARACTERES</h2>
-	    <section style="font-size:2em;" class="centered">
-		</br>
-		</br>	    
-		Affichez en inversé
+	    
 		</br>
 		</br>
-		<FONT COLOR="#FF0000">le 3ème mot dans la phrase
-		</br>
-		</br>		
-		"BIENVENUE A LA FORMATION RUBY"</FONT>
-		</br>
-		</br>		
-		et sur la sortie standard
-	    </section>		    
-      </div>
-      
-      <div class="code_helper">
-            <h1>INTRODUCTION A RUBY</h1>
-            <h2>LES CHAINES DE CARACTERES</h2>
-	    <section style="font-size:2em;" class="centered">
-		</br>
-		</br>	    
-		Remplacez
+		<center>Déclarez une variable</center>	
+		
 		</br>
 		</br>
-		<FONT COLOR="#FF0000">le mot BIENVENUE par WELCOME dans la phrase
+		<center><FONT COLOR='#FF0000'>chaine_de_caracteres</FONT></center>	
+		
 		</br>
-		</br>		
-		"BIENVENUE A LA FORMATION RUBY"</FONT>
 		</br>
-		</br>		
-		et affichez le sur la sortie standard
-	    </section>		    
-      </div>   
-      
-<!--   LES VARIABLES   -->
+		<center><FONT COLOR='#FF0000'>initialisez la avec le mot "RUBY"</FONT></center>	
+		
+		</br>
+		</br>
+		<center><FONT COLOR='#FF0000'>affichez la sur la sortie standard</FONT></center>	
+		
+		
+	</div>
+	
+	<div class="code_helper">
+	
+	    <center>LES VARIABLES<center>
 
-      <div class="code_helper">
-            <h1>INTRODUCTION A RUBY</h1>
-            <h2>LES VARIABLES</h2>
-	    <section style="font-size:2em;" class="centered">
+	    
 		</br>
-		</br>	    
-		Déclarez une variable chaine_de_caracteres et initialisez la avec le mot "RUBY"
 		</br>
-		</br>		
-		affichez la sur la sortie standard
-	    </section>		    
-      </div>      
+		<center>Affichez sur la sortie standard la classe de la variable</center>	
+		
+		</br>
+		</br>
+		<center><FONT COLOR='#FF0000'>chaine_de_caracteres</FONT></center>	
+		
+		
+	</div>
+	
+	<div class="code_helper">
+	
+	    <center>LES VARIABLES<center>
 
-      <div class="code_helper">
-            <h1>INTRODUCTION A RUBY</h1>
-            <h2>LES VARIABLES</h2>
-	    <section style="font-size:2em;" class="centered">
-		</br>
-		</br>	    
-		Affichez
+	    
 		</br>
 		</br>
-		<FONT COLOR="#FF0000">La classe de la variable chaine_de_caracteres
+		<center>Affichez sur la sortie standard les méthodes de la variable chaine_de_caracteres</center>	
+		
 		</br>
-		</br>		
-		et affichez le sur la sortie standard
-	    </section>		    
-      </div>
+		</br>
+		<center><FONT COLOR='#FF0000'>chaine_de_caracteres</FONT></center>	
+		
+		
+	</div>
+	
+	<div class="code_helper">
+	
+	    <center>LES ENTIERS<center>
 
-      <div class="code_helper">
-            <h1>INTRODUCTION A RUBY</h1>
-            <h2>LES VARIABLES</h2>
-	    <section style="font-size:2em;" class="centered">
-		</br>
-		</br>	    
-		Affichez
+	    
 		</br>
 		</br>
-		<FONT COLOR="#FF0000">les méthodes de la variable chaine_de_caracteres
+		<center>Déclarez la variable</center>	
+		
 		</br>
-		</br>		
-		et affichez le sur la sortie standard
-	    </section>		    
-      </div>
+		</br>
+		<center><FONT COLOR='#FF0000'>un_entier</FONT></center>	
+		
+		</br>
+		</br>
+		<center><FONT COLOR='#FF0000'>initialisez la avec valeur -12</FONT></center>	
+		
+		</br>
+		</br>
+		<center>affichez la sur la sortie standard</center>	
+		
+		
+	</div>
+	
+	<div class="code_helper">
+	
+	    <center>LES ENTIERS<center>
 
-<!--   LES ENTIERS   -->
+	    
+		</br>
+		</br>
+		<center>Affichez sur la sortie standard, la classe de la variable</center>	
+		
+		</br>
+		</br>
+		<center><FONT COLOR='#FF0000'>un_entier</FONT></center>	
+		
+		
+	</div>
+	
+	<div class="code_helper">
+	
+	    <center>LES ENTIERS<center>
 
-      <div class="code_helper">
-            <h1>INTRODUCTION A RUBY</h1>
-            <h2>LES ENTIERS</h2>
-	    <section style="font-size:2em;" class="centered">
+	    
 		</br>
-		</br>	    
-		Déclarez une variable un_entier et initialisez la avec valeur -12
 		</br>
-		</br>		
-		affichez la sur la sortie standard
-	    </section>		    
-      </div> 
-      
-      <div class="code_helper">
-            <h1>INTRODUCTION A RUBY</h1>
-            <h2>LES ENTIERS</h2>
-	    <section style="font-size:2em;" class="centered">
+		<center>Affichez sur la sur la sortie standard</center>	
+		
 		</br>
-		</br>	    
-		Affichez la class de la variable un_entier
 		</br>
-		</br>		
-		affichez la sur la sortie standard
-	    </section>		    
-      </div>  
+		<center><FONT COLOR='#FF0000'>la valeur absolue de la variable</FONT></center>	
+		
+		</br>
+		</br>
+		<center><FONT COLOR='#FF0000'>un_entier</FONT></center>	
+		
+		
+	</div>
+	
+	<div class="code_helper">
+	
+	    <center>LES ENTIERS<center>
 
-      <div class="code_helper">
-            <h1>INTRODUCTION A RUBY</h1>
-            <h2>LES ENTIERS</h2>
-	    <section style="font-size:2em;" class="centered">
+	    
 		</br>
-		</br>	    
-		Affichez la class de la variable un_entier
 		</br>
-		</br>		
-		affichez la sur la sortie standard
-	    </section>		    
-      </div> 
+		<center>Affichez sur la sur la sortie standard</center>	
+		
+		</br>
+		</br>
+		<center><FONT COLOR='#FF0000'>le nombre de secondes dans une année de 365 jours</FONT></center>	
+		
+		
+	</div>
+	
+	<div class="code_helper">
+	
+	    <center>COMPOSITION ENTIER et CHAINES DE CARACTERES<center>
 
-      <div class="code_helper">
-            <h1>INTRODUCTION A RUBY</h1>
-            <h2>LES ENTIERS</h2>
-	    <section style="font-size:2em;" class="centered">
+	    
 		</br>
-		</br>	    
-		Affichez la valeur absolue de la variable un_entier
 		</br>
-		</br>		
-		affichez la sur la sortie standard
-	    </section>		    
-      </div> 
+		<center>Affichez sur la sur la sortie standard, la phrase </center>	
+		
+		</br>
+		</br>
+		<center><FONT COLOR='#FF0000'>En 2014 il y aura ** secondes</FONT></center>	
+		
+		</br>
+		</br>
+		<center><FONT COLOR='#FF0000'>** représente le nombre de secondes en chiffres</FONT></center>	
+		
+		
+	</div>
+	
+	<div class="code_helper">
+	
+	    <center>COMPOSITION ENTIER et CHAINES DE CARACTERES<center>
 
-      <div class="code_helper">
-            <h1>INTRODUCTION A RUBY</h1>
-            <h2>LES ENTIERS</h2>
-	    <section style="font-size:2em;" class="centered">
+	    
 		</br>
-		</br>	    
-		Afficher le nombre de secondes dans une année de 365 jours
 		</br>
-		</br>		
-		affichez la sur la sortie standard
-	    </section>		    
-      </div> 
+		<center>Affichez sur la sur la sortie standard, la phrase </center>	
+		
+		</br>
+		</br>
+		<center><FONT COLOR='#FF0000'>15 fois de suite la chaine de caractère 'Ruby !'</FONT></center>	
+		
+		
+	</div>
+	
+	<div class="code_helper">
+	
+	    <center>LES LISTES<center>
 
-<!--   COMPOSITION ENTIER et CHAINES DE CARACTERES   -->
+	    
+		</br>
+		</br>
+		<center>Déclarer une variable</center>	
+		
+		</br>
+		</br>
+		<center><FONT COLOR='#FF0000'>cinq_chiffres_romains</FONT></center>	
+		
+		</br>
+		</br>
+		<center><FONT COLOR='#FF0000'>et intialisez là avec 'I', 'II', 'III', 'IV', 'V'</FONT></center>	
+		
+		
+	</div>
+	
+	<div class="code_helper">
+	
+	    <center>LES LISTES<center>
 
-      <div class="code_helper">
-            <h1>INTRODUCTION A RUBY</h1>
-            <h2>COMPOSITION ENTIER et CHAINES DE CARACTERES</h2>
-	    <section style="font-size:2em;" class="centered">
+	    
 		</br>
-		</br>	    
-		Afficher la phrase "Dans un année de 365 jours il y a ** secondes"
 		</br>
-		** représente le nombre de secondes en chiffres
-		</br>		
-		affichez la sur la sortie standard
-	    </section>		    
-      </div> 
+		<center>Déclarer une variable</center>	
+		
+		</br>
+		</br>
+		<center><FONT COLOR='#FF0000'>Affichez le chiffre romain correspondant à 3</FONT></center>	
+		
+		
+	</div>
+	
+	<div class="code_helper">
+	
+	    <center>LES LISTES<center>
 
-      <div class="code_helper">
-            <h1>INTRODUCTION A RUBY</h1>
-            <h2>COMPOSITION ENTIER et CHAINES DE CARACTERES</h2>
-	    <section style="font-size:2em;" class="centered">
+	    
 		</br>
-		</br>	    
-		Affichez à lasuite 15 fois la chaine de caractère "Ruby !"
 		</br>
-		** représente le nombre de secondes en chiffres
-		</br>		
-		affichez la sur la sortie standard
-	    </section>		    
-      </div> 
+		<center>Déclarer une variable</center>	
+		
+		</br>
+		</br>
+		<center><FONT COLOR='#FF0000'>Affichez le chiffre romain correspondant à l'addition 3 + 2</FONT></center>	
+		
+		
+	</div>
+	
+	<div class="code_helper">
+	
+	    <center>LES LISTES<center>
 
-<!--   LES LISTES   -->
+	    
+		</br>
+		</br>
+		<center>Déclarer une variable</center>	
+		
+		</br>
+		</br>
+		<center><FONT COLOR='#FF0000'>Affichez le chiffre décimal correspondant au chiffre romain 'IV'</FONT></center>	
+		
+		
+	</div>
+	
+	<div class="code_helper">
+	
+	    <center>LES DICTIONNAIRES<center>
 
-      <div class="code_helper">
-            <h1>INTRODUCTION A RUBY</h1>
-            <h2>LES LISTES</h2>
-	    <section style="font-size:2em;" class="centered">
+	    
 		</br>
-		</br>	    
-		Déclarer une variable les_cinq_premiers_chiffres_romains et intialisez là avec 'I', 'II', 'III', 'IV', 'V'	
-	    </section>		    
-      </div> 
-      
-      <div class="code_helper">
-            <h1>INTRODUCTION A RUBY</h1>
-            <h2>LES LISTES</h2>
-	    <section style="font-size:2em;" class="centered">
 		</br>
-		</br>	    
-		Affichez le chiffre romain correspondant à 3	
-	    </section>		    
-      </div> 
+		<center>Déclarez une variable types_de_contenu_par_type_de_fichier</center>	
+		
+		</br>
+		</br>
+		<center>l'initialisée avec (mp3: 'audio', ...) </center>	
+		
+		</br>
+		</br>
+		<center><FONT COLOR='#FF0000'>Affichez là sur la sortie standard</FONT></center>	
+		
+		
+	</div>
+	
+	<div class="code_helper">
+	
+	    <center>LES CONDITIONS<center>
 
-      <div class="code_helper">
-            <h1>INTRODUCTION A RUBY</h1>
-            <h2>LES LISTES</h2>
-	    <section style="font-size:2em;" class="centered">
+	    
 		</br>
-		</br>	    
-		Déclarer une variable les_cinq_premiers_chiffres_romains et intialisez là avec 'I', 'II', 'III', 'IV', 'V'	
-	    </section>		    
-      </div> 
-      
-      <div class="code_helper">
-            <h1>INTRODUCTION A RUBY</h1>
-            <h2>LES LISTES</h2>
-	    <section style="font-size:2em;" class="centered">
 		</br>
-		</br>	    
-		Affichez le chiffre romain correspondant à 3	
-	    </section>		    
-      </div>
-      
-      <div class="code_helper">
-            <h1>INTRODUCTION A RUBY</h1>
-            <h2>LES LISTES</h2>
-	    <section style="font-size:2em;" class="centered">
+		<center>Déclarez une variable age</center>	
+		
 		</br>
-		</br>	    
-		Affichez le chiffre romain correspondant à 12	
-	    </section>		    
-      </div>      
-      
-      <div class="code_helper">
-            <h1>INTRODUCTION A RUBY</h1>
-            <h2>LES LISTES</h2>
-	    <section style="font-size:2em;" class="centered">
 		</br>
-		</br>	    
-		Affichez le chiffre romain correspondant à l'addition 3 + 2	
-	    </section>		    
-      </div>
+		<center>initialisée la à 5</center>	
+		
+		</br>
+		</br>
+		<center>Affichez 'MINEUR' si  age inférieur à 18 et 'MAJEUR' sinon</center>	
+		
+		</br>
+		</br>
+		<center>Modifier la variable et donnez lui la valeur 34</center>	
+		
+		</br>
+		</br>
+		<center>Affichez là sur la sortie standard</center>	
+		
+		
+	</div>
+	
+	<div class="code_helper">
+	
+	    <center>LES CONDITIONS<center>
 
-      <div class="code_helper">
-            <h1>INTRODUCTION A RUBY</h1>
-            <h2>LES LISTES</h2>
-	    <section style="font-size:2em;" class="centered">
+	    
 		</br>
-		</br>	    
-		Affichez le chiffre décimal correspondant au chiffre romain 'IV'
-	    </section>		    
-      </div>
+		</br>
+		<center>Déclarez une variable age est initialisée la à 5</center>	
+		
+		</br>
+		</br>
+		<center>Affichez 'MINEUR' si age inférieur à 18 sinon ne rien afficher</center>	
+		
+		
+	</div>
+	
+	<div class="code_helper">
+	
+	    <center>LES CONDITIONS<center>
 
-<!--   LES DICTIONNAIRES   -->
+	    
+		</br>
+		</br>
+		<center>Déclarez une variable age est initialisée la à 5</center>	
+		
+		</br>
+		</br>
+		<center>Affichez 'MINEUR' sauf si age supérieur égal à 18</center>	
+		
+		</br>
+		</br>
+		<center>Affichez là sur la sortie standard</center>	
+		
+		
+	</div>
+	
+	<div class="code_helper">
+	
+	    <center>LES CONDITIONS<center>
 
-      <div class="code_helper">
-            <h1>INTRODUCTION A RUBY</h1>
-            <h2>LES DICTIONNAIRES</h2>
-	    <section style="font-size:2em;" class="centered">
-		</br>
-		</br>	    
-		Déclarez une variable types_de_contenu_par_type_de_fichier et l'initialisée avec (mp3: "audio", ...) 
+	    
 		</br>
 		</br>
-		Affichez là sur la sortie standard
-	    </section>		    
-      </div> 
-      
+		<center>Déclarez une variable ages et initialisée la à 1, 2, 3, 4, 5</center>	
+		
+		</br>
+		</br>
+		<center>Déclarez une variable index et intialisée la à 0</center>	
+		
+		</br>
+		</br>
+		<center>Affichez 'OK' si ages[index] existe, 'KO' sinon</center>	
+		
+		
+	</div>
+	
+	<div class="code_helper">
+	
+	    <center>LES BOUCLES<center>
 
-<!--   LES STRUCTURES DE CONTROLE  : LES CONDITIONS -->
+	    
+		</br>
+		</br>
+		<center>Déclarez une variable chiffres</center>	
+		
+		</br>
+		</br>
+		<center>Initialisée la à 0, 1, 2, 3, 4, 5, 6, 7, 8, 9</center>	
+		
+		</br>
+		</br>
+		<center>Affichez les nombres impairs en utilisant l'index</center>	
+		
+		
+	</div>
+	
+	<div class="code_helper">
+	
+	    <center>LES BOUCLES<center>
 
-      <div class="code_helper">
-            <h1>INTRODUCTION A RUBY</h1>
-            <h2>LES CONDITIONS</h2>
-	    <section style="font-size:2em;" class="centered">
-		</br>
-		</br>	    
-		Déclarez une variable age est initialisée la à 5
-		Affichez 'MINEUR' si  age inférieur égal à 18 et 'MAJEUR' sinon
-		Modifier la variable et donnez lui la valeur 34
+	    
 		</br>
 		</br>
-		Affichez là sur la sortie standard
-	    </section>		    
-      </div>
-      
-     <div class="code_helper">
-            <h1>INTRODUCTION A RUBY</h1>
-            <h2>LES CONDITIONS </h2>
-	    <section style="font-size:2em;" class="centered">
-		</br>
-		</br>	    
-		Déclarez une variable age est initialisée la à 5
-		Affichez 'MINEUR' si age inférieur à 18
+		<center>Déclarez une variable chiffres</center>	
+		
 		</br>
 		</br>
-		Affichez là sur la sortie standard
-	    </section>		    
-      </div>      
-      
-      <div class="code_helper">
-            <h1>INTRODUCTION A RUBY</h1>
-            <h2>LES CONDITIONS </h2>
-	    <section style="font-size:2em;" class="centered">
-		</br>
-		</br>	    
-		Déclarez une variable age est initialisée la à 5
-		Affichez 'MINEUR' sauf si age supérieur à 18
+		<center>Initialisée la à 0, 1, 2, 3, 4, 5, 6, 7, 8, 9</center>	
+		
 		</br>
 		</br>
-		Affichez là sur la sortie standard
-	    </section>		    
-      </div>
-      
-      <div class="code_helper">
-            <h1>INTRODUCTION A RUBY</h1>
-            <h2>LES CONDITIONS </h2>
-	    <section style="font-size:2em;" class="centered">
-		</br>
-		</br>	    
-		Déclarez une variable ages et initialisée la à 1, 2, 3, 4, 5
-		Déclarez une variable index et intialisée la à 0
-		Affichez 'OK' si ages[index] existe, 'KO' sinon
-		</br>
-		</br>
-		Affichez là sur la sortie standard
-	    </section>		    
-      </div>      
-      
-<!--   LES STRUCTURES DE CONTROLE  : LES BOUCLES -->
+		<center>Affichez les nombres impairs sans utiliser d'index</center>	
+		
+		
+	</div>
+	
+	<div class="code_helper">
+	
+	    <center>LES BOUCLES<center>
 
-      <div class="code_helper">
-            <h1>INTRODUCTION A RUBY</h1>
-            <h2>LES BOUCLES</h2>
-	    <section style="font-size:2em;" class="centered">
-		</br>
-		</br>	    
-		Déclarez une variable chiffres_décimaux est initialisée la à 0, 1, 2, 3, 4, 5, 6, 7, 8, 9
-		Affichez les nombres pair en utilisant l'index
+	    
 		</br>
 		</br>
-		Affichez là sur la sortie standard
-	    </section>		    
-      </div>
+		<center>Déclarez une variable chiffres</center>	
+		
+		</br>
+		</br>
+		<center>Initialisée la à 0, 1, 2, 3, 4, 5, 6, 7, 8, 9</center>	
+		
+		</br>
+		</br>
+		<center>Affichez les nombres impairs sans utiliser d'index, ni l'instruction for</center>	
+		
+		
+	</div>
+	
+	<div class="code_helper">
+	
+	    <center>LES BOUCLES<center>
 
-      <div class="code_helper">
-            <h1>INTRODUCTION A RUBY</h1>
-            <h2>LES BOUCLES</h2>
-	    <section style="font-size:2em;" class="centered">
-		</br>
-		</br>	    
-		Déclarez une variable chiffres_décimaux est initialisée la à 0, 1, 2, 3, 4, 5, 6, 7, 8, 9
-		Affichez les nombres pair en utilisant l'index
+	    
 		</br>
 		</br>
-		Affichez là sur la sortie standard
-	    </section>		    
-      </div>
+		<center>Déclarez une variable chiffres</center>	
+		
+		</br>
+		</br>
+		<center>Initialisée la à 0, 1, 2, 3, 4, 5, 6, 7, 8, 9</center>	
+		
+		</br>
+		</br>
+		<center>Afficher les chiffres impairs sans utiliser 'each'</center>	
+		
+		
+	</div>
+	
+	<div class="code_helper">
+	
+	    <center>LES BOUCLES<center>
 
-<!--   LES BLOCKS -->
+	    
+		</br>
+		</br>
+		<center>Déclarez une variable chiffres</center>	
+		
+		</br>
+		</br>
+		<center>Initialisée la à 0, 1, 2, 3, 4, 5, 6, 7, 8, 9</center>	
+		
+		</br>
+		</br>
+		<center>Affichez le carré de chaque chiffre sans utiliser 'each'</center>	
+		
+		
+	</div>
+	
+	<div class="code_helper">
+	
+	    <center>LES BOUCLES<center>
 
-      <div class="code_helper">
-            <h1>INTRODUCTION A RUBY</h1>
-            <h2>LES BOUCLES</h2>
-	    <section style="font-size:2em;" class="centered">
-		</br>
-		</br>	    
-		Déclarez une variable chiffres_décimaux est initialisée la à 0, 1, 2, 3, 4, 5, 6, 7, 8, 9
-		Affichez les nombres pair sans utiliser d'index, ni l'instruction for
+	    
 		</br>
 		</br>
-		Affichez là sur la sortie standard
-	    </section>		    
-      </div>
+		<center>Déclarez une variable chiffres</center>	
+		
+		</br>
+		</br>
+		<center>Initialisée la à 0, 1, 2, 3, 4, 5, 6, 7, 8, 9</center>	
+		
+		</br>
+		</br>
+		<center>Définissez la methode carre_de(x)</center>	
+		
+		</br>
+		</br>
+		<center>Afficher le carre de chaque chiffre</center>	
+		
+		
+	</div>
+	
+	
+	<div class="code_helper">
+<pre>
+require 'test/unit'
 
-      <div class="code_helper">
-            <h1>INTRODUCTION A RUBY</h1>
-            <h2>LES BOUCLES</h2>
-	    <section style="font-size:2em;" class="centered">
-		</br>
-		</br>	    
-		Déclarez une variable chiffres_décimaux est initialisée la à 0, 1, 2, 3, 4, 5, 6, 7, 8, 9
-		Affichez le carré de chaque chiffre
-		</br>
-		</br>
-		Affichez là sur la sortie standard
-	    </section>		    
-      </div>
-      
-      <div class="code_helper">
-            <h1>INTRODUCTION A RUBY</h1>
-            <h2>LES BOUCLES</h2>
-	    <section style="font-size:2em;" class="centered">
-		</br>
-		</br>	    
-		Déclarez une variable chiffres_décimaux est initialisée la à 0, 1, 2, 3, 4, 5, 6, 7, 8, 9
-		Selectionnez les chiffres pair
-		</br>
-		</br>
-		Affichez là sur la sortie standard
-	    </section>		    
-      </div>      
-      
-<!--   LES METHODES -->
+class TestMimeType < Test::Unit::TestCase
 
-      <div class="code_helper">
-            <h1>INTRODUCTION A RUBY</h1>
-            <h2>LES BOUCLES</h2>
-	    <section style="font-size:2em;" class="centered">
-		</br>
-		</br>	    
-		Déclarez une variable chiffres_décimaux est initialisée la à 0, 1, 2, 3, 4, 5, 6, 7, 8, 9
-		Définissez la methode carre_de(x)
-		afficher le carre de chaque chiffre
-		</br>
-		</br>
-		Affichez là sur la sortie standard
-	    </section>		    
-      </div>
+  def test03
+    extension_hash = { "html" => "text/html" }
+    file_list = ["file.html"]
+    
+    assert_equal ["text/html"], mime_types(file_list, extension_hash)
+  end  
 
-<!--   LE PUZZLE -->
+  def test03
+    extension_hash = { "html" => "text/html" }
+    file_list = ["file.html"]
+    
+    assert_equal ["text/html"], mime_types(file_list, extension_hash)
+  end  
+  
+  def test04
+    extension_hash = { "html" => "text/html" }
+    file_list = ["file.html", "file.gif"]
+    
+    assert_equal ["text/html", "UNKNOWN"], mime_types(file_list, extension_hash)
+  end
+  
+  def test05
+    extension_hash = { "html" => "text/html", "gif" => "image/gif" }
+    file_list = ["file.html", "file.gif"]
+    
+    assert_equal ["text/html", "image/gif"], mime_types(file_list, extension_hash)
+  end  
+	
+  def test11
+    extension_hash = {"html" =>  "text/html", "png" => "image/png", "gif" => "image/gif" }
+    file_list = ["animated.gif", "portrait.png", "index.html"]
+    
+    assert_equal  ["image/gif", "image/png", "text/html"], mime_types(file_list, extension_hash)
+  end
+  
+  def test12
+    extension_hash = {"txt" => "text/plain", "xml" =>  "text/xml", "flv" => "video/x-flv" }
+    file_list = ["image.png", "animated.gif", "script.js", "source.cpp"]   
+    
+    assert_equal  ["UNKNOWN", "UNKNOWN", "UNKNOWN", "UNKNOWN"], mime_types(file_list, extension_hash)
+  end
+  
+  def test13
+    extension_hash = { "wav" => "audio/x-wav", "mp3" => "audio/mpeg", "pdf" => "application/pdf" }
+    file_list = ["a", "a.wav", "b.wav.tmp", "test.vmp3", "pdf", "mp3", "report..pdf", "defaultwav", ".mp3.", "final."]   
+    
+    assert_equal  ["UNKNOWN", "audio/x-wav", "UNKNOWN", "UNKNOWN", "UNKNOWN", "UNKNOWN", "application/pdf", "UNKNOWN", "UNKNOWN", "UNKNOWN"], mime_types(file_list, extension_hash)
+  end
 
-      <div class="code_helper">
-            <h1>INTRODUCTION A RUBY</h1>
-            <h2>PUZZLE TDD ALONE</h2>
-	    <section style="font-size:2em;" class="centered">
-		</br>
-		</br>	    
-		Ecrire le programme qui passe tous les tests
-		</br>
-		</br>
-		Affichez là sur la sortie standard
-	    </section>
+  def test14
+    #~ extension_hash = { "png" => "image/png", "TIFF" => "image/TIFF", "css" => "text/css", "TXT" => "text/plain"}
+    extension_hash = { "png" => "image/png", "tiff" => "image/TIFF", "css" => "text/css", "txt" => "text/plain"}
+    file_list = ["example.TXT", "referecnce.txt", "strangename.tiff", "resolv.CSS", "matrix.TiFF", "lanDsCape.Png", "extract.cSs"]   
+    
+    assert_equal  ["text/plain", "text/plain", "image/TIFF", "text/css", "image/TIFF", "image/png", "text/css"], mime_types(file_list, extension_hash)
+  end
+  
+  def test15
+    extension_hash = { }
+    file_list = []   
+    
+    assert_equal  [], mime_types(file_list, extension_hash)
+  end 
+  
+end
+</pre>
+		
+	</div>	
+
+	<div class="code_helper">
 <pre>
 #~ import java.util.*;
 #~ import java.io.*;
@@ -1364,45 +1541,99 @@ class Solution
 	#~ }
 #~ }
 end
-</pre>
-      </div>
-      
-      <div class="code_helper">
-            <h1>INTRODUCTION A RUBY</h1>
-            <h2>PUZZLE TDD REFACTORING TOGETHER</h2>
-	    <section style="font-size:2em;" class="centered">
-		</br>
-		</br>	    
-		Remanier le programme pour qu'il soit le plus court possible et proche de la philosophie ruby
-		</br>
-		</br>
-		Affichez là sur la sortie standard
-	    </section>		    
-      </div>     
-      
-            <div class="code_helper">
-LAST SLIDE		    
-      </div>  
-	    
-	    <input type="button" id="execute" value="EXECUTE (ALT-R)">
-            <textarea class="code_result" id="code_output"></textarea>
-	    
-	    </section>
-	
-        </div>  
 
+require 'test/unit'
 
+class TestMimeType < Test::Unit::TestCase
 
-    </div> <!--presentation-->
-      
-    <script src="ace-builds/src-min-noconflict/ace.js" type="text/javascript" charset="utf-8"></script>
-    <script src="slideshow.js"></script>
-    <script src="slideshow-teacher.js"></script>
-    <script>
-    teacherSlideshow._slides[teacherSlideshow._numberOfSlides-1].code_editor.setTheme("ace/theme/vibrant_ink");
-    teacherSlideshow._slides[teacherSlideshow._numberOfSlides-1].code_editor.getSession().setMode("ace/mode/ruby");
-    document.getElementById('code_input').style.fontSize='14px';    
-    </script>    
+  def test03
+    extension_hash = { "html" => "text/html" }
+    file_list = ["file.html"]
     
-  </body>
+    assert_equal ["text/html"], mime_types(file_list, extension_hash)
+  end  
+
+  def test03
+    extension_hash = { "html" => "text/html" }
+    file_list = ["file.html"]
+    
+    assert_equal ["text/html"], mime_types(file_list, extension_hash)
+  end  
+  
+  def test04
+    extension_hash = { "html" => "text/html" }
+    file_list = ["file.html", "file.gif"]
+    
+    assert_equal ["text/html", "UNKNOWN"], mime_types(file_list, extension_hash)
+  end
+  
+  def test05
+    extension_hash = { "html" => "text/html", "gif" => "image/gif" }
+    file_list = ["file.html", "file.gif"]
+    
+    assert_equal ["text/html", "image/gif"], mime_types(file_list, extension_hash)
+  end  
+	
+  def test11
+    extension_hash = {"html" =>  "text/html", "png" => "image/png", "gif" => "image/gif" }
+    file_list = ["animated.gif", "portrait.png", "index.html"]
+    
+    assert_equal  ["image/gif", "image/png", "text/html"], mime_types(file_list, extension_hash)
+  end
+  
+  def test12
+    extension_hash = {"txt" => "text/plain", "xml" =>  "text/xml", "flv" => "video/x-flv" }
+    file_list = ["image.png", "animated.gif", "script.js", "source.cpp"]   
+    
+    assert_equal  ["UNKNOWN", "UNKNOWN", "UNKNOWN", "UNKNOWN"], mime_types(file_list, extension_hash)
+  end
+  
+  def test13
+    extension_hash = { "wav" => "audio/x-wav", "mp3" => "audio/mpeg", "pdf" => "application/pdf" }
+    file_list = ["a", "a.wav", "b.wav.tmp", "test.vmp3", "pdf", "mp3", "report..pdf", "defaultwav", ".mp3.", "final."]   
+    
+    assert_equal  ["UNKNOWN", "audio/x-wav", "UNKNOWN", "UNKNOWN", "UNKNOWN", "UNKNOWN", "application/pdf", "UNKNOWN", "UNKNOWN", "UNKNOWN"], mime_types(file_list, extension_hash)
+  end
+
+  def test14
+    #~ extension_hash = { "png" => "image/png", "TIFF" => "image/TIFF", "css" => "text/css", "TXT" => "text/plain"}
+    extension_hash = { "png" => "image/png", "tiff" => "image/TIFF", "css" => "text/css", "txt" => "text/plain"}
+    file_list = ["example.TXT", "referecnce.txt", "strangename.tiff", "resolv.CSS", "matrix.TiFF", "lanDsCape.Png", "extract.cSs"]   
+    
+    assert_equal  ["text/plain", "text/plain", "image/TIFF", "text/css", "image/TIFF", "image/png", "text/css"], mime_types(file_list, extension_hash)
+  end
+  
+  def test15
+    extension_hash = { }
+    file_list = []   
+    
+    assert_equal  [], mime_types(file_list, extension_hash)
+  end 
+  
+end
+</pre>
+		
+	</div>
+    
+    <input type="button" id="execute" value="EXECUTE (ALT-R)">
+    <textarea class="code_result" id="code_output"></textarea>
+    
+    </section>
+
+</div>  
+
+
+
+</div> <!--presentation-->
+
+<script src="ace-builds/src-min-noconflict/ace.js" type="text/javascript" charset="utf-8"></script>
+<script src="slideshow.js"></script>
+<script src="slideshow-teacher.js"></script>
+<script>
+teacherSlideshow._slides[teacherSlideshow._numberOfSlides-1].code_editor.setTheme("ace/theme/vibrant_ink");
+teacherSlideshow._slides[teacherSlideshow._numberOfSlides-1].code_editor.getSession().setMode("ace/mode/ruby");
+document.getElementById('code_input').style.fontSize='14px';    
+</script>    
+
+</body>
 </html>

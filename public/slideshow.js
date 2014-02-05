@@ -39,7 +39,6 @@ var getResource = function(path) {
 // ----------------------------------
 var Slide = function(node) {
   this._node = node;
-
   if (this._isCodingSlide()) { this._initializeCodingSlide(); }
 };
 
@@ -72,7 +71,6 @@ Slide.prototype = {
   },
   
   updatePoll: function() {
-    if (! this._isPollResultSlide()) return;
     rateNodes = this._node.querySelectorAll('.poll_response_rate')
     for (var i=0; i<rateNodes.length; i++) {
       rateNodeId = '#' + rateNodes[i].id;
@@ -120,8 +118,8 @@ var SlideShow = function(slides) {
   var _t = this;
   document.addEventListener('keydown', function(e) { _t.handleKeys(e); }, false );   
 
-  this._update_current_slide_state();
-  this._update_poll();
+  this._show_current_slide();
+  this._update_poll_slide();
   this._update_coding_slide();  
 };
 
@@ -140,9 +138,13 @@ SlideShow.prototype = {
 
   _current_slide: function() {
     return this._slides[this._currentIndex];
-  },  
+  },
+
+  _coding_slide:function() {
+    return this._slides[this._numberOfSlides-1]
+  },
   
-  _update_current_slide_state: function() {
+  _show_current_slide: function() {
     window.console && window.console.log("_currentIndex : " + this._currentIndex);
     window.console && window.console.log("_currentServerIndex : " + this._currentServerIndex);
     if (this._current_slide()) {
@@ -151,8 +153,8 @@ SlideShow.prototype = {
     }
   },
   
-  _update_poll: function() {
-    if (this._current_slide()) {
+  _update_poll_slide: function() {
+    if (this._current_slide() && this._current_slide()._isPollResultSlide()) {
       this._current_slide().updatePoll();
     }
   },  
@@ -162,54 +164,59 @@ SlideShow.prototype = {
       this._current_slide().updateCodingSlide(this._currentServerIndex); 
     }
     if (!this._isUp) {
-      this._slides[this._numberOfSlides-1].updateCodingSlide(this._currentIndex);
+      this._coding_slide().updateCodingSlide(this._currentIndex);
     }
   },  
 
-  _getCurrentIndex: function() {
+  _is_a_number: function(index) {
+	return  !( isNaN(index) )
+  },
+  
+  _getCurrentIndexOnServer: function() {
     serverIndex = parseInt(getResource('/teacher_current_slide'));
-    if ( !( isNaN(serverIndex) ) ) this._currentServerIndex = serverIndex;
-    if (this._numberOfSlides == 0 ) { this._currentIndex = this._currentServerIndex; }
-    if (this._currentServerIndex <= (this._numberOfSlides -1) ) { this._currentIndex = this._currentServerIndex; }
+    if ( this._is_a_number(serverIndex) ) this._currentServerIndex = serverIndex;
+    if (this._numberOfSlides == 0 ) this._currentIndex = this._currentServerIndex;
+    if (this._currentServerIndex <= (this._numberOfSlides -1) ) this._currentIndex = this._currentServerIndex;
   },    
 
-  _postCurrentIndex: function() {
+  _postCurrentIndexOnServer: function() {
     postResource('/teacher_current_slide', 'index=' + this._currentIndex, ASYNCHRONOUS);
   },
 
   prev: function() {
     if (this._currentIndex <= 0) return;
-    this._currentIndex = this._currentIndex - 1;
-    if (this._isUp) this._update_current_slide_state();
-    this._update_poll();
+    this._currentIndex -= 1;
+    if (this._isUp) this._show_current_slide();
+    this._update_poll_slide();
     this._update_coding_slide();	  
-    this._postCurrentIndex();
+    this._postCurrentIndexOnServer();
   },
 
   next: function() {
     if (this._currentIndex >= (this._numberOfSlides - 1) ) return;
-    this._currentIndex = this._currentIndex + 1;
-    if (this._isUp) this._update_current_slide_state();
-    this._update_poll();
+    if (this._slides[this._currentIndex+1] && this._slides[this._currentIndex+1]._isCodingSlide()) return;
+    this._currentIndex += 1;
+    if (this._isUp) this._show_current_slide();
+    this._update_poll_slide();
     this._update_coding_slide();
-    this._postCurrentIndex();
+    this._postCurrentIndexOnServer();
   },
   
   down: function() {
     this._clean();
-    this._slides[this._numberOfSlides-1].setState('current');
+    this._coding_slide().setState('current');
     this._isUp = false;
     this._update_coding_slide();  
   },
   
   up: function() {
     this._isUp = true;
-    this._update_current_slide_state();	  
+    this._show_current_slide();	  
   },
 
   synchronise: function() {
-    this._getCurrentIndex();
-    if (this._isUp) this._update_current_slide_state(); 
+    this._getCurrentIndexOnServer();
+    if (this._isUp) this._show_current_slide(); 
     this._update_coding_slide();
   },
 };
