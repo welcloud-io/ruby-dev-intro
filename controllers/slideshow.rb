@@ -19,6 +19,7 @@ get '/' do
 end
 
 get '/teacher-x1973' do
+  session[:user_id] = 0
   send_file "views/slideshow-teacher.1973x.html"
 end
 
@@ -30,8 +31,8 @@ get '/poll_response_*_rate_to_*' do
   PollQuestion.new(question_id).rate_for(answer).to_s
 end
 
-get '/code_last_run' do
-  last_runtime_event = RunTimeEvent.find_all.last
+get '/code_last_run/*' do
+  last_runtime_event = RunTimeEvent.find_last(slide_index)
   return "" if last_runtime_event == nil
   last_runtime_event.code_input
 end
@@ -61,7 +62,7 @@ post '/code_evaluation_result' do
   eval_ruby(code)
 end
 
-post '/code_run_result' do
+post '/code_run_result/*' do
   code = request.env["rack.input"].read
-  run_ruby(code, user_id)
+  run_ruby(code, user_id, slide_index)
 end

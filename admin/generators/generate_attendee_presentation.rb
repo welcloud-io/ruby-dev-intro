@@ -101,7 +101,10 @@ margin: 1%;
 	</div>	
 
 	<div class="code_helper">
-	<pre><%= JAVA_CODE %><%= TESTS %></pre>
+	
+    <div class="code_to_display"><%= JAVA_CODE %></div>
+    <pre><%= TESTS %></pre>
+    
 	</div>
     
     <input type="button" id="execute" value="EXECUTE (ALT-R)">
