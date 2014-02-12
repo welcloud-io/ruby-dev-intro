@@ -125,9 +125,10 @@ margin: 1%;
     
     <section>
     
-    <div class="code" id="code_input">puts "CONNEXION REUSSIE, BIENVENUE"</div>
+    <div class="code" id="code_input"></div>
     
 	<div class="code_helper">
+    <div class="code_to_display">puts "BIENVENUE M. LEMAITRE"</div>
 	<section class='centered' >
 	  INTRODUCTION A RUBY
 	  </br>
