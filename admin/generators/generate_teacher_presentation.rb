@@ -170,14 +170,14 @@ margin: 1%;
 	
 	<div class="code_helper">
 
-	<pre><%= TESTS %></pre>
+	<div class="code_to_add"> <%= TESTS %> </div>
 		
 	</div>	
 
 	<div class="code_helper">
 	
     <div class="code_to_display"><%= JAVA_CODE %></div>
-    <pre><%= TESTS %></pre>
+    <div class="code_to_add"> <%= TESTS %> </div>
 		
 	</div>
     
