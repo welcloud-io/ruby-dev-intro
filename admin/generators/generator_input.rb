@@ -1,241 +1,63 @@
 #encoding: utf-8
 
-TITLE = 'INITIATION A RUBY'
-SLIDES = [
-{ :Subtitle => "LES CHAINES DE CARACTERES", 
-			:Section => [
-			"Affichez sur la sortie standard", 
-			"<FONT COLOR='#FF0000'>BIENVENUE A L'INITIATION RUBY</FONT>"
-			] 
-},
-{ :Subtitle => "LES CHAINES DE CARACTERES", 
-			:Section => [
-			"Affichez sur la sortie standard", 
-			"<FONT COLOR='#FF0000'>la 1ère lettre de la phrase</FONT>", 
-			"<FONT COLOR='#FF0000'>\"BIENVENUE A L'INITIATION RUBY\"</FONT>"
-			] 
-},
-{ :Subtitle => "LES CHAINES DE CARACTERES", 
-			:Section => [
-			"Affichez sur la sortie standard", 
-			"<FONT COLOR='#FF0000'>la 5ème lettre de la phrase</FONT>", 
-			"<FONT COLOR='#FF0000'>\"BIENVENUE A L'INITIATION RUBY\"</FONT>"
-			] 
-},
-{ :Subtitle => "LES CHAINES DE CARACTERES", 
-			:Section => [
-			"Affichez sur la sortie standard", 
-			"<FONT COLOR='#FF0000'>la dernière lettre de la phrase</FONT>", 
-			"<FONT COLOR='#FF0000'>\"BIENVENUE A L'INITIATION RUBY\"</FONT>"
-			] 
-},
-{ :Subtitle => "LES CHAINES DE CARACTERES", 
-			:Section => [
-			"Affichez sur la sortie standard", 
-			"<FONT COLOR='#FF0000'>les 4 premières lettres de la phrase</FONT>",			
-			"<FONT COLOR='#FF0000'>\"BIENVENUE A L'INITIATION RUBY\"</FONT>"
-			] 
-},
-{ :Subtitle => "LES CHAINES DE CARACTERES", 
-			:Section => [
-			"Affichez sur la sortie standard", 
-			"<FONT COLOR='#FF0000'>La taille en de nombre de caractères de la phrase</FONT>",			
-			"<FONT COLOR='#FF0000'>\"BIENVENUE A L'INITIATION RUBY\"</FONT>"
-			] 
-},
-{ :Subtitle => "LES VARIABLES", 
-			:Section => [
-			"Déclarez une variable", 			
-			"<FONT COLOR='#FF0000'>chaine_de_caracteres</FONT>",
-			"<FONT COLOR='#FF0000'>initialisez la avec le mot \"RUBY\"</FONT>",
-			"<FONT COLOR='#FF0000'>affichez la sur la sortie standard</FONT>"
-			] 
-},
-{ :Subtitle => "LES VARIABLES", 
-			:Section => [
-			"Affichez sur la sortie standard la classe de la variable", 			
-			"<FONT COLOR='#FF0000'>chaine_de_caracteres</FONT>",
-			] 
-},
-{ :Subtitle => "LES VARIABLES", 
-			:Section => [
-			"Affichez sur la sortie standard les méthodes de la variable chaine_de_caracteres", 			
-			"<FONT COLOR='#FF0000'>chaine_de_caracteres</FONT>",
-			] 
-},
-{ :Subtitle => "LES ENTIERS", 
-			:Section => [
-			"Déclarez la variable", 			
-			"<FONT COLOR='#FF0000'>un_entier</FONT>",
-			"<FONT COLOR='#FF0000'>initialisez la avec valeur -12</FONT>",
-			"affichez la sur la sortie standard"
-			] 
-},
-{ :Subtitle => "LES ENTIERS", 
-			:Section => [
-			"Affichez sur la sortie standard, la classe de la variable", 			
-			"<FONT COLOR='#FF0000'>un_entier</FONT>"
-			] 
-},
-{ :Subtitle => "LES ENTIERS", 
-			:Section => [
-			"Affichez sur la sur la sortie standard",
-			"<FONT COLOR='#FF0000'>la valeur absolue de la variable</FONT>",
-			"<FONT COLOR='#FF0000'>un_entier</FONT>"
-			] 
-},
-{ :Subtitle => "LES ENTIERS", 
-			:Section => [
-			"Affichez sur la sur la sortie standard",
-			"<FONT COLOR='#FF0000'>le nombre de secondes dans une année de 365 jours</FONT>"
-			] 
-},
-{ :Subtitle => "COMPOSITION ENTIER et CHAINES DE CARACTERES", 
-			:Section => [
-			"Affichez sur la sur la sortie standard, la phrase ",
-			"<FONT COLOR='#FF0000'>En 2014 il y aura ** secondes</FONT>",
-			"<FONT COLOR='#FF0000'>** représente le nombre de secondes en chiffres</FONT>"
-			] 
-},
-{ :Subtitle => "COMPOSITION ENTIER et CHAINES DE CARACTERES", 
-			:Section => [
-			"Affichez sur la sur la sortie standard, la phrase ",
-			"<FONT COLOR='#FF0000'>15 fois de suite la chaine de caractère 'Ruby !'</FONT>"
-			] 
-},
-{ :Subtitle => "LES LISTES", 
-			:Section => [
-			"Déclarer une variable",
-			"<FONT COLOR='#FF0000'>cinq_chiffres_romains</FONT>",
-			"<FONT COLOR='#FF0000'>et intialisez là avec 'I', 'II', 'III', 'IV', 'V'</FONT>"
-			] 
-},
-{ :Subtitle => "LES LISTES", 
-			:Section => [
-			"Déclarer une variable",
-			"<FONT COLOR='#FF0000'>Affichez le chiffre romain correspondant à 3</FONT>"
-			] 
-},
-{ :Subtitle => "LES LISTES", 
-			:Section => [
-			"Déclarer une variable",
-			"<FONT COLOR='#FF0000'>Affichez le chiffre romain correspondant à l'addition 3 + 2</FONT>"
-			] 
-},
-{ :Subtitle => "LES LISTES", 
-			:Section => [
-			"Déclarer une variable",
-			"<FONT COLOR='#FF0000'>Affichez le chiffre décimal correspondant au chiffre romain 'IV'</FONT>"
-			] 
-},
-{ :Subtitle => "LES DICTIONNAIRES", 
-			:Section => [
-			"Déclarez une variable types_de_contenu_par_type_de_fichier",
-			"l'initialisée avec (mp3: 'audio', ...) ",
-			"<FONT COLOR='#FF0000'>Affichez là sur la sortie standard</FONT>"
-			] 
-},
-{ :Subtitle => "LES CONDITIONS", 
-			:Section => [
-			"Déclarez une variable age",
-			"initialisée la à 5",
-			"Affichez 'MINEUR' si  age inférieur à 18 et 'MAJEUR' sinon",
-			"Modifier la variable et donnez lui la valeur 34",
-			"Affichez là sur la sortie standard"
-			] 
-},
-{ :Subtitle => "LES CONDITIONS", 
-			:Section => [
-			"Déclarez une variable age est initialisée la à 5",
-			"Affichez 'MINEUR' si age inférieur à 18 sinon ne rien afficher",
-			] 
-},
-{ :Subtitle => "LES CONDITIONS", 
-			:Section => [
-			"Déclarez une variable age est initialisée la à 5",
-			"Affichez 'MINEUR' sauf si age supérieur égal à 18",
-			"Affichez là sur la sortie standard",
-			] 
-},
-{ :Subtitle => "LES CONDITIONS", 
-			:Section => [
-			"Déclarez une variable ages et initialisée la à 1, 2, 3, 4, 5",
-			"Déclarez une variable index et intialisée la à 0",
-			"Affichez 'OK' si ages[index] existe, 'KO' sinon",
-			] 
-},
-{ :Subtitle => "LES BOUCLES", 
-			:Section => [
-			"Déclarez une variable chiffres",
-			"Initialisée la à 0, 1, 2, 3, 4, 5, 6, 7, 8, 9",
-			"Affichez les nombres impairs en utilisant l'index",
-			] 
-},
-{ :Subtitle => "LES BOUCLES", 
-			:Section => [
-			"Déclarez une variable chiffres",
-			"Initialisée la à 0, 1, 2, 3, 4, 5, 6, 7, 8, 9",
-			"Affichez les nombres impairs sans utiliser d'index",
-			] 
-},
-{ :Subtitle => "LES BOUCLES", 
-			:Section => [
-			"Déclarez une variable chiffres",
-			"Initialisée la à 0, 1, 2, 3, 4, 5, 6, 7, 8, 9",
-			"Affichez les nombres impairs sans utiliser d'index, ni l'instruction for",
-			] 
-},
-{ :Subtitle => "LES BOUCLES", 
-			:Section => [
-			"Déclarez une variable chiffres",
-			"Initialisée la à 0, 1, 2, 3, 4, 5, 6, 7, 8, 9",
-			"Afficher les chiffres impairs sans utiliser 'each'",
-			] 
-},
-{ :Subtitle => "LES BOUCLES", 
-			:Section => [
-			"Déclarez une variable chiffres",
-			"Initialisée la à 0, 1, 2, 3, 4, 5, 6, 7, 8, 9",
-			"Affichez le carré de chaque chiffre sans utiliser 'each'",
-			] 
-},
-{ :Subtitle => "LES BOUCLES", 
-			:Section => [
-			"Déclarez une variable chiffres",
-			"Initialisée la à 0, 1, 2, 3, 4, 5, 6, 7, 8, 9",
-			"Définissez la methode carre_de(x)",
-			"Afficher le carre de chaque chiffre",
-			] 
-}
-]
-
-$mime_type =
+MIME_TYPE_PUZZLE =
 %Q{
-	Le type MIME est utilisé dans de nombreux protocoles internet pour associer un type de média (html, image, vidéo, ...) avec le contenu envoyé.
-	</br>   
-	Ce type MIME est généralement déduit de l'extension du fichier à transférer.
-	</br>
-	Vous devez écrire un programme qui permet de détecter le type MIME d'un fichier à partir de son nom.
-	</br>      
-	Une table qui associe un type MIME avec une extension de fichier vous est fournie. Une liste de noms de fichier à transférer vous sera aussi fournie et vous devrez déduire pour chacun d'eux, le type MIME à utiliser.
-	</br>
-	L'extension d'un fichier se définit par la partie du nom qui se trouve après le dernier point qui le compose.
-	</br>
-	Si l'extension du fichier est présente dans la table d'association (la casse ne compte pas. ex : TXT est équivalent à txt), alors affichez le type MIME correspondant . S'il n'est pas possible de trouver le type MIME associé à un fichier, ou si le fichier n'a pas d'extensions, affichez UNKNOWN.       
-	</br>
-	EXEMPLE :
-	Entrée
-	html text/html
-	png image/png
-	test.html
-	noextension
-	portrait.png
-	doc.TXT
-	Sortie
-	text/html
-	UNKNOWN
-	image/png
-	UNKNOWN
+Le type MIME est utilisé dans de nombreux protocoles internet pour associer un type de média (html, image, vidéo, ...) avec le contenu envoyé.
+</br>   
+Ce type MIME est généralement déduit de l'extension du fichier à transférer.
+</br>
+Vous devez écrire un programme qui permet de détecter le type MIME d'un fichier à partir de son nom.
+</br>      
+Une table qui associe un type MIME avec une extension de fichier vous est fournie. Une liste de noms de fichier à transférer vous sera aussi fournie et vous devrez déduire pour chacun d'eux, le type MIME à utiliser.
+</br>
+L'extension d'un fichier se définit par la partie du nom qui se trouve après le dernier point qui le compose.
+</br>
+Si l'extension du fichier est présente dans la table d'association (la casse ne compte pas. ex : TXT est équivalent à txt), alors affichez le type MIME correspondant . S'il n'est pas possible de trouver le type MIME associé à un fichier, ou si le fichier n'a pas d'extensions, affichez UNKNOWN.       
+</br>
+EXEMPLE :
+Entrée
+html text/html
+png image/png
+test.html
+noextension
+portrait.png
+doc.TXT
+Sortie
+text/html
+UNKNOWN
+image/png
+UNKNOWN
+}
+
+JAVA_CODE =
+%Q{
+class Solution
+
+  def Solution.main(fichiers, table)
+    types_mimes = Array.new();
+    for i in 0..fichiers.size-1 do
+      nomFichier = fichiers[i];
+      if (nomFichier.rindex(".") == nil)
+      types_mimes.push("UNKNOWN");
+      else
+        ext = nomFichier[nomFichier.rindex(".")+1, nomFichier.size-1];
+        ext = ext.downcase;
+        if (table.has_key?(ext))
+          types_mimes.push(table[ext]);
+        else
+          types_mimes.push("UNKNOWN");
+        end
+      end
+      i = i + 1;
+    end
+    return types_mimes;
+  end
+	
+end
+
+def mime_types(table, fichier)
+  Solution.main(table, fichier)
+end
 }
 
 TESTS=
@@ -403,33 +225,401 @@ class TestMimeType < Test::Unit::TestCase
 end
 }
 
-JAVA_CODE =
-%Q{
-class Solution
+CONNEXION_SLIDE = "
+<h3>INTRODUCTION A RUBY</h3>
+<h3 style='color: red'>CONNECTEZ VOUS SUR :</h3>
+<h4 style='color: blue; font-size: 1.3em;'>http://ruby-dev-intro.herokuapp.com</h4>
+"
+TITLE = 'INITIATION A RUBY'    
+SLIDES = [
+{ :Subtitle => "HISTOIRE", 
+			:Section => [
+			"<h3>- C'est un langage qui vient du Japon.</h3>", 
+			"<h3>- Créé par Yukihiro Matsumoto (actuellement employé chez Heroku).</h3>",
+			"<h3>- Première version officielle (0.95) en 1995.</h3>",
+			"<h3>- A ce jour (janvier 2014) la dernière version est la 2.1.0.</h3>"
+			] 
+},
+{ :Subtitle => "PHILOSOPHIE", 
+			:Section => [
+			"<h3>- Ruby est conçu pour la productivité et le plaisir du programmeur.</h3>", 
+			"<h3>- Il se focalise sur les besoins humains plutôt que sur les besoins de la machine.</h3>",
+			"<h3>- Il est influencé par différents langages, en particulier Smalltalk, Lisp et Perl.</h3>",
+			] 
+},
+{ :Subtitle => "LES CHAINES DE CARACTERES", 
+			:Section => [
+			"</br>",			
+			"Affichez sur la sortie standard", 
+			"</br></br>",
+			"<font color='blue'>BIENVENUE A L'INITIATION RUBY</font>"
+			] 
+},
+{ :Subtitle => "LES CHAINES DE CARACTERES", 
+			:Section => [
+			"</br>",				
+			"Affichez sur la sortie standard",
+			"</br></br>",			
+			"<font color='red'>la 1ère lettre de la phrase</font>", 
+			"</br></br>",			
+			"<font color='blue'>\"BIENVENUE A L'INITIATION RUBY\"</font>"
+			] 
+},
+{ :Subtitle => "LES CHAINES DE CARACTERES", 
+			:Section => [
+			"</br>",	
+			"Affichez sur la sortie standard", 
+			"</br></br>",				
+			"<font color='red'>la 5ème lettre de la phrase</font>", 
+			"</br></br>",				
+			"<font color='blue'>\"BIENVENUE A L'INITIATION RUBY\"</font>"
+			] 
+},
+{ :Subtitle => "LES CHAINES DE CARACTERES", 
+			:Section => [
+			"</br>",	
+			"Affichez sur la sortie standard",
+			"</br></br>",				
+			"<font color='red'>la dernière lettre de la phrase</font>", 
+			"</br></br>",				
+			"<font color='blue'>\"BIENVENUE A L'INITIATION RUBY\"</font>"
+			] 
+},
+{ :Subtitle => "LES CHAINES DE CARACTERES", 
+			:Section => [
+			"</br>",	
+			"Affichez sur la sortie standard",
+			"</br></br>",	
+			"<font color='red'>les 4 premières lettres de la phrase</font>",
+			"</br></br>",				
+			"<font color='blue'>\"BIENVENUE A L'INITIATION RUBY\"</font>"
+			] 
+},
+{ :Subtitle => "LES CHAINES DE CARACTERES", 
+			:Section => [
+			"</br>",	
+			"Affichez sur la sortie standard", 
+			"</br></br>",				
+			"<font color='red'>La taille en de nombre de caractères de la phrase</font>",
+			"</br></br>",				
+			"<font color='blue'>\"BIENVENUE A L'INITIATION RUBY\"</font>"
+			] 
+},
+{ :Subtitle => "LES VARIABLES", 
+			:Section => [
+			"</br>",				
+			"<font color='red'>Déclarez une variable</font>", 
+			"</br></br>",				
+			"<font color='green'>chaine_de_caracteres</font>",
+			"</br></br>",				
+			"<font color='red'>initialisez la avec le mot", 
+			"</br></br>",				
+			"<font color='brown'>\"RUBY\"</font>",
+			"</br></br>",				
+			"affichez la sur la sortie standard"
+			] 
+},
+{ :Subtitle => "LES VARIABLES", 
+			:Section => [
+			"</br>",				
+			"Affichez sur la sortie standard",
+			"</br></br>",				
+			"<font color='red'>la classe de la variable</font>", 
+			"</br></br>",			
+			"<font color='green'>chaine_de_caracteres</font>",
+			] 
+},
+{ :Subtitle => "LES VARIABLES", 
+			:Section => [
+			"</br>",				
+			"Affichez sur la sortie standard",
+			"</br></br>",				
+			"<font color='red'>les méthodes de la variable</font>",
+			"</br></br>", 			
+			"<font color='green'>chaine_de_caracteres</font>",
+			] 
+},
+{ :Subtitle => "LES ENTIERS", 
+			:Section => [
+			"</br>",				
+			"<font color='red'>Déclarez la variable</font>",
+			"</br></br>",				
+			"<font color='green'>un_entier</font>",
+			"</br></br>",			
+			"<font color='red'>initialisez la avec valeur -12</font>",
+			"affichez la sur la sortie standard"
+			] 
+},
+{ :Subtitle => "LES ENTIERS", 
+			:Section => [
+			"</br>",				
+			"Affichez sur la sortie standard", 
+			"</br></br>",				
+			"<font color='red'>la classe de la variable</font>",
+			"</br></br>", 			
+			"<font color='green'>un_entier</font>",
+			"</br></br>",
+			"Affichez sur la sur la sortie standard",
+			] 
+},
+{ :Subtitle => "LES ENTIERS", 
+			:Section => [
+			"</br>",
+			"Affichez sur la sur la sortie standard",
+			"</br></br>",			
+			"<font color='red'>la valeur absolue de la variable</font>",
+			"</br></br>",			
+			"<font color='green'>un_entier</font>"
+			] 
+},
+{ :Subtitle => "LES ENTIERS", 
+			:Section => [
+			"</br>",				
+			"Affichez sur la sur la sortie standard",
+			"</br></br>",				
+			"<font color='red'>le nombre de secondes dans une année de 365 jours</font>"
+			] 
+},
+{ :Subtitle => "COMPOSITION ENTIER et CHAINES DE CARACTERES", 
+			:Section => [
+			"</br>",				
+			"Affichez sur la sur la sortie standard, la phrase ",
+			"</br></br>",				
+			"<font color='blue'>En 2014 il y aura ** secondes</font>",
+			"</br></br>",			
+			"<font color='red'>** représente le nombre de secondes en chiffres</font>"
+			] 
+},
+{ :Subtitle => "COMPOSITION ENTIER et CHAINES DE CARACTERES", 
+			:Section => [
+			"</br>",				
+			"Affichez sur la sur la sortie standard",
+			"</br></br>",				
+			"<font color='red'>15 fois de suite la chaine de caractère</font>", 
+			"</br></br>",			
+			"<font color='blue'>'Ruby !'</font>"
+			] 
+},
+{ :Subtitle => "LES LISTES", 
+			:Section => [
+			"</br>",				
+			"Déclarez une variable",
+			"</br></br>",				
+			"<font color='green'>cinq_chiffres_romains</font>",
+			"</br></br>",			
+			"<font color='red'>Intialisez là avec 'I', 'II', 'III', 'IV', 'V'</font>",
+			"</br></br>",				
+			"Affichez la sur le sortie standard",
+			] 
+},
+{ :Subtitle => "LES LISTES", 
+			:Section => [
+			"</br>",				
+			"Affichez sur le sortie standard",
+			"</br></br>",				
+			"<font color='red'>Le chiffre romain correspondant au chiffre décimal 3</font>"
+			] 
+},
+{ :Subtitle => "LES LISTES", 
+			:Section => [
+			"</br>",				
+			"Affichez sur le sortie standard",
+			"</br></br>",				
+			"<font color='red'>le chiffre romain correspondant à l'addition 3 + 2</font>"
+			] 
+},
+{ :Subtitle => "LES LISTES", 
+			:Section => [
+			"</br>",				
+			"Affichez sur le sortie standard",
+			"</br></br>",				
+			"<font color='red'>le chiffre décimal correspondant au chiffre romain 'IV'</font>"
+			] 
+},
+{ :Subtitle => "LES DICTIONNAIRES", 
+			:Section => [
+			"</br>",				
+			"Déclarez une variable",
+			"</br></br>",	
+			"<font color='green'>types_de_contenu_par_type_de_fichier</font>",
+			"</br></br>",			
+			"<font color='red'>Initialisez la avec (mp3: 'audio', ...)</font>",
+			"</br></br>",			
+			"Affichez là sur la sortie standard"
+			] 
+},
+{ :Subtitle => "LES CONDITIONS", 
+			:Section => [
+			"</br>",				
+			"Déclarez une variable", 
+			"</br></br>",			
+			"<font color='green'>age</font>",
+			"</br></br>",				
+			"<font color='red'>initialisez la à</font>",
+			"</br></br>",	
+			"<font color='brown'>5</font>",
+			"</br></br>",				
+			"<font color='red'>Affichez 'MINEUR' si  age inférieur à 18 et 'MAJEUR' sinon</font>",
+			"</br></br>",				
+			"<font color='red'>Modifier la variable et donnez lui la valeur 34</font>",
+			"</br></br>",				
+			"Affichez là sur la sortie standard"
+			] 
+},
+{ :Subtitle => "LES CONDITIONS", 
+			:Section => [
+			"</br>",				
+			"Déclarez une variable",
+			"</br></br>",					
+			"<font color='green'>age</font>",			
+			"</br></br>",				
+			"<font color='red'>initialisez la à</font>",
+			"</br></br>",	
+			"<font color='brown'>5</font>",			
+			"</br></br>",				
+			"<font color='red'>Affichez 'MINEUR' si age inférieur à 18 sinon ne rien afficher</font>",
+			] 
+},
+{ :Subtitle => "LES CONDITIONS", 
+			:Section => [
+			"</br>",				
+			"Déclarez une variable",
+			"</br></br>",					
+			"<font color='green'>age</font>",			
+			"</br></br>",					
+			"<font color='red'>initialisez la à</font>",
+			"</br></br>",	
+			"<font color='brown'>5</font>",
+			"</br></br>",			
+			"<font color='red'>Affichez 'MINEUR' sauf si age supérieur égal à 18</font>",
+			"</br></br>",					
+			"<font color='red'>Affichez là sur la sortie standard</font>",
+			] 
+},
+{ :Subtitle => "LES CONDITIONS", 
+			:Section => [
+			"</br>",				
+			"Déclarez une variable", 
+			"</br></br>",				
+			"<font color='green'>ages</font>",
+			"</br></br>",				
+			"<font color='red'>initialisez la à </font>",
+			"</br></br>",			
+			"<font color='brown'>1, 2, 3, 4, 5</font>",
+			"</br></br>",			
+			"<font color='red'>Déclarez une variable</font>", 
+			"</br></br>",				
+			"<font color='green'>index</font>",
+			"</br></br>",				
+			"<font color='red'>Intialisez la à</font>",
+			"</br></br>",			
+			"<font color='brown'>0</font>",
+			"</br></br>",			
+			"<font color='red'>Affichez 'OK' si ages[index] existe, 'KO' sinon</font>",
+			] 
+},
+{ :Subtitle => "LES BOUCLES", 
+			:Section => [
+			"</br>",				
+			"Déclarez une variable",
+			"</br></br>",	
+			"<font color='green'>chiffres</font>",
+			"</br></br>",			
+			"<font color='red'>Initialisez la à</font>",
+			"</br></br>",		
+			"<font color='brown'>0, 1, 2, 3, 4, 5, 6, 7, 8, 9</font>",
+			"</br></br>",			
+			"<font color='red'>Affichez les nombres impairs en utilisant l'index</font>",
+			] 
+},
+{ :Subtitle => "LES BOUCLES", 
+			:Section => [
+			"</br>",				
+			"Déclarez une variable",
+			"</br></br>",	
+			"<font color='green'>chiffres</font>",
+			"</br></br>",			
+			"<font color='red'>Initialisez la à</font>",
+			"</br></br>",		
+			"<font color='brown'>0, 1, 2, 3, 4, 5, 6, 7, 8, 9</font>",
+			"</br></br>",			
+			"<font color='red'>Affichez les nombres impairs sans utiliser d'index</font>",
+			] 
+},
+{ :Subtitle => "LES BOUCLES", 
+			:Section => [
+			"</br>",				
+			"Déclarez une variable",
+			"</br></br>",	
+			"<font color='green'>chiffres</font>",
+			"</br></br>",				
+			"<font color='red'>Initialisez la à</font>",
+			"</br></br>",		
+			"<font color='brown'>0, 1, 2, 3, 4, 5, 6, 7, 8, 9</font>",
+			"</br></br>",				
+			"<font color='red'>Affichez les nombres impairs sans utiliser d'index, ni l'instruction for</font>",
+			] 
+},
+{ :Subtitle => "LES BOUCLES", 
+			:Section => [
+			"</br>",				
+			"Déclarez une variable",
+			"</br></br>",				
+			"<font color='green'>chiffres</font>",
+			"</br></br>",				
+			"<font color='red'>Initialisez la à</font>",
+			"</br></br>",		
+			"<font color='brown'>0, 1, 2, 3, 4, 5, 6, 7, 8, 9</font>",
+			"</br></br>",			
+			"<font color='red'>Afficher les chiffres impairs sans utiliser 'each'</font>",
+			] 
+},
+{ :Subtitle => "LES BOUCLES", 
+			:Section => [
+			"</br>",				
+			"Déclarez une variable",
+			"</br></br>",				
+			"<font color='green'>chiffres</font>",
+			"</br></br>",				
+			"<font color='red'>Initialisez la à</font>",
+			"</br></br>",		
+			"<font color='brown'>0, 1, 2, 3, 4, 5, 6, 7, 8, 9</font>",
+			"</br></br>",			
+			"<font color='red'>Affichez le carré de chaque chiffre sans utiliser 'each'</font>",
+			] 
+},
+{ :Subtitle => "LES BOUCLES", 
+			:Section => [
+			"</br>",				
+			"Déclarez une variable",  
+			"</br></br>",				
+			"<font color='green'>chiffres</font>",
+			"</br></br>",				
+			"<font color='red'>Initialisez la à</font>",
+			"</br></br>",		
+			"<font color='brown'>0, 1, 2, 3, 4, 5, 6, 7, 8, 9</font>",
+			"</br></br>",			
+			"<font color='red'>Définissez la methode carre_de(x)</font>",
+			"</br></br>",				
+			"<font color='red'>Afficher le carre de chaque chiffre</font>",
+			] 
+},
+{ :Subtitle => "TDD", 
+			:Section => [
+			"#{ MIME_TYPE_PUZZLE}"
+			],
+			:Helper => [
+			"<div class='code_to_add'> #{ TESTS } </div>",
+			] 
+},
+{ :Subtitle => "REFACTORING",
+			:Section => [
+			"#{ MIME_TYPE_PUZZLE}"
+			],
+			:Helper => [
+			"<div class='code_to_display'><%= #{ JAVA_CODE } %></div>",
+			"<div class='code_to_add'> #{ TESTS } </div>",
+			] 
+},
+]
 
-  def Solution.main(fichiers, table)
-    types_mimes = Array.new();
-    for i in 0..fichiers.size-1 do
-      nomFichier = fichiers[i];
-      if (nomFichier.rindex(".") == nil)
-      types_mimes.push("UNKNOWN");
-      else
-        ext = nomFichier[nomFichier.rindex(".")+1, nomFichier.size-1];
-        ext = ext.downcase;
-        if (table.has_key?(ext))
-          types_mimes.push(table[ext]);
-        else
-          types_mimes.push("UNKNOWN");
-        end
-      end
-      i = i + 1;
-    end
-    return types_mimes;
-  end
-	
-end
-
-def mime_types(table, fichier)
-  Solution.main(table, fichier)
-end
-}
