@@ -2,38 +2,31 @@
 <head>
 <link href="slideshow.css" rel="stylesheet" media="screen"/>
 <style>
+
 .slide {
-left: 1%;
-top: 1%;
-width: 98%;
-height: 98%;
 background-color: #fff;
-border-radius: 5px;
 }
 section {
 margin-left: 1%;
 margin-right: 1%;
 margin-bottom: 1%;
-} 
-.code {
-width:60%; 
-height:60%;
 }
-.code_helper {
-width:39%; 
-height:60%;
-}      
 .code_result {
-height:25%;
 background-color: #332;      
 color: yellow;      
-}     
+}
 .code_helper.current {
 background-color: #fff;
 }
-input[type=button]#execute {
-margin: 1%;
-}   
+div.slide > h2 {
+color: #ffffff;
+background-color: orange;
+}
+div.code_helper > h2 {  
+color: #ffffff;
+background-color: orange;
+}
+
 </style>   
 </head>
 <body>
@@ -46,17 +39,24 @@ margin: 1%;
 
 <div class="code" id="code_input"></div>
 
+
 <div class="code_helper">
-  
-<h3>INTRODUCTION A RUBY</h3>
-<h3 style='color: red'>CONNECTEZ VOUS SUR :</h3>
-<h4 style='color: blue; font-size: 1.3em;'>http://ruby-dev-intro.herokuapp.com</h4>
+
+
+
+<h3 style='text-align:center'>INTRODUCTION A RUBY</h3>	
+
+<h3 style='color: red; text-align:center'>CONNECTEZ VOUS SUR :</h3>	
+
+<h4 style='color: blue; font-size: 1.3em; text-align:center'>http://ruby-dev-intro.herokuapp.com</h4>	
+
+<div class="code_to_display"> puts "Connexion ok, Bienvenue"</div>	
+
 
 </div>
 
-
 <div class="code_helper">
-<center>HISTOIRE</center>
+<h2><center>HISTOIRE</center></h2>
 
 
 <h3>- C'est un langage qui vient du Japon.</h3>	
@@ -71,7 +71,7 @@ margin: 1%;
 </div>
 
 <div class="code_helper">
-<center>PHILOSOPHIE</center>
+<h2><center>PHILOSOPHIE</center></h2>
 
 
 <h3>- Ruby est conçu pour la productivité et le plaisir du programmeur.</h3>	
@@ -84,7 +84,7 @@ margin: 1%;
 </div>
 
 <div class="code_helper">
-<center>LES CHAINES DE CARACTERES</center>
+<h2><center>LES CHAINES DE CARACTERES</center></h2>
 
 
 </br>	
@@ -99,7 +99,7 @@ Affichez sur la sortie standard
 </div>
 
 <div class="code_helper">
-<center>LES CHAINES DE CARACTERES</center>
+<h2><center>LES CHAINES DE CARACTERES</center></h2>
 
 
 </br>	
@@ -118,7 +118,7 @@ Affichez sur la sortie standard
 </div>
 
 <div class="code_helper">
-<center>LES CHAINES DE CARACTERES</center>
+<h2><center>LES CHAINES DE CARACTERES</center></h2>
 
 
 </br>	
@@ -137,7 +137,7 @@ Affichez sur la sortie standard
 </div>
 
 <div class="code_helper">
-<center>LES CHAINES DE CARACTERES</center>
+<h2><center>LES CHAINES DE CARACTERES</center></h2>
 
 
 </br>	
@@ -156,7 +156,7 @@ Affichez sur la sortie standard
 </div>
 
 <div class="code_helper">
-<center>LES CHAINES DE CARACTERES</center>
+<h2><center>LES CHAINES DE CARACTERES</center></h2>
 
 
 </br>	
@@ -175,7 +175,7 @@ Affichez sur la sortie standard
 </div>
 
 <div class="code_helper">
-<center>LES CHAINES DE CARACTERES</center>
+<h2><center>LES CHAINES DE CARACTERES</center></h2>
 
 
 </br>	
@@ -194,7 +194,7 @@ Affichez sur la sortie standard
 </div>
 
 <div class="code_helper">
-<center>LES VARIABLES</center>
+<h2><center>LES VARIABLES</center></h2>
 
 
 </br>	
@@ -221,7 +221,7 @@ affichez la sur la sortie standard
 </div>
 
 <div class="code_helper">
-<center>LES VARIABLES</center>
+<h2><center>LES VARIABLES</center></h2>
 
 
 </br>	
@@ -240,7 +240,7 @@ Affichez sur la sortie standard
 </div>
 
 <div class="code_helper">
-<center>LES VARIABLES</center>
+<h2><center>LES VARIABLES</center></h2>
 
 
 </br>	
@@ -259,7 +259,7 @@ Affichez sur la sortie standard
 </div>
 
 <div class="code_helper">
-<center>LES ENTIERS</center>
+<h2><center>LES ENTIERS</center></h2>
 
 
 </br>	
@@ -280,7 +280,7 @@ affichez la sur la sortie standard
 </div>
 
 <div class="code_helper">
-<center>LES ENTIERS</center>
+<h2><center>LES ENTIERS</center></h2>
 
 
 </br>	
@@ -303,7 +303,7 @@ Affichez sur la sur la sortie standard
 </div>
 
 <div class="code_helper">
-<center>LES ENTIERS</center>
+<h2><center>LES ENTIERS</center></h2>
 
 
 </br>	
@@ -322,7 +322,7 @@ Affichez sur la sur la sortie standard
 </div>
 
 <div class="code_helper">
-<center>LES ENTIERS</center>
+<h2><center>LES ENTIERS</center></h2>
 
 
 </br>	
@@ -337,7 +337,7 @@ Affichez sur la sur la sortie standard
 </div>
 
 <div class="code_helper">
-<center>COMPOSITION ENTIER et CHAINES DE CARACTERES</center>
+<h2><center>COMPOSITION ENTIER et CHAINES DE CARACTERES</center></h2>
 
 
 </br>	
@@ -356,7 +356,7 @@ Affichez sur la sur la sortie standard, la phrase
 </div>
 
 <div class="code_helper">
-<center>COMPOSITION ENTIER et CHAINES DE CARACTERES</center>
+<h2><center>COMPOSITION ENTIER et CHAINES DE CARACTERES</center></h2>
 
 
 </br>	
@@ -375,7 +375,7 @@ Affichez sur la sur la sortie standard
 </div>
 
 <div class="code_helper">
-<center>LES LISTES</center>
+<h2><center>LES LISTES</center></h2>
 
 
 </br>	
@@ -398,7 +398,7 @@ Affichez la sur le sortie standard
 </div>
 
 <div class="code_helper">
-<center>LES LISTES</center>
+<h2><center>LES LISTES</center></h2>
 
 
 </br>	
@@ -413,7 +413,7 @@ Affichez sur le sortie standard
 </div>
 
 <div class="code_helper">
-<center>LES LISTES</center>
+<h2><center>LES LISTES</center></h2>
 
 
 </br>	
@@ -428,7 +428,7 @@ Affichez sur le sortie standard
 </div>
 
 <div class="code_helper">
-<center>LES LISTES</center>
+<h2><center>LES LISTES</center></h2>
 
 
 </br>	
@@ -443,7 +443,7 @@ Affichez sur le sortie standard
 </div>
 
 <div class="code_helper">
-<center>LES DICTIONNAIRES</center>
+<h2><center>LES DICTIONNAIRES</center></h2>
 
 
 </br>	
@@ -466,7 +466,7 @@ Affichez là sur la sortie standard
 </div>
 
 <div class="code_helper">
-<center>LES CONDITIONS</center>
+<h2><center>LES CONDITIONS</center></h2>
 
 
 </br>	
@@ -501,7 +501,7 @@ Affichez là sur la sortie standard
 </div>
 
 <div class="code_helper">
-<center>LES CONDITIONS</center>
+<h2><center>LES CONDITIONS</center></h2>
 
 
 </br>	
@@ -528,7 +528,7 @@ Déclarez une variable
 </div>
 
 <div class="code_helper">
-<center>LES CONDITIONS</center>
+<h2><center>LES CONDITIONS</center></h2>
 
 
 </br>	
@@ -559,7 +559,7 @@ Déclarez une variable
 </div>
 
 <div class="code_helper">
-<center>LES CONDITIONS</center>
+<h2><center>LES CONDITIONS</center></h2>
 
 
 </br>	
@@ -602,7 +602,7 @@ Déclarez une variable
 </div>
 
 <div class="code_helper">
-<center>LES BOUCLES</center>
+<h2><center>LES BOUCLES</center></h2>
 
 
 </br>	
@@ -629,7 +629,7 @@ Déclarez une variable
 </div>
 
 <div class="code_helper">
-<center>LES BOUCLES</center>
+<h2><center>LES BOUCLES</center></h2>
 
 
 </br>	
@@ -656,7 +656,7 @@ Déclarez une variable
 </div>
 
 <div class="code_helper">
-<center>LES BOUCLES</center>
+<h2><center>LES BOUCLES</center></h2>
 
 
 </br>	
@@ -683,7 +683,7 @@ Déclarez une variable
 </div>
 
 <div class="code_helper">
-<center>LES BOUCLES</center>
+<h2><center>LES BOUCLES</center></h2>
 
 
 </br>	
@@ -710,7 +710,7 @@ Déclarez une variable
 </div>
 
 <div class="code_helper">
-<center>LES BOUCLES</center>
+<h2><center>LES BOUCLES</center></h2>
 
 
 </br>	
@@ -737,7 +737,7 @@ Déclarez une variable
 </div>
 
 <div class="code_helper">
-<center>LES BOUCLES</center>
+<h2><center>LES BOUCLES</center></h2>
 
 
 </br>	
@@ -768,7 +768,7 @@ Déclarez une variable
 </div>
 
 <div class="code_helper">
-<center>TDD</center>
+<h2><center>TDD</center></h2>
 
 
 <div class='code_to_add'> 
@@ -783,7 +783,7 @@ class TestMimeType < Test::Unit::TestCase
     file_list = [
     ]
     assert_equal [
-    ], mime_types(file_list, extension_hash)
+    ], mime_types(extension_hash, file_list)
     
   end
 
@@ -797,7 +797,7 @@ class TestMimeType < Test::Unit::TestCase
     ]
     assert_equal [
     "text/html"
-    ], mime_types(file_list, extension_hash)
+    ], mime_types(extension_hash, file_list)
     
   end  
 
@@ -813,7 +813,7 @@ class TestMimeType < Test::Unit::TestCase
     assert_equal [
     "text/html", 
     "UNKNOWN"
-    ], mime_types(file_list, extension_hash)
+    ], mime_types(extension_hash, file_list)
     
   end
   
@@ -830,7 +830,7 @@ class TestMimeType < Test::Unit::TestCase
     assert_equal [
     "text/html", 
     "image/gif"
-    ], mime_types(file_list, extension_hash)
+    ], mime_types(extension_hash, file_list)
     
   end  
 	
@@ -849,7 +849,7 @@ class TestMimeType < Test::Unit::TestCase
     "image/gif", 
     "image/png", 
     "text/html"
-    ], mime_types(file_list, extension_hash)
+    ], mime_types(extension_hash, file_list)
   end
   
   def test12_should_not_find_any_mime_type
@@ -870,7 +870,7 @@ class TestMimeType < Test::Unit::TestCase
     "UNKNOWN", 
     "UNKNOWN", 
     "UNKNOWN"
-    ], mime_types(file_list, extension_hash)
+    ], mime_types(extension_hash, file_list)
 
   end
   
@@ -900,7 +900,7 @@ class TestMimeType < Test::Unit::TestCase
     "UNKNOWN", 
     "UNKNOWN", 
     "UNKNOWN"
-    ], mime_types(file_list, extension_hash)
+    ], mime_types(extension_hash, file_list)
   end
 
   def test14_should_not_care_about_case
@@ -928,7 +928,7 @@ class TestMimeType < Test::Unit::TestCase
     "image/TIFF", 
     "image/png", 
     "text/css"
-    ], mime_types(file_list, extension_hash)
+    ], mime_types(extension_hash, file_list)
     
   end
   
@@ -939,20 +939,21 @@ end
 </div>
 
 <div class="code_helper">
-<center>REFACTORING</center>
+<h2><center>REFACTORING</center></h2>
 
 
-<div class='code_to_display'><%= 
+<div class='code_to_display'> 
 class Solution
 
-  def Solution.main(fichiers, table)
+  def Solution.main(table, fichiers)
     types_mimes = Array.new();
     for i in 0..fichiers.size-1 do
       nomFichier = fichiers[i];
       if (nomFichier.rindex(".") == nil)
-      types_mimes.push("UNKNOWN");
+        types_mimes.push("UNKNOWN");
       else
-        ext = nomFichier[nomFichier.rindex(".")+1, nomFichier.size-1];
+        ext = nomFichier[nomFichier.rindex(".")+1, 
+	                           nomFichier.size-1];
         ext = ext.downcase;
         if (table.has_key?(ext))
           types_mimes.push(table[ext]);
@@ -967,10 +968,10 @@ class Solution
 	
 end
 
-def mime_types(table, fichier)
-  Solution.main(table, fichier)
+def mime_types(table, fichiers)
+  Solution.main(table, fichiers);
 end
- %></div>	
+ </div>	
 
 <div class='code_to_add'> 
 require 'test/unit'
@@ -984,7 +985,7 @@ class TestMimeType < Test::Unit::TestCase
     file_list = [
     ]
     assert_equal [
-    ], mime_types(file_list, extension_hash)
+    ], mime_types(extension_hash, file_list)
     
   end
 
@@ -998,7 +999,7 @@ class TestMimeType < Test::Unit::TestCase
     ]
     assert_equal [
     "text/html"
-    ], mime_types(file_list, extension_hash)
+    ], mime_types(extension_hash, file_list)
     
   end  
 
@@ -1014,7 +1015,7 @@ class TestMimeType < Test::Unit::TestCase
     assert_equal [
     "text/html", 
     "UNKNOWN"
-    ], mime_types(file_list, extension_hash)
+    ], mime_types(extension_hash, file_list)
     
   end
   
@@ -1031,7 +1032,7 @@ class TestMimeType < Test::Unit::TestCase
     assert_equal [
     "text/html", 
     "image/gif"
-    ], mime_types(file_list, extension_hash)
+    ], mime_types(extension_hash, file_list)
     
   end  
 	
@@ -1050,7 +1051,7 @@ class TestMimeType < Test::Unit::TestCase
     "image/gif", 
     "image/png", 
     "text/html"
-    ], mime_types(file_list, extension_hash)
+    ], mime_types(extension_hash, file_list)
   end
   
   def test12_should_not_find_any_mime_type
@@ -1071,7 +1072,7 @@ class TestMimeType < Test::Unit::TestCase
     "UNKNOWN", 
     "UNKNOWN", 
     "UNKNOWN"
-    ], mime_types(file_list, extension_hash)
+    ], mime_types(extension_hash, file_list)
 
   end
   
@@ -1101,7 +1102,7 @@ class TestMimeType < Test::Unit::TestCase
     "UNKNOWN", 
     "UNKNOWN", 
     "UNKNOWN"
-    ], mime_types(file_list, extension_hash)
+    ], mime_types(extension_hash, file_list)
   end
 
   def test14_should_not_care_about_case
@@ -1129,7 +1130,7 @@ class TestMimeType < Test::Unit::TestCase
     "image/TIFF", 
     "image/png", 
     "text/css"
-    ], mime_types(file_list, extension_hash)
+    ], mime_types(extension_hash, file_list)
     
   end
   

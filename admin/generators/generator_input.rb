@@ -1,5 +1,32 @@
 #encoding: utf-8
 
+STYLE =
+%Q{
+.slide {
+background-color: #fff;
+}
+section {
+margin-left: 1%;
+margin-right: 1%;
+margin-bottom: 1%;
+}
+.code_result {
+background-color: #332;      
+color: yellow;      
+}
+.code_helper.current {
+background-color: #fff;
+}
+div.slide > h2 {
+color: #ffffff;
+background-color: orange;
+}
+div.code_helper > h2 {  
+color: #ffffff;
+background-color: orange;
+}
+}
+
 MIME_TYPE_PUZZLE =
 %Q{
 Le type MIME est utilisé dans de nombreux protocoles internet pour associer un type de média (html, image, vidéo, ...) avec le contenu envoyé.
@@ -33,14 +60,15 @@ JAVA_CODE =
 %Q{
 class Solution
 
-  def Solution.main(fichiers, table)
+  def Solution.main(table, fichiers)
     types_mimes = Array.new();
     for i in 0..fichiers.size-1 do
       nomFichier = fichiers[i];
       if (nomFichier.rindex(".") == nil)
-      types_mimes.push("UNKNOWN");
+        types_mimes.push("UNKNOWN");
       else
-        ext = nomFichier[nomFichier.rindex(".")+1, nomFichier.size-1];
+        ext = nomFichier[nomFichier.rindex(".")+1, 
+	                           nomFichier.size-1];
         ext = ext.downcase;
         if (table.has_key?(ext))
           types_mimes.push(table[ext]);
@@ -55,8 +83,8 @@ class Solution
 	
 end
 
-def mime_types(table, fichier)
-  Solution.main(table, fichier)
+def mime_types(table, fichiers)
+  Solution.main(table, fichiers);
 end
 }
 
@@ -73,7 +101,7 @@ class TestMimeType < Test::Unit::TestCase
     file_list = [
     ]
     assert_equal [
-    ], mime_types(file_list, extension_hash)
+    ], mime_types(extension_hash, file_list)
     
   end
 
@@ -87,7 +115,7 @@ class TestMimeType < Test::Unit::TestCase
     ]
     assert_equal [
     "text/html"
-    ], mime_types(file_list, extension_hash)
+    ], mime_types(extension_hash, file_list)
     
   end  
 
@@ -103,7 +131,7 @@ class TestMimeType < Test::Unit::TestCase
     assert_equal [
     "text/html", 
     "UNKNOWN"
-    ], mime_types(file_list, extension_hash)
+    ], mime_types(extension_hash, file_list)
     
   end
   
@@ -120,7 +148,7 @@ class TestMimeType < Test::Unit::TestCase
     assert_equal [
     "text/html", 
     "image/gif"
-    ], mime_types(file_list, extension_hash)
+    ], mime_types(extension_hash, file_list)
     
   end  
 	
@@ -139,7 +167,7 @@ class TestMimeType < Test::Unit::TestCase
     "image/gif", 
     "image/png", 
     "text/html"
-    ], mime_types(file_list, extension_hash)
+    ], mime_types(extension_hash, file_list)
   end
   
   def test12_should_not_find_any_mime_type
@@ -160,7 +188,7 @@ class TestMimeType < Test::Unit::TestCase
     "UNKNOWN", 
     "UNKNOWN", 
     "UNKNOWN"
-    ], mime_types(file_list, extension_hash)
+    ], mime_types(extension_hash, file_list)
 
   end
   
@@ -190,7 +218,7 @@ class TestMimeType < Test::Unit::TestCase
     "UNKNOWN", 
     "UNKNOWN", 
     "UNKNOWN"
-    ], mime_types(file_list, extension_hash)
+    ], mime_types(extension_hash, file_list)
   end
 
   def test14_should_not_care_about_case
@@ -218,7 +246,7 @@ class TestMimeType < Test::Unit::TestCase
     "image/TIFF", 
     "image/png", 
     "text/css"
-    ], mime_types(file_list, extension_hash)
+    ], mime_types(extension_hash, file_list)
     
   end
   
@@ -226,19 +254,27 @@ end
 }
 
 CONNEXION_SLIDE = "
-<h3>INTRODUCTION A RUBY</h3>
-<h3 style='color: red'>CONNECTEZ VOUS SUR :</h3>
-<h4 style='color: blue; font-size: 1.3em;'>http://ruby-dev-intro.herokuapp.com</h4>
+<h3 style='text-align:center'>INTRODUCTION A RUBY</h3>
+<h3 style='color: red; text-align:center'>CONNECTEZ VOUS SUR :</h3>
+<h4 style='color: blue; font-size: 1.3em; text-align:center'>http://ruby-dev-intro.herokuapp.com</h4>
 "
+
 TITLE = 'INITIATION A RUBY'    
 SLIDES = [
+{			:Section => [
+			"<h3 style='text-align:center'>INTRODUCTION A RUBY</h3>",
+			"<h3 style='color: red; text-align:center'>CONNECTEZ VOUS SUR :</h3>",
+			"<h4 style='color: blue; font-size: 1.3em; text-align:center'>http://ruby-dev-intro.herokuapp.com</h4>",
+			'<div class="code_to_display"> puts "Connexion ok, Bienvenue"</div>',
+			],			
+},
 { :Subtitle => "HISTOIRE", 
 			:Section => [
 			"<h3>- C'est un langage qui vient du Japon.</h3>", 
 			"<h3>- Créé par Yukihiro Matsumoto (actuellement employé chez Heroku).</h3>",
 			"<h3>- Première version officielle (0.95) en 1995.</h3>",
 			"<h3>- A ce jour (janvier 2014) la dernière version est la 2.1.0.</h3>"
-			] 
+			],			
 },
 { :Subtitle => "PHILOSOPHIE", 
 			:Section => [
@@ -617,7 +653,7 @@ SLIDES = [
 			"#{ MIME_TYPE_PUZZLE}"
 			],
 			:Helper => [
-			"<div class='code_to_display'><%= #{ JAVA_CODE } %></div>",
+			"<div class='code_to_display'> #{ JAVA_CODE } </div>",
 			"<div class='code_to_add'> #{ TESTS } </div>",
 			] 
 },

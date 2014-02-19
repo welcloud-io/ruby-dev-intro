@@ -9,38 +9,7 @@ template =
 <head>
 <link href="slideshow.css" rel="stylesheet" media="screen"/>
 <style>
-.slide {
-left: 1%;
-top: 1%;
-width: 98%;
-height: 98%;
-background-color: #fff;
-border-radius: 5px;
-}
-section {
-margin-left: 1%;
-margin-right: 1%;
-margin-bottom: 1%;
-} 
-.code {
-width:60%; 
-height:60%;
-}
-.code_helper {
-width:39%; 
-height:60%;
-}      
-.code_result {
-height:25%;
-background-color: #332;      
-color: yellow;      
-}     
-.code_helper.current {
-background-color: #fff;
-}
-input[type=button]#execute {
-margin: 1%;
-}   
+<%= STYLE %>
 </style>   
 </head>
 <body>
@@ -53,13 +22,9 @@ margin: 1%;
 
 <div class="code" id="code_input"></div>
 
-<div class="code_helper">
-  <%= CONNEXION_SLIDE %>
-</div>
-
 <% SLIDES.each do |slide| %>
 <div class="code_helper">
-<center><%= slide[:Subtitle] %></center>
+<% if slide[:Subtitle] then %><h2><center><%= slide[:Subtitle] %></center></h2><% end %>
 <% slide_text = slide[:Helper] || slide[:Section] %>
 <% slide_text.each do |text| %>
 <%= text %>	
