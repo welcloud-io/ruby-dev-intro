@@ -6,16 +6,22 @@ STYLE =
 background-color: #fff;
 }
 section {
+color: #000000;
 margin-left: 1%;
 margin-right: 1%;
 margin-bottom: 1%;
 }
 .code_result {
+
+font-size: 0.6em;
 background-color: #332;      
 color: yellow;      
 }
 .code_helper.current {
 background-color: #fff;
+}
+div.slide > h1 {
+color: #000000;  
 }
 div.slide > h2 {
 color: #ffffff;
@@ -25,35 +31,72 @@ div.code_helper > h2 {
 color: #ffffff;
 background-color: orange;
 }
+span.help_output {
+color: yellow;
+background-color: black;
+}
+span.help_string {
+color: lime;
+background-color: black;
+}
+span.help_variable {
+color: white;
+background-color: black;
+}
+span.help_integer {
+color: yellowgreen;
+background-color: black;
+}
 }
 
 MIME_TYPE_PUZZLE =
 %Q{
-Le type MIME est utilisé dans de nombreux protocoles internet pour associer un type de média (html, image, vidéo, ...) avec le contenu envoyé.
+<div style="font-size: 0.55em">
+Le type MIME est utilisé dans de nombreux protocoles internet pour associer un type de média (html, image, vidéo, ...) 
+avec le contenu envoyé.
+</br>   
 </br>   
 Ce type MIME est généralement déduit de l'extension du fichier à transférer.
 </br>
+</br>
 Vous devez écrire un programme qui permet de détecter le type MIME d'un fichier à partir de son nom.
 </br>      
-Une table qui associe un type MIME avec une extension de fichier vous est fournie. Une liste de noms de fichier à transférer vous sera aussi fournie et vous devrez déduire pour chacun d'eux, le type MIME à utiliser.
+Une table qui associe un type MIME avec une extension de fichier vous est fournie. 
+Une liste des noms de fichier est aussi fournie et vous devrez déduire pour chacun d'eux, le type MIME correspondant.
 </br>
 L'extension d'un fichier se définit par la partie du nom qui se trouve après le dernier point qui le compose.
 </br>
-Si l'extension du fichier est présente dans la table d'association (la casse ne compte pas. ex : TXT est équivalent à txt), alors affichez le type MIME correspondant . S'il n'est pas possible de trouver le type MIME associé à un fichier, ou si le fichier n'a pas d'extensions, affichez UNKNOWN.       
+Si l'extension du fichier est présente dans la table d'association (la casse ne compte pas. ex : TXT est équivalent à txt), 
+alors affichez le type MIME correspondant . S'il n'est pas possible de trouver le type MIME associé à un fichier, 
+ou si le fichier n'a pas d'extensions, affichez UNKNOWN.       
 </br>
+</br>
+
 EXEMPLE :
-Entrée
-html text/html
-png image/png
-test.html
-noextension
-portrait.png
-doc.TXT
-Sortie
-text/html
-UNKNOWN
-image/png
-UNKNOWN
+</br>
+</br>
+
+<table style="display: inline">
+<th>Correspondances</th>
+<tr><td>html => text/html</td></tr>
+<tr><td>png => image/png</td></tr>
+</table>
+<table style="display: inline">
+<th>Liste de fichiers</th>
+<tr><td>test.html</td></tr>
+<tr><td>noextension</td></tr>
+<tr><td>portrait.png</td></tr>
+<tr><td>doc.TXT</td></tr>
+</table>
+<table style="display: inline">
+<th>Résultat</th>
+<tr><td>text/html</td></tr>
+<tr><td>UNKNOWN</td></tr>
+<tr><td>image/png</td></tr>
+<tr><td>UNKNOWN</td></tr>
+</table>
+
+</div>
 }
 
 JAVA_CODE =
@@ -94,7 +137,7 @@ require 'test/unit'
 
 class TestMimeType < Test::Unit::TestCase
 
-  def test01_should_find_an_empty_list
+  def test01_empty_list
 
     extension_hash = { 
     }
@@ -105,7 +148,7 @@ class TestMimeType < Test::Unit::TestCase
     
   end
 
-  def test02_should_find_one_mime_type
+  def test02_one_file_list_with_one_known_mime_type
 
     extension_hash = { 
     "html" => "text/html" 
@@ -119,23 +162,7 @@ class TestMimeType < Test::Unit::TestCase
     
   end  
 
-  def test03_should_find_one_UNKNOWN_mime_types
-
-    extension_hash = { 
-    "html" => "text/html" 
-    }
-    file_list = [
-    "file.html", 
-    "file.gif"
-    ]
-    assert_equal [
-    "text/html", 
-    "UNKNOWN"
-    ], mime_types(extension_hash, file_list)
-    
-  end
-  
-  def test04_should_find_two_mime_types
+  def test03_two_files_list_with_two_known_mime_types
 
     extension_hash = { 
     "html" => "text/html", 
@@ -150,55 +177,32 @@ class TestMimeType < Test::Unit::TestCase
     "image/gif"
     ], mime_types(extension_hash, file_list)
     
-  end  
-	
-  def test10_should_find_three_mime_types
-    extension_hash = {
-    "html" =>  "text/html", 
-    "png" => "image/png", 
-    "gif" => "image/gif" 
-    }
-    file_list = [
-    "animated.gif", 
-    "portrait.png", 
-    "index.html"
-    ]
-    assert_equal  [
-    "image/gif", 
-    "image/png", 
-    "text/html"
-    ], mime_types(extension_hash, file_list)
   end
-  
-  def test12_should_not_find_any_mime_type
 
-    extension_hash = {
-    "txt" => "text/plain", 
-    "xml" =>  "text/xml", 
-    "flv" => "video/x-flv" 
+  def test04_two_files_list_with_one_UNKNOWN_mime_type
+
+    extension_hash = { 
+    "html" => "text/html" 
     }
     file_list = [
-    "image.png", 
-    "animated.gif", 
-    "script.js", 
-    "source.cpp"
+    "file.html", 
+    "file.gif"
     ]
-    assert_equal  [
-    "UNKNOWN", 
-    "UNKNOWN", 
-    "UNKNOWN", 
+    assert_equal [
+    "text/html", 
     "UNKNOWN"
     ], mime_types(extension_hash, file_list)
-
+    
   end
   
-  def test13_should_find_unknown_mime_types_if_wierd_extensions
+  def test05_file_list_with_particular_extensions
     extension_hash = { 
     "wav" => "audio/x-wav", 
     "mp3" => "audio/mpeg", 
     "pdf" => "application/pdf" 
     }
-    file_list = ["a", 
+    file_list = [
+    "a", 
     "a.wav", 
     "b.wav.tmp", 
     "test.vmp3", 
@@ -219,9 +223,10 @@ class TestMimeType < Test::Unit::TestCase
     "UNKNOWN", 
     "UNKNOWN"
     ], mime_types(extension_hash, file_list)
+
   end
 
-  def test14_should_not_care_about_case
+  def test06_file_list_with_upper_or_lower_case_extensions
 
     extension_hash = { 
     "png" => "image/png", 
@@ -287,8 +292,10 @@ SLIDES = [
 			:Section => [
 			"</br>",			
 			"Affichez sur la sortie standard", 
+			"</br></br>",			
+			"la chaine de caractères", 			
 			"</br></br>",
-			"<font color='blue'>BIENVENUE A L'INITIATION RUBY</font>"
+			"<span class='help_string'>\"BIENVENUE A L'INITIATION RUBY\"</span>"
 			] 
 },
 { :Subtitle => "LES CHAINES DE CARACTERES", 
@@ -296,9 +303,11 @@ SLIDES = [
 			"</br>",				
 			"Affichez sur la sortie standard",
 			"</br></br>",			
-			"<font color='red'>la 1ère lettre de la phrase</font>", 
+			"<font color='red'>la 1ère lettre</font>",
 			"</br></br>",			
-			"<font color='blue'>\"BIENVENUE A L'INITIATION RUBY\"</font>"
+			"de la chaine de caractères", 
+			"</br></br>",			
+			"<span class='help_string'>\"BIENVENUE A L'INITIATION RUBY\"</span>"
 			] 
 },
 { :Subtitle => "LES CHAINES DE CARACTERES", 
@@ -306,9 +315,11 @@ SLIDES = [
 			"</br>",	
 			"Affichez sur la sortie standard", 
 			"</br></br>",				
-			"<font color='red'>la 5ème lettre de la phrase</font>", 
+			"<font color='red'>la 5ème lettre</font>", 
+			"</br></br>",			
+			"de la chaine de caractères", 			
 			"</br></br>",				
-			"<font color='blue'>\"BIENVENUE A L'INITIATION RUBY\"</font>"
+			"<span class='help_string'>\"BIENVENUE A L'INITIATION RUBY\"</span>"
 			] 
 },
 { :Subtitle => "LES CHAINES DE CARACTERES", 
@@ -316,9 +327,11 @@ SLIDES = [
 			"</br>",	
 			"Affichez sur la sortie standard",
 			"</br></br>",				
-			"<font color='red'>la dernière lettre de la phrase</font>", 
+			"<font color='red'>la dernière lettre</font>", 
+			"</br></br>",			
+			"de la chaine de caractères", 			
 			"</br></br>",				
-			"<font color='blue'>\"BIENVENUE A L'INITIATION RUBY\"</font>"
+			"<span class='help_string'>\"BIENVENUE A L'INITIATION RUBY\"</span>"
 			] 
 },
 { :Subtitle => "LES CHAINES DE CARACTERES", 
@@ -326,9 +339,11 @@ SLIDES = [
 			"</br>",	
 			"Affichez sur la sortie standard",
 			"</br></br>",	
-			"<font color='red'>les 4 premières lettres de la phrase</font>",
+			"<font color='red'>LES 4 premières lettres</font>",
+			"</br></br>",			
+			"de la chaine de caractères", 				
 			"</br></br>",				
-			"<font color='blue'>\"BIENVENUE A L'INITIATION RUBY\"</font>"
+			"<span class='help_string'>\"BIENVENUE A L'INITIATION RUBY\"</span>"
 			] 
 },
 { :Subtitle => "LES CHAINES DE CARACTERES", 
@@ -336,23 +351,25 @@ SLIDES = [
 			"</br>",	
 			"Affichez sur la sortie standard", 
 			"</br></br>",				
-			"<font color='red'>La taille en de nombre de caractères de la phrase</font>",
+			"<font color='red'>la taille en nombre de caractères</font>",
+			"</br></br>",			
+			"de la chaine de caractères", 			
 			"</br></br>",				
-			"<font color='blue'>\"BIENVENUE A L'INITIATION RUBY\"</font>"
+			"<span class='help_string'>\"BIENVENUE A L'INITIATION RUBY\"</span>"
 			] 
 },
 { :Subtitle => "LES VARIABLES", 
 			:Section => [
 			"</br>",				
-			"<font color='red'>Déclarez une variable</font>", 
+			"Déclarez une variable", 
 			"</br></br>",				
-			"<font color='green'>chaine_de_caracteres</font>",
+			"<span class='help_variable'>chaine_de_caracteres</span>",
 			"</br></br>",				
-			"<font color='red'>initialisez la avec le mot", 
+			"Initialisez la avec le mot", 
 			"</br></br>",				
-			"<font color='brown'>\"RUBY\"</font>",
+			"<span class='help_string'>\"RUBY\"</span>",
 			"</br></br>",				
-			"affichez la sur la sortie standard"
+			"Affichez la sur la sortie standard"
 			] 
 },
 { :Subtitle => "LES VARIABLES", 
@@ -362,7 +379,7 @@ SLIDES = [
 			"</br></br>",				
 			"<font color='red'>la classe de la variable</font>", 
 			"</br></br>",			
-			"<font color='green'>chaine_de_caracteres</font>",
+			"<span class='help_variable'>chaine_de_caracteres</span>",
 			] 
 },
 { :Subtitle => "LES VARIABLES", 
@@ -372,18 +389,21 @@ SLIDES = [
 			"</br></br>",				
 			"<font color='red'>les méthodes de la variable</font>",
 			"</br></br>", 			
-			"<font color='green'>chaine_de_caracteres</font>",
+			"<span class='help_variable'>chaine_de_caracteres</span>",
 			] 
 },
 { :Subtitle => "LES ENTIERS", 
 			:Section => [
 			"</br>",				
-			"<font color='red'>Déclarez la variable</font>",
+			"Déclarez la variable",
 			"</br></br>",				
-			"<font color='green'>un_entier</font>",
+			"<span class='help_variable'>un_entier_relatif</span>",
 			"</br></br>",			
-			"<font color='red'>initialisez la avec valeur -12</font>",
-			"affichez la sur la sortie standard"
+			"Initialisez la avec valeur",
+			"</br></br>",			
+			"<span class='help_integer'>-12</span>",			
+			"</br></br>",	
+			"Affichez la sur la sortie standard"
 			] 
 },
 { :Subtitle => "LES ENTIERS", 
@@ -393,7 +413,19 @@ SLIDES = [
 			"</br></br>",				
 			"<font color='red'>la classe de la variable</font>",
 			"</br></br>", 			
-			"<font color='green'>un_entier</font>",
+			"<span class='help_variable'>un_entier_relatif</span>",
+			"</br></br>",
+			"Affichez sur la sur la sortie standard",
+			] 
+},
+{ :Subtitle => "LES ENTIERS", 
+			:Section => [
+			"</br>",				
+			"Affichez sur la sortie standard", 
+			"</br></br>",				
+			"<font color='red'>les méthodes de la variable</font>",
+			"</br></br>", 			
+			"<span class='help_variable'>un_entier_relatif</span>",
 			"</br></br>",
 			"Affichez sur la sur la sortie standard",
 			] 
@@ -405,7 +437,7 @@ SLIDES = [
 			"</br></br>",			
 			"<font color='red'>la valeur absolue de la variable</font>",
 			"</br></br>",			
-			"<font color='green'>un_entier</font>"
+			"<span class='help_variable'>un_entier_relatif</span>"
 			] 
 },
 { :Subtitle => "LES ENTIERS", 
@@ -416,24 +448,24 @@ SLIDES = [
 			"<font color='red'>le nombre de secondes dans une année de 365 jours</font>"
 			] 
 },
-{ :Subtitle => "COMPOSITION ENTIER et CHAINES DE CARACTERES", 
-			:Section => [
-			"</br>",				
-			"Affichez sur la sur la sortie standard, la phrase ",
-			"</br></br>",				
-			"<font color='blue'>En 2014 il y aura ** secondes</font>",
-			"</br></br>",			
-			"<font color='red'>** représente le nombre de secondes en chiffres</font>"
-			] 
-},
-{ :Subtitle => "COMPOSITION ENTIER et CHAINES DE CARACTERES", 
+{ :Subtitle => "ENTIERS et CHAINES DE CARACTERES", 
 			:Section => [
 			"</br>",				
 			"Affichez sur la sur la sortie standard",
 			"</br></br>",				
-			"<font color='red'>15 fois de suite la chaine de caractère</font>", 
+			"<span class='help_string'>\"En 2014 il y aura ** secondes\"</span>",
 			"</br></br>",			
-			"<font color='blue'>'Ruby !'</font>"
+			"<font color='red'>** représente le nombre de secondes en chiffres</font>"
+			] 
+},
+{ :Subtitle => "ENTIERS et CHAINES DE CARACTERES", 
+			:Section => [
+			"</br>",				
+			"Affichez sur la sur la sortie standard",
+			"</br></br>",				
+			"<font color='red'>15 fois de suite la chaine de caractères</font>", 
+			"</br></br>",			
+			"<span class='help_string'>\"Ruby !\"</span>"
 			] 
 },
 { :Subtitle => "LES LISTES", 
@@ -441,9 +473,11 @@ SLIDES = [
 			"</br>",				
 			"Déclarez une variable",
 			"</br></br>",				
-			"<font color='green'>cinq_chiffres_romains</font>",
+			"<span class='help_variable'>cinq_chiffres_romains</span>",
 			"</br></br>",			
-			"<font color='red'>Intialisez là avec 'I', 'II', 'III', 'IV', 'V'</font>",
+			"Intialisez là avec",
+			"</br></br>",			
+			"<span class='help_string'>\"I\", \"II\", \"III\", \"IV\", \"V\"</span>",
 			"</br></br>",				
 			"Affichez la sur le sortie standard",
 			] 
@@ -453,7 +487,13 @@ SLIDES = [
 			"</br>",				
 			"Affichez sur le sortie standard",
 			"</br></br>",				
-			"<font color='red'>Le chiffre romain correspondant au chiffre décimal 3</font>"
+			"<font color='red'>Le chiffre Romain</font>",
+			"</br></br>",			
+			"<font color='red'>correspondant</font>",
+			"</br></br>",			
+			"<font color='red'>au chiffre Arabe</font>",
+			"</br></br>",			
+			"<span class='help_integer'>3</span>"
 			] 
 },
 { :Subtitle => "LES LISTES", 
@@ -461,7 +501,13 @@ SLIDES = [
 			"</br>",				
 			"Affichez sur le sortie standard",
 			"</br></br>",				
-			"<font color='red'>le chiffre romain correspondant à l'addition 3 + 2</font>"
+			"<font color='red'>Le chiffre Romain</font>",
+			"</br></br>",			
+			"<font color='red'>correspondant</font>",
+			"</br></br>",			
+			"<font color='red'>à l'addition</font>",
+			"</br></br>",				
+			"<span class='help_integer'>3 + 2</span>"
 			] 
 },
 { :Subtitle => "LES LISTES", 
@@ -469,7 +515,13 @@ SLIDES = [
 			"</br>",				
 			"Affichez sur le sortie standard",
 			"</br></br>",				
-			"<font color='red'>le chiffre décimal correspondant au chiffre romain 'IV'</font>"
+			"<font color='red'>Le chiffre Arabe</font>",
+			"</br></br>",			
+			"<font color='red'>correspondant</font>",
+			"</br></br>",			
+			"<font color='red'>au chiffre Romain</font>",
+			"</br></br>",				
+			"<span class='help_string'>\"IV\"</span>"
 			] 
 },
 { :Subtitle => "LES DICTIONNAIRES", 
@@ -477,167 +529,249 @@ SLIDES = [
 			"</br>",				
 			"Déclarez une variable",
 			"</br></br>",	
-			"<font color='green'>types_de_contenu_par_type_de_fichier</font>",
+			"<span class='help_variable'>points_au_scrabble</span>",
 			"</br></br>",			
-			"<font color='red'>Initialisez la avec (mp3: 'audio', ...)</font>",
+			"Initialisez la avec",
+			"</br></br>",
+			
+			"<span class='help_string'>\"e\" <span class='help_variable'>=></span> <span class='help_integer'>1</span></span>",
+			"</br>",
+			"<span class='help_string'>\"f\" <span class='help_variable'>=></span> <span class='help_integer'>1</span></span>",
+			"</br>",
+			"<span class='help_string'>\"g\" <span class='help_variable'>=></span> <span class='help_integer'>1</span></span>",
+			"</br>",
+			"<span class='help_string'>\"h\" <span class='help_variable'>=></span> <span class='help_integer'>1</span></span>",
+			"</br>",
+			"<span class='help_string'>\"i\" <span class='help_variable'>=></span> <span class='help_integer'>1</span></span>",		
+			
 			"</br></br>",			
 			"Affichez là sur la sortie standard"
 			] 
 },
+{ :Subtitle => "LES DICTIONNAIRES", 
+			:Section => [
+			"</br>",							
+			"Affichez sur la sortie standard", 
+			"</br></br>",				
+			"<font color='red'>la classe de la variable</font>",
+			"</br></br>",	
+			"<span class='help_variable'>points_au_scrabble</span>",
+			] 
+},
+{ :Subtitle => "LES DICTIONNAIRES", 
+			:Section => [
+			"</br>",							
+			"Affichez sur la sortie standard", 
+			"</br></br>",				
+			"<font color='red'>les méthodes de la variable</font>",
+			"</br></br>",	
+			"<span class='help_variable'>points_au_scrabble</span>",
+			] 
+},
+{ :Subtitle => "LES DICTIONNAIRES", 
+			:Section => [
+			"</br>",				
+			"Afficher sur la sortie standard",
+			"</br></br>",				
+			"<font color='red'>les clés du dictionnaire</font>",
+			"</br></br>",	
+			"<span class='help_variable'>points_au_scrabble</span>",
+			] 
+},
+{ :Subtitle => "LES DICTIONNAIRES", 
+			:Section => [
+			"</br>",				
+			"Afficher sur la sortie standard",
+			"</br></br>",				
+			"<font color='red'>les valeurs contenues dans le dictionnaire</font>",
+			"</br></br>",	
+			"<span class='help_variable'>points_au_scrabble</span>",
+			] 
+},
+{ :Subtitle => "LES DICTIONNAIRES", 
+			:Section => [
+			"</br>",				
+			"Afficher sur la sortie standard",
+			"</br></br>",				
+			"<font color='red'>le nombre de points de la lettre</font>",
+			"</br></br>",	
+			"<span class='help_string'>\"a\"</span>",
+			] 
+},
+{ :Subtitle => "LES DICTIONNAIRES", 
+			:Section => [
+			"</br>",				
+			"Afficher sur la sortie standard",
+			"</br></br>",				
+			"<font color='red'>le nombre de points du mot</font>",
+			"</br></br>",	
+			"<span class='help_string'>\"la\"</span>",
+			] 
+},
 { :Subtitle => "LES CONDITIONS", 
 			:Section => [
 			"</br>",				
-			"Déclarez une variable", 
+			"Affichez sur le sortie standard",
 			"</br></br>",			
-			"<font color='green'>age</font>",
-			"</br></br>",				
-			"<font color='red'>initialisez la à</font>",
+			"<font color='red'>si la variable</font>", 
 			"</br></br>",	
-			"<font color='brown'>5</font>",
-			"</br></br>",				
-			"<font color='red'>Affichez 'MINEUR' si  age inférieur à 18 et 'MAJEUR' sinon</font>",
-			"</br></br>",				
-			"<font color='red'>Modifier la variable et donnez lui la valeur 34</font>",
-			"</br></br>",				
-			"Affichez là sur la sortie standard"
+			"<span class='help_variable'>points_au_scrabble</span>",
+			"</br></br>",			
+			"<font color='red'>possède ou non la clé</font>",
+			"</br></br>",	
+			"<span class='help_string'>\"e\"</span>",		
+
 			] 
 },
 { :Subtitle => "LES CONDITIONS", 
 			:Section => [
 			"</br>",				
-			"Déclarez une variable",
-			"</br></br>",					
-			"<font color='green'>age</font>",			
-			"</br></br>",				
-			"<font color='red'>initialisez la à</font>",
+			"Affichez sur le sortie standard",
+			"</br></br>",			
+			"<font color='red'>si la variable</font>", 
 			"</br></br>",	
-			"<font color='brown'>5</font>",			
-			"</br></br>",				
-			"<font color='red'>Affichez 'MINEUR' si age inférieur à 18 sinon ne rien afficher</font>",
+			"<span class='help_variable'>points_au_scrabble</span>",
+			"</br></br>",			
+			"<font color='red'>possède ou non la clé</font>",
+			"</br></br>",
+			"<span class='help_string'>\"x\"</span>",		
+
 			] 
 },
 { :Subtitle => "LES CONDITIONS", 
 			:Section => [
 			"</br>",				
-			"Déclarez une variable",
-			"</br></br>",					
-			"<font color='green'>age</font>",			
-			"</br></br>",					
-			"<font color='red'>initialisez la à</font>",
+			"Affichez sur le sortie standard", 
+			"</br></br>",		
+			"<font color='red'>le nombre de points de la lettre</font>",
 			"</br></br>",	
-			"<font color='brown'>5</font>",
-			"</br></br>",			
-			"<font color='red'>Affichez 'MINEUR' sauf si age supérieur égal à 18</font>",
-			"</br></br>",					
-			"<font color='red'>Affichez là sur la sortie standard</font>",
+			"<span class='help_string'>\"a\"</span>",
+			"</br></br>",				
+			"<font color='red'>seulement si elle est présente dans le dictionnaire</font>",
+			"</br></br>",				
+			"<span class='help_variable'>points_au_scrabble</span>",	
+			"</br></br>",				
+			"<font color='red'>sinon affichez</font>",
+			"</br></br>",				
+			"<span class='help_string'>\"INCONNU\"</span>",			
 			] 
 },
 { :Subtitle => "LES CONDITIONS", 
 			:Section => [
 			"</br>",				
-			"Déclarez une variable", 
-			"</br></br>",				
-			"<font color='green'>ages</font>",
-			"</br></br>",				
-			"<font color='red'>initialisez la à </font>",
-			"</br></br>",			
-			"<font color='brown'>1, 2, 3, 4, 5</font>",
-			"</br></br>",			
-			"<font color='red'>Déclarez une variable</font>", 
-			"</br></br>",				
-			"<font color='green'>index</font>",
-			"</br></br>",				
-			"<font color='red'>Intialisez la à</font>",
-			"</br></br>",			
-			"<font color='brown'>0</font>",
-			"</br></br>",			
-			"<font color='red'>Affichez 'OK' si ages[index] existe, 'KO' sinon</font>",
-			] 
-},
-{ :Subtitle => "LES BOUCLES", 
-			:Section => [
-			"</br>",				
-			"Déclarez une variable",
+			"Affichez sur le sortie standard", 
+			"</br></br>",		
+			"<font color='red'>le nombre de points de la lettre</font>",
 			"</br></br>",	
-			"<font color='green'>chiffres</font>",
-			"</br></br>",			
-			"<font color='red'>Initialisez la à</font>",
-			"</br></br>",		
-			"<font color='brown'>0, 1, 2, 3, 4, 5, 6, 7, 8, 9</font>",
-			"</br></br>",			
-			"<font color='red'>Affichez les nombres impairs en utilisant l'index</font>",
+			"<span class='help_string'>\"x\"</span>",
+			"</br></br>",				
+			"<font color='red'>seulement si elle est présente dans le dictionnaire</font>",
+			"</br></br>",				
+			"<span class='help_variable'>points_au_scrabble</span>",	
+			"</br></br>",				
+			"<font color='red'>sinon affichez</font>",
+			"</br></br>",				
+			"<span class='help_string'>\"INCONNU\"</span>",
 			] 
 },
-{ :Subtitle => "LES BOUCLES", 
+{ :Subtitle => "LES CONDITIONS", 
 			:Section => [
 			"</br>",				
-			"Déclarez une variable",
+			"Affichez sur le sortie standard", 
+			"</br></br>",		
+			"<font color='red'>le même résultat</font>",
 			"</br></br>",	
-			"<font color='green'>chiffres</font>",
-			"</br></br>",			
-			"<font color='red'>Initialisez la à</font>",
-			"</br></br>",		
-			"<font color='brown'>0, 1, 2, 3, 4, 5, 6, 7, 8, 9</font>",
-			"</br></br>",			
-			"<font color='red'>Affichez les nombres impairs sans utiliser d'index</font>",
+			"<font color='red'>en réduisnat le nombre de lignes</font>",
 			] 
 },
 { :Subtitle => "LES BOUCLES", 
 			:Section => [
 			"</br>",				
-			"Déclarez une variable",
+			"Déclarez une liste",
 			"</br></br>",	
-			"<font color='green'>chiffres</font>",
-			"</br></br>",				
+			"<span class='help_variable'>chiffres</span>",
+			"</br></br>",			
 			"<font color='red'>Initialisez la à</font>",
 			"</br></br>",		
-			"<font color='brown'>0, 1, 2, 3, 4, 5, 6, 7, 8, 9</font>",
+			"<span class='help_integer'>0, 1, 2, 3, 4, 5, 6, 7, 8, 9</span>",
+			"</br></br>",			
+			"Affichez sur la sortie standard",
 			"</br></br>",				
-			"<font color='red'>Affichez les nombres impairs sans utiliser d'index, ni l'instruction for</font>",
+			"<font color='red'>les nombres impairs</font>",
+			"</br></br>",				
+			"<font color='red'>en utilisant l'index</font>",
 			] 
 },
 { :Subtitle => "LES BOUCLES", 
 			:Section => [
-			"</br>",				
-			"Déclarez une variable",
+			"</br>",						
+			"Affichez sur la sortie standard",
 			"</br></br>",				
-			"<font color='green'>chiffres</font>",
-			"</br></br>",				
-			"<font color='red'>Initialisez la à</font>",
-			"</br></br>",		
-			"<font color='brown'>0, 1, 2, 3, 4, 5, 6, 7, 8, 9</font>",
+			"<font color='red'>les nombres impairs</font>",
 			"</br></br>",			
-			"<font color='red'>Afficher les chiffres impairs sans utiliser 'each'</font>",
+			"de la liste",
+			"</br></br>",			
+			"<span class='help_variable'>chiffres</span>",			
+			"</br></br>",				
+			"<font color='red'>en utilisant PAS l'index</font>",
 			] 
 },
 { :Subtitle => "LES BOUCLES", 
 			:Section => [
-			"</br>",				
-			"Déclarez une variable",
+			"</br>",						
+			"Affichez sur la sortie standard",
 			"</br></br>",				
-			"<font color='green'>chiffres</font>",
-			"</br></br>",				
-			"<font color='red'>Initialisez la à</font>",
-			"</br></br>",		
-			"<font color='brown'>0, 1, 2, 3, 4, 5, 6, 7, 8, 9</font>",
+			"<font color='red'>les nombres impairs</font>",
 			"</br></br>",			
-			"<font color='red'>Affichez le carré de chaque chiffre sans utiliser 'each'</font>",
-			] 
+			"de la liste",
+			"</br></br>",			
+			"<span class='help_variable'>chiffres</span>",			
+			"</br></br>",				
+			"<font color='red'>en utilisant NI l'index, NI l'instruction FOR</font>",
+			]
 },
 { :Subtitle => "LES BOUCLES", 
 			:Section => [
-			"</br>",				
-			"Déclarez une variable",  
+			"</br>",						
+			"Affichez sur la sortie standard",
 			"</br></br>",				
-			"<font color='green'>chiffres</font>",
-			"</br></br>",				
-			"<font color='red'>Initialisez la à</font>",
-			"</br></br>",		
-			"<font color='brown'>0, 1, 2, 3, 4, 5, 6, 7, 8, 9</font>",
+			"<font color='red'>les nombres impairs</font>",
 			"</br></br>",			
-			"<font color='red'>Définissez la methode carre_de(x)</font>",
+			"de la liste",
+			"</br></br>",			
+			"<span class='help_variable'>chiffres</span>",			
 			"</br></br>",				
-			"<font color='red'>Afficher le carre de chaque chiffre</font>",
+			"<font color='red'>en utilisant NI l'index, NI l'instruction FOR, NI EACH</font>",
+			]
+},
+{ :Subtitle => "LES BOUCLES", 
+			:Section => [
+			"</br>",						
+			"Affichez sur la sortie standard",
+			"</br></br>",				
+			"<font color='red'>le carré de chaque chiffre</font>",
+			"</br></br>",			
+			"de la liste",
+			"</br></br>",			
+			"<span class='help_variable'>chiffres</span>",			
+			"</br></br>",				
+			"<font color='red'>en utilisant NI l'index, NI l'instruction FOR, NI EACH</font>",
+			]
+},
+{ :Subtitle => "LES PROCEDURES", 
+			:Section => [
+			"</br>",						
+			"Affichez sur la sortie standard",
+			"</br></br>",				
+			"<font color='red'>le carré de chaque chiffre</font>",
+			"</br></br>",			
+			"de la liste",
+			"</br></br>",			
+			"<span class='help_variable'>chiffres</span>",			
+			"</br></br>",				
+			"<font color='red'>en remplaçant le calcul du carré par une procédure</font>",
+			"</br></br>",	
+			"<span class='help_variable'>carre_de(nombre)</span>",
 			] 
 },
 { :Subtitle => "TDD", 
