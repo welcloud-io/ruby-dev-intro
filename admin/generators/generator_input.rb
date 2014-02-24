@@ -258,6 +258,15 @@ class TestMimeType < Test::Unit::TestCase
 end
 }
 
+SCRABBLE = "
+points_au_scrabble = {
+'a'=>1,'b'=>3,'c'=>3,'d'=>2,'e'=>1,'f'=>4,'g'=>2,'h'=>4,
+'i'=>1,'j'=>8,'k'=>5,'l'=>1,'m'=>3,'n'=>1,'o'=>1,'p'=>3,
+'q'=>10,'r'=>1,'s'=>1,'t'=>1,'u'=>1,'v'=>4,'w'=>4,'x'=>8,
+'y'=>4,'z'=>10
+}
+"
+
 CONNEXION_SLIDE = "
 <h3 style='text-align:center'>INTRODUCTION A RUBY</h3>
 <h3 style='color: red; text-align:center'>CONNECTEZ VOUS SUR :</h3>
@@ -468,7 +477,7 @@ SLIDES = [
 			"<span class='help_string'>\"Ruby !\"</span>"
 			] 
 },
-{ :Subtitle => "LES LISTES", 
+{ :Subtitle => "LES LISTES (ARRAYS)", 
 			:Section => [
 			"</br>",				
 			"Déclarez une variable",
@@ -479,13 +488,13 @@ SLIDES = [
 			"</br></br>",			
 			"<span class='help_string'>\"I\", \"II\", \"III\", \"IV\", \"V\"</span>",
 			"</br></br>",				
-			"Affichez la sur le sortie standard",
+			"Affichez la sur la sortie standard",
 			] 
 },
-{ :Subtitle => "LES LISTES", 
+{ :Subtitle => "LES LISTES (ARRAYS)", 
 			:Section => [
 			"</br>",				
-			"Affichez sur le sortie standard",
+			"Affichez sur la sortie standard",
 			"</br></br>",				
 			"<font color='red'>Le chiffre Romain</font>",
 			"</br></br>",			
@@ -496,10 +505,10 @@ SLIDES = [
 			"<span class='help_integer'>3</span>"
 			] 
 },
-{ :Subtitle => "LES LISTES", 
+{ :Subtitle => "LES LISTES (ARRAYS)", 
 			:Section => [
 			"</br>",				
-			"Affichez sur le sortie standard",
+			"Affichez sur la sortie standard",
 			"</br></br>",				
 			"<font color='red'>Le chiffre Romain</font>",
 			"</br></br>",			
@@ -510,10 +519,10 @@ SLIDES = [
 			"<span class='help_integer'>3 + 2</span>"
 			] 
 },
-{ :Subtitle => "LES LISTES", 
+{ :Subtitle => "LES LISTES (ARRAYS)", 
 			:Section => [
 			"</br>",				
-			"Affichez sur le sortie standard",
+			"Affichez sur la sortie standard",
 			"</br></br>",				
 			"<font color='red'>Le chiffre Arabe</font>",
 			"</br></br>",			
@@ -524,7 +533,21 @@ SLIDES = [
 			"<span class='help_string'>\"IV\"</span>"
 			] 
 },
-{ :Subtitle => "LES DICTIONNAIRES", 
+{ :Subtitle => "LES LISTES (ARRAYS)", 
+			:Section => [
+			"</br>",				
+			"<font color='red'>Ajoutez le chiffre romain</font>",
+			"</br></br>",			
+			"<span class='help_string'>\"VI\"</span>",
+			"</br></br>",				
+			"<font color='red'>à la variale</font>",
+			"</br></br>",			
+			"<span class='help_variable'>cinq_chiffres_romains</span>",
+			"</br></br>",
+			"Affichez la sur la sortie standard",			
+			] 
+},
+{ :Subtitle => "LES DICTIONNAIRES (HASHES)", 
 			:Section => [
 			"</br>",				
 			"Déclarez une variable",
@@ -534,84 +557,73 @@ SLIDES = [
 			"Initialisez la avec",
 			"</br></br>",
 			
-			"<span class='help_string'>\"e\" <span class='help_variable'>=></span> <span class='help_integer'>1</span></span>",
+			"<span class='help_string'>\"a\" <span class='help_variable'>=></span> <span class='help_integer'>1,</span></span>",
 			"</br>",
-			"<span class='help_string'>\"f\" <span class='help_variable'>=></span> <span class='help_integer'>1</span></span>",
+			"<span class='help_string'>\"b\" <span class='help_variable'>=></span> <span class='help_integer'>3,</span></span>",
 			"</br>",
-			"<span class='help_string'>\"g\" <span class='help_variable'>=></span> <span class='help_integer'>1</span></span>",
+			"<span class='help_string'>\"c\" <span class='help_variable'>=></span> <span class='help_integer'>3,</span></span>",
 			"</br>",
-			"<span class='help_string'>\"h\" <span class='help_variable'>=></span> <span class='help_integer'>1</span></span>",
+			"<span class='help_string'>\"d\" <span class='help_variable'>=></span> <span class='help_integer'>2,</span></span>",
 			"</br>",
-			"<span class='help_string'>\"i\" <span class='help_variable'>=></span> <span class='help_integer'>1</span></span>",		
+			"<span class='help_string'>\"e\" <span class='help_variable'>=></span> <span class='help_integer'>1,</span></span>",		
 			
 			"</br></br>",			
 			"Affichez là sur la sortie standard"
 			] 
 },
-{ :Subtitle => "LES DICTIONNAIRES", 
-			:Section => [
-			"</br>",							
-			"Affichez sur la sortie standard", 
-			"</br></br>",				
-			"<font color='red'>la classe de la variable</font>",
-			"</br></br>",	
-			"<span class='help_variable'>points_au_scrabble</span>",
-			] 
-},
-{ :Subtitle => "LES DICTIONNAIRES", 
-			:Section => [
-			"</br>",							
-			"Affichez sur la sortie standard", 
-			"</br></br>",				
-			"<font color='red'>les méthodes de la variable</font>",
-			"</br></br>",	
-			"<span class='help_variable'>points_au_scrabble</span>",
-			] 
-},
-{ :Subtitle => "LES DICTIONNAIRES", 
+{ :Subtitle => "LES DICTIONNAIRES (HASHES)", 
 			:Section => [
 			"</br>",				
 			"Afficher sur la sortie standard",
 			"</br></br>",				
-			"<font color='red'>les clés du dictionnaire</font>",
+			"<font color='red'>les <b>clés</b> du dictionnaire</font>",
 			"</br></br>",	
 			"<span class='help_variable'>points_au_scrabble</span>",
 			] 
 },
-{ :Subtitle => "LES DICTIONNAIRES", 
+{ :Subtitle => "LES DICTIONNAIRES (HASHES)", 
 			:Section => [
 			"</br>",				
 			"Afficher sur la sortie standard",
 			"</br></br>",				
-			"<font color='red'>les valeurs contenues dans le dictionnaire</font>",
+			"<font color='red'>les <b>valeurs</b> contenues dans le dictionnaire</font>",
 			"</br></br>",	
 			"<span class='help_variable'>points_au_scrabble</span>",
 			] 
 },
-{ :Subtitle => "LES DICTIONNAIRES", 
+{ :Subtitle => "LES DICTIONNAIRES (HASHES)", 
 			:Section => [
 			"</br>",				
 			"Afficher sur la sortie standard",
 			"</br></br>",				
 			"<font color='red'>le nombre de points de la lettre</font>",
 			"</br></br>",	
-			"<span class='help_string'>\"a\"</span>",
+			"<span class='help_string'>\"d\"</span>",
 			] 
 },
-{ :Subtitle => "LES DICTIONNAIRES", 
+{ :Subtitle => "LES DICTIONNAIRES (HASHES)", 
 			:Section => [
 			"</br>",				
 			"Afficher sur la sortie standard",
 			"</br></br>",				
 			"<font color='red'>le nombre de points du mot</font>",
 			"</br></br>",	
-			"<span class='help_string'>\"la\"</span>",
-			] 
+			"<span class='help_string'>\"ruby\"</span>",
+			],
+			:Helper => [
+			"</br>",				
+			"Afficher sur la sortie standard",
+			"</br></br>",				
+			"<font color='red'>le nombre de points du mot</font>",
+			"</br></br>",	
+			"<span class='help_string'>\"ruby\"</span>",			
+			"<div class='code_to_display'> #{SCRABBLE} </div>",
+			],
 },
 { :Subtitle => "LES CONDITIONS", 
 			:Section => [
 			"</br>",				
-			"Affichez sur le sortie standard",
+			"Affichez sur la sortie standard",
 			"</br></br>",			
 			"<font color='red'>si la variable</font>", 
 			"</br></br>",	
@@ -626,7 +638,7 @@ SLIDES = [
 { :Subtitle => "LES CONDITIONS", 
 			:Section => [
 			"</br>",				
-			"Affichez sur le sortie standard",
+			"Affichez sur la sortie standard",
 			"</br></br>",			
 			"<font color='red'>si la variable</font>", 
 			"</br></br>",	
@@ -641,7 +653,7 @@ SLIDES = [
 { :Subtitle => "LES CONDITIONS", 
 			:Section => [
 			"</br>",				
-			"Affichez sur le sortie standard", 
+			"Affichez sur la sortie standard", 
 			"</br></br>",		
 			"<font color='red'>le nombre de points de la lettre</font>",
 			"</br></br>",	
@@ -659,7 +671,7 @@ SLIDES = [
 { :Subtitle => "LES CONDITIONS", 
 			:Section => [
 			"</br>",				
-			"Affichez sur le sortie standard", 
+			"Affichez sur la sortie standard", 
 			"</br></br>",		
 			"<font color='red'>le nombre de points de la lettre</font>",
 			"</br></br>",	
@@ -677,11 +689,11 @@ SLIDES = [
 { :Subtitle => "LES CONDITIONS", 
 			:Section => [
 			"</br>",				
-			"Affichez sur le sortie standard", 
+			"Affichez sur la sortie standard", 
 			"</br></br>",		
 			"<font color='red'>le même résultat</font>",
 			"</br></br>",	
-			"<font color='red'>en réduisnat le nombre de lignes</font>",
+			"<font color='red'>en réduisant le nombre de lignes</font>",
 			] 
 },
 { :Subtitle => "LES BOUCLES", 
@@ -713,10 +725,10 @@ SLIDES = [
 			"</br></br>",			
 			"<span class='help_variable'>chiffres</span>",			
 			"</br></br>",				
-			"<font color='red'>en utilisant PAS l'index</font>",
+			"<font color='red'>en N'utilisant PAS l'index</font>",
 			] 
 },
-{ :Subtitle => "LES BOUCLES", 
+{ :Subtitle => "LES BLOCS", 
 			:Section => [
 			"</br>",						
 			"Affichez sur la sortie standard",
@@ -730,7 +742,7 @@ SLIDES = [
 			"<font color='red'>en utilisant NI l'index, NI l'instruction FOR</font>",
 			]
 },
-{ :Subtitle => "LES BOUCLES", 
+{ :Subtitle => "LES BLOCS", 
 			:Section => [
 			"</br>",						
 			"Affichez sur la sortie standard",
@@ -744,7 +756,7 @@ SLIDES = [
 			"<font color='red'>en utilisant NI l'index, NI l'instruction FOR, NI EACH</font>",
 			]
 },
-{ :Subtitle => "LES BOUCLES", 
+{ :Subtitle => "LES BLOCS", 
 			:Section => [
 			"</br>",						
 			"Affichez sur la sortie standard",
@@ -758,7 +770,7 @@ SLIDES = [
 			"<font color='red'>en utilisant NI l'index, NI l'instruction FOR, NI EACH</font>",
 			]
 },
-{ :Subtitle => "LES PROCEDURES", 
+{ :Subtitle => "LES METHODES", 
 			:Section => [
 			"</br>",						
 			"Affichez sur la sortie standard",
@@ -771,7 +783,7 @@ SLIDES = [
 			"</br></br>",				
 			"<font color='red'>en remplaçant le calcul du carré par une procédure</font>",
 			"</br></br>",	
-			"<span class='help_variable'>carre_de(nombre)</span>",
+			"<span class='help_variable'>carre_de(chiffre)</span>",
 			] 
 },
 { :Subtitle => "TDD", 
