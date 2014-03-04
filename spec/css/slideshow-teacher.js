@@ -1,1 +1,0 @@
-../../views/slideshow-teacher.js
