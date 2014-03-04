@@ -1,1 +1,1 @@
-pg_restore b001.dump -d smb111-lille
+pg_restore b001.dump -d ruby-dev-intro
