@@ -279,7 +279,7 @@ SLIDES = [
 			"<h3 style='text-align:center'>INTRODUCTION A RUBY</h3>",
 			"<h3 style='color: red; text-align:center'>CONNECTEZ VOUS SUR :</h3>",
 			"<h4 style='color: blue; font-size: 1.3em; text-align:center'>http://ruby-dev-intro.herokuapp.com</h4>",
-			'<div class="code_to_display"> puts "Connexion ok, Bienvenue"</div>',
+			'<div class="code_to_display"> puts "CONNEXION REUSSIE, BIENVENUE"</div>',
 			],			
 },
 { :Subtitle => "HISTOIRE", 
