@@ -35,6 +35,7 @@ template =
 
 
 <input type="button" id="execute" value="EXECUTE (ALT-R)">
+<input type="button" id="send_code" value="SEND (ALT-S)">
 
 <textarea class="code_result" id="code_output" readonly></textarea>
 
