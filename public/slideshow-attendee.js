@@ -23,5 +23,5 @@ for(key in SlideShow.prototype) {
 // INITIALIZE SLIDESHOW
 // ----------------------------------  
 var attendeeSlideshow = new AttendeeSlideShow(queryAll('.slide'));
-var slideshowTimer = setInterval( function(){ attendeeSlideshow.synchronise(); },1000);
+var slideshowTimer = setInterval( function(){ attendeeSlideshow.synchronise(); },2000);
 
