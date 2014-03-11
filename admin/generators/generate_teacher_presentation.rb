@@ -46,7 +46,7 @@ template =
   </div>
 <%end %>
 
-<input type="button" id="execute" value="EXECUTE (ALT-R)">
+<input type="button" id="execute" value="EXECUTE (ALT-R)" disabled>
 <input type="button" id="send_code" value="SEND (ALT-S)">
 
 <textarea class="code_result" id="code_output" readonly></textarea>
@@ -57,14 +57,13 @@ template =
 
 </div> <!--presentation-->
 
-<script src="ace-builds/src-min-noconflict/ace.js" type="text/javascript" charset="utf-8"></script>
 <script src="slideshow.js"></script>
+
+<%= EDITOR_CONFIG %>
+
 <script src="slideshow-teacher.js"></script>
-<script>
-teacherSlideshow._slides[teacherSlideshow._numberOfSlides-1].code_editor.setTheme("ace/theme/vibrant_ink");
-teacherSlideshow._slides[teacherSlideshow._numberOfSlides-1].code_editor.getSession().setMode("ace/mode/ruby");
-document.getElementById('code_input').style.fontSize='14px';    
-</script>    
+
+
 
 </body>
 </html>

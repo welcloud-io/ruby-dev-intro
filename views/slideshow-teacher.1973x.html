@@ -2327,7 +2327,7 @@ end
   </div>
 
 
-<input type="button" id="execute" value="EXECUTE (ALT-R)">
+<input type="button" id="execute" value="EXECUTE (ALT-R)" disabled>
 <input type="button" id="send_code" value="SEND (ALT-S)">
 
 <textarea class="code_result" id="code_output" readonly></textarea>
@@ -2338,14 +2338,23 @@ end
 
 </div> <!--presentation-->
 
-<script src="ace-builds/src-min-noconflict/ace.js" type="text/javascript" charset="utf-8"></script>
 <script src="slideshow.js"></script>
-<script src="slideshow-teacher.js"></script>
+
+
+<script src="ace-builds/src-min-noconflict/ace.js" type="text/javascript" charset="utf-8"></script>
 <script>
-teacherSlideshow._slides[teacherSlideshow._numberOfSlides-1].code_editor.setTheme("ace/theme/vibrant_ink");
-teacherSlideshow._slides[teacherSlideshow._numberOfSlides-1].code_editor.getSession().setMode("ace/mode/ruby");
-document.getElementById('code_input').style.fontSize='14px';    
-</script>    
+var code_editor = ace.edit(document.getElementById('code_input'));
+Editor.prototype.updateEditor = function (code) { code_editor.setValue(code, 1); };
+Editor.prototype.content = function () { return code_editor.getValue();  };
+code_editor.setTheme('ace/theme/vibrant_ink');
+code_editor.getSession().setMode('ace/mode/ruby');
+code_editor.setFontSize('14px');
+</script>
+
+
+<script src="slideshow-teacher.js"></script>
+
+
 
 </body>
 </html>

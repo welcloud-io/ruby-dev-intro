@@ -45,14 +45,14 @@ template =
 
 </div> <!--presentation-->
 
-<script src="ace-builds/src-min-noconflict/ace.js" type="text/javascript" charset="utf-8"></script>
+
 <script src="slideshow.js"></script>
+
+<%= EDITOR_CONFIG %>
+
 <script src="slideshow-attendee.js"></script>
-<script>
-attendeeSlideshow._slides[attendeeSlideshow._numberOfSlides-1].code_editor.setTheme("ace/theme/vibrant_ink");
-attendeeSlideshow._slides[attendeeSlideshow._numberOfSlides-1].code_editor.getSession().setMode("ace/mode/ruby");
-document.getElementById('code_input').style.fontSize='14px';    
-</script>    
+
+
 
 </body>
 </html>

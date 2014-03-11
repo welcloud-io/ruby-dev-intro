@@ -49,6 +49,19 @@ background-color: black;
 }
 }
 
+EDITOR_CONFIG = 
+%Q{
+<script src="ace-builds/src-min-noconflict/ace.js" type="text/javascript" charset="utf-8"></script>
+<script>
+var code_editor = ace.edit(document.getElementById('code_input'));
+Editor.prototype.updateEditor = function (code) { code_editor.setValue(code, 1); };
+Editor.prototype.content = function () { return code_editor.getValue();  };
+code_editor.setTheme('ace/theme/vibrant_ink');
+code_editor.getSession().setMode('ace/mode/ruby');
+code_editor.setFontSize('14px');
+</script>
+}
+
 MIME_TYPE_PUZZLE =
 %Q{
 <div style="font-size: 0.55em">
