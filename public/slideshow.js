@@ -20,8 +20,8 @@ var S = 83
 
 var SEPARATOR = '\n#{SEP}#\n'
 
-var queryAll = function(query) {
-  nodeList = document.querySelectorAll(query);
+var queryAll = function(node, query) {
+  nodeList = node.querySelectorAll(query);
   return Array.prototype.slice.call(nodeList, 0);
 };
 
@@ -49,14 +49,14 @@ var Slide = function(node) {
 
 
 Slide.prototype = {
-  
-  _isPollResultSlide: function() {
-    return this._node.querySelectorAll('.poll_response_rate').length > 0  
-  },
-  
+
   _update: function() {
   },
   
+  _isPollResultSlide: function() {
+    return false;  
+  },
+
   _isCodingSlide: function() {
     return false;
   },   
@@ -64,8 +64,25 @@ Slide.prototype = {
   setState: function(state) {
     this._node.className = 'slide' + ((state != '') ? (' ' + state) : '');
   },
-  
-  updatePoll: function() {
+
+};
+
+// ----------------------------------
+// POLL SLIDE CLASS
+// ----------------------------------
+var PollSlide = function(node) {
+  Slide.call(this, node);
+  this._node = node;
+}
+
+PollSlide.prototype = {
+  _isPollResultSlide: function() {
+    return this._node.querySelectorAll('.poll_response_rate').length > 0  
+  },
+  savePoll: function(elementId) {
+    postResource('/'+elementId, '', ASYNCHRONOUS);
+  },   
+  _update: function() {
     rateNodes = this._node.querySelectorAll('.poll_response_rate')
     for (var i=0; i<rateNodes.length; i++) {
       rateNodeId = '#' + rateNodes[i].id;
@@ -73,13 +90,11 @@ Slide.prototype = {
       this._node.querySelector(rateNodeId).innerHTML = rateNodeValue;
     }
   },
-  
-  savePoll: function(elementId) {
-    postResource('/'+elementId, '', ASYNCHRONOUS);
-  }, 
+}
 
+for(key in Slide.prototype) {
+  if (! PollSlide.prototype[key]) PollSlide.prototype[key] = Slide.prototype[key];
 };
-
 
 // ----------------------------------
 // EDITOR
@@ -98,11 +113,40 @@ Editor.prototype = {
 }
 
 // ----------------------------------
+// CODE HELPER (MINI-SLIDE)
+// ----------------------------------
+var CodeHelper = function(node) {
+  this._node = node;
+}
+
+CodeHelper.prototype = {
+  setState: function(state) {
+    this._node.className = 'code_helper' + ((state != '') ? (' ' + state) : '');
+  },  
+  codeToAdd: function() {
+    code = '';
+    if (this._node.querySelector('.code_to_add') ) 
+      code = SEPARATOR + this._node.querySelector('.code_to_add').innerHTML;
+    return code.replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&amp;/g, '&');
+  }, 
+  codeToDisplay: function() {
+    code = '';
+    if (this._node.querySelector('.code_to_display') ) 
+      code = this._node.querySelector('.code_to_display').innerHTML;
+    return code.replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&amp;/g, '&');
+  },  
+}
+
+// ----------------------------------
 // CODE SLIDE EXTENDS SLIDE CLASS
 // ----------------------------------
 var CodeSlide = function(node) {
   Slide.call(this, node);
-  this._codeHelpers = this._node.querySelectorAll('.code_helper');
+  
+  this._codeHelpers = (queryAll(node, '.code_helper')).map(function(element) {
+    return new CodeHelper(element); 
+  });
+  
   this._codeHelper_current_index = 0;
   this._declareEvents();
   this._editor = new Editor(this._node.querySelector('#code_input'));
@@ -115,17 +159,19 @@ CodeSlide.prototype = {
     return this._node.querySelector('#execute') != null;
   },
   
+  _keyHandling: function(e) {
+    if ( e.altKey ) { 
+      if (e.which == R) { if ( ! this._node.querySelector('#execute').disabled == true ) { this.executeCode(); } }
+      if (e.which == S) { this.executeAndSendCode(); }
+    } else {
+      e.stopPropagation()
+    }    
+  },
+  
   _declareEvents: function() {  
     var _t = this;	  
     this._node.querySelector('#code_input').addEventListener('keydown',
-      function(e) { 
-	if ( e.altKey ) { 
-	  if (e.which == R) { if ( ! _t._node.querySelector('#execute').disabled == true ) { _t.executeCode(); } }
-	  if (e.which == S) { _t.executeAndSendCode(); }
-	} else {
-	  e.stopPropagation()
-	} 
-      }, false
+      function(e) { _t._keyHandling(e) }, false
     );
     this._node.querySelector('#execute').addEventListener('click',
       function(e) { _t.executeCode(); }, false
@@ -140,8 +186,25 @@ CodeSlide.prototype = {
     this.updateEditorAndExecuteCode();
   },
   
+  _clearCodeHelpers: function() {
+    for (var i=0; i<this._codeHelpers.length; i++) {
+      this._codeHelpers[i].setState('');
+    }
+  }, 
+
+  _currentCodeHelper: function() {
+    return this._codeHelpers[this._codeHelper_current_index]
+  },   
+  
+  showCurrentCodeHelper: function(slide_index) {
+    if (this._codeHelpers.length == 0) return;
+    this._clearCodeHelpers();
+    this._codeHelpers[slide_index].setState('current');
+    this._codeHelper_current_index = slide_index;    	  
+  },  
+  
   codeToExecute: function() {
-    return this._editor.content() + this.codeToAdd();
+    return this._editor.content() + this._currentCodeHelper().codeToAdd();
   },	  
 
   executeCode: function() {
@@ -152,49 +215,22 @@ CodeSlide.prototype = {
   executeAndSendCode: function() {
     send_url = "/code_send_result" + "/" + this._codeHelper_current_index;
     this._node.querySelector('#code_output').value = postResource(send_url, this.codeToExecute(), SYNCHRONOUS);
-  },  
-
-  _clearCodeHelpers: function() {
-    for (var i=0; i<this._codeHelpers.length; i++) {
-      this._codeHelpers[i].className = 'code_helper';
-    }
-  },  
-  
-  showCurrentCodeHelper: function(slide_index) {
-    if (this._codeHelpers.length == 0) return;
-    this._clearCodeHelpers();
-    this._codeHelpers[slide_index].className = 'code_helper current';
-    this._codeHelper_current_index = slide_index;    	  
-  },	  
-
-  //~ updateEditor: function(code) {
-    //~ this._node.querySelector('#code_input').value = code;
-    //~ if (typeof ace != 'undefined') { this.code_editor.setValue(code, 1); }	  
-  //~ },	 
-
-  codeToDisplay: function() {
-    code = '';
-    if (this._codeHelpers[this._codeHelper_current_index] && this._codeHelpers[this._codeHelper_current_index].querySelector('.code_to_display') ) 
-      code = this._codeHelpers[this._codeHelper_current_index].querySelector('.code_to_display').innerHTML;
-    return code.replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&amp;/g, '&');
-  },
-
-  codeToAdd: function() {
-    code = '';
-    if (this._codeHelpers[this._codeHelper_current_index] && this._codeHelpers[this._codeHelper_current_index].querySelector('.code_to_add') ) 
-      code = SEPARATOR + this._codeHelpers[this._codeHelper_current_index].querySelector('.code_to_add').innerHTML;
-    return code.replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&amp;/g, '&');
-  },
+  }, 
   
   lastSend: function() {
     return getResource('/code_last_send' + '/' + this._codeHelper_current_index);
   },
   
+  lastSendOrCodeToDisplay: function() {
+    lastSend = this.lastSend().split(SEPARATOR)[0];
+    if (lastSend != '') { return lastSend }
+    return this._currentCodeHelper().codeToDisplay();
+  },
+  
   updateEditorAndExecuteCode: function() {
-    codeForEditor = this.lastSend().split(SEPARATOR)[0];
-    if (codeForEditor == '' ) codeForEditor = this.codeToDisplay();
-    if (codeForEditor == '' && this.codeToAdd() == '') return;
-    this._editor.updateEditor(codeForEditor);
+    lastSendOrCodeToDisplay = this.lastSendOrCodeToDisplay();
+    if (lastSendOrCodeToDisplay == '' && this._currentCodeHelper().codeToAdd() == '') return;
+    this._editor.updateEditor(lastSendOrCodeToDisplay);
     this.executeCode();	  
   }, 
   
@@ -210,11 +246,9 @@ for(key in Slide.prototype) {
 // ----------------------------------  
 var SlideShow = function(slides) {
   this._slides = (slides).map(function(element) { 
-	  if (element.querySelector('#execute') != null) { 
-	    return new CodeSlide(element); 
-	  } else { 
-	    return new Slide(element); 
-	  };
+	  if (element.querySelector('#execute') != null) { return new CodeSlide(element); };
+	  if (element.querySelector('.poll_response_rate') != null) { return new PollSlide(element); };
+    return new Slide(element); 
   });
   this._numberOfSlides = this._slides.length;
   this._currentSlide = this._slides[this._currentIndex];
@@ -247,20 +281,14 @@ SlideShow.prototype = {
     this._currentSlide.setState('current');
   },
 
-  _teacher_coding_slide:function() {
+  _last_slide:function() {
     return this._slides[this._numberOfSlides-1]
   },  
   
   _show_teacher_coding_slide: function() {
     this._clear();
-    this._currentSlide = this._teacher_coding_slide();	  
+    this._currentSlide = this._last_slide();	  
     this._currentSlide.setState('current');
-  },	  
-  
-  _update_poll_slide: function() {
-    if (this._currentSlide && this._currentSlide._isPollResultSlide()) {
-      this._currentSlide.updatePoll();
-    }
   },
 
   _is_a_number: function(index) {
@@ -282,7 +310,6 @@ SlideShow.prototype = {
       this._show_teacher_coding_slide();
     else
       this._show_current_slide();
-    this._update_poll_slide();
     this._currentSlide._update(this._currentIndex);
     window.console && window.console.log("Refreshed with this._currentIndex = " + this._currentIndex);
   }, 
@@ -303,11 +330,12 @@ SlideShow.prototype = {
   },
   
   down: function() {
+    if (! this._last_slide()._isCodingSlide()) return;    
     this._showIDE = true;
     this._refresh();  
   },
   
-  up: function() {  
+  up: function() {
     this._showIDE = false;	  
     this._refresh();
   },

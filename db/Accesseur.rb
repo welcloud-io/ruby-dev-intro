@@ -8,7 +8,7 @@ $log.level = Logger::INFO
 
 class Accesseur
   
-  dev_database_url = 'postgres://postgres:postgres@localhost:5432/powerprez'
+  dev_database_url = 'postgres://postgres:postgres@localhost:5432/ruby-dev-intro'
   db = URI.parse(ENV["DATABASE_URL"] || dev_database_url)
   @@database = PG.connect(
     db.host, db.port, '', '', db.path[1..-1], db.user, db.password) 
