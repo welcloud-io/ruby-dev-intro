@@ -46,6 +46,8 @@ template =
 </div> <!--presentation-->
 
 
+<script src="common.js"></script>
+<script src="slides.js"></script>
 <script src="slideshow.js"></script>
 
 <%= EDITOR_CONFIG %>

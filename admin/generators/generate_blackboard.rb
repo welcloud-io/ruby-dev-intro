@@ -47,7 +47,7 @@ template =
 <%end %>
 
 <input type="button" id="execute" value="EXECUTE (ALT-R)" disabled>
-<input type="button" id="send_code" value="SEND (ALT-S)">
+<input type="button" id="send_code" value="SEND (ALT-S)" disabled>
 
 <textarea class="code_result" id="code_output" readonly></textarea>
 
@@ -62,8 +62,11 @@ template =
 <script src="slideshow.js"></script>
 
 <%= EDITOR_CONFIG %>
+<script>
+code_editor.setReadOnly(true);
+</script>
 
-<script src="slideshow-teacher.js"></script>
+<script src="slideshow-attendee.js"></script>
 
 
 
