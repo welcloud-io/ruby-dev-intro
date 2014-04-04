@@ -119,8 +119,9 @@ CodeSlide.prototype = {
   
   _keyHandling: function(e) {
     if ( e.altKey ) { 
-      if (e.which == R) { if ( ! this._node.querySelector('#execute').disabled == true ) { this.executeCode(); } }
-      if (e.which == S) { this.executeAndSendCode(); }
+      if (e.which == R) { if ( ! this._node.querySelector('#execute').disabled == true ) this.executeCode(); }
+      if (e.which == S) { if ( ! this._node.querySelector('#send_code').disabled == true ) this.executeAndSendCode(); }
+      if (e.which == G) { if ( ! this._node.querySelector('#get_code').disabled == true ) this.getAndExecuteCode(); }
     } else {
       e.stopPropagation()
     }    
@@ -136,12 +137,24 @@ CodeSlide.prototype = {
     );     
     this._node.querySelector('#send_code').addEventListener('click',
       function(e) { _t.executeAndSendCode(); }, false
-    );       
+    );     
+    this._node.querySelector('#get_code').addEventListener('click',
+      function(e) { _t.getAndExecuteCode(); }, false
+    );        
   },  
 
   _update: function(slide_index) {
     this.showCurrentCodeHelper(slide_index);
-    this.updateEditorAndExecuteCode();
+    code = this.lastExecution();
+    if (code != '') { this._editor.updateEditor(code); this.executeCode(); return; }
+    code = this._currentCodeHelper().codeToDisplay();
+    if (code != '') { this._editor.updateEditor(code); this.executeCode(); return; }
+    code = this._currentCodeHelper().codeToAdd();
+    if (code != '') { this.executeCode(); return; }
+  },
+  
+  lastExecution: function() {
+    return getResource('/code_last_execution' + '/' + this._codeHelper_current_index).split(SEPARATOR)[0];
   },
   
   _clearCodeHelpers: function() {
@@ -166,31 +179,23 @@ CodeSlide.prototype = {
   },	  
 
   executeCode: function() {
+    if (this.codeToExecute() == '' ) return;
     run_url = "/code_run_result" + "/" + this._codeHelper_current_index;
     this._node.querySelector('#code_output').value = postResource(run_url , this.codeToExecute(), SYNCHRONOUS);
   },
   
   executeAndSendCode: function() {
+    if (this.codeToExecute() == '' ) return;    
     send_url = "/code_send_result" + "/" + this._codeHelper_current_index;
     this._node.querySelector('#code_output').value = postResource(send_url, this.codeToExecute(), SYNCHRONOUS);
-  }, 
-  
-  lastSend: function() {
-    return getResource('/code_last_send' + '/' + this._codeHelper_current_index);
   },
-  
-  lastSendOrCodeToDisplay: function() {
-    lastSend = this.lastSend().split(SEPARATOR)[0];
-    if (lastSend != '') { return lastSend }
-    return this._currentCodeHelper().codeToDisplay();
-  },
-  
-  updateEditorAndExecuteCode: function() {
-    lastSendOrCodeToDisplay = this.lastSendOrCodeToDisplay();
-    if (lastSendOrCodeToDisplay == '' && this._currentCodeHelper().codeToAdd() == '') return;
-    this._editor.updateEditor(lastSendOrCodeToDisplay);
-    this.executeCode();	  
-  }, 
+
+  getAndExecuteCode: function() {  
+    get_url = "/code_get_last_teacher_run" + "/" + this._codeHelper_current_index;
+    code = getResource(get_url);
+    this._editor.updateEditor(code);
+    this.executeCode();
+  },  
   
 };
 

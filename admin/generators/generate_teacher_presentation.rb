@@ -46,8 +46,9 @@ template =
   </div>
 <%end %>
 
-<input type="button" id="execute" value="EXECUTE (ALT-R)" disabled>
-<input type="button" id="send_code" value="SEND (ALT-S)">
+<input type="button" id="execute" value="EXECUTE (ALT-R)">
+<input type="button" id="send_code" value="SEND (ALT-S)" disabled>
+<input type="button" id="get_code" value="GET (ALT-G)" disabled>
 
 <textarea class="code_result" id="code_output" readonly></textarea>
 
