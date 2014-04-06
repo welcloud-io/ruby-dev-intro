@@ -2,8 +2,9 @@
 // TEACHER SLIDESHOW CLASS / EXTENDS SLIDESHOW
 // ----------------------------------
 var TeacherSlideShow = function(slides) {
-  SlideShow.call(this, slides);
-  this._SlideShowServer.postCurrentIndex(this._currentIndex, this._showIDE);  
+  SlideShow.call(this, slides); 
+  this.position.postCurrentIndex();
+  this._updateCurrentSlide();  
 };
 
 TeacherSlideShow.prototype = {
@@ -21,14 +22,16 @@ TeacherSlideShow.prototype = {
       case UP_ARROW:
         this.up();
       break;	    
-      case SPACE:  
-        this.synchronise();
-        this._refresh();	    
+      case SPACE:
+        this._refreshPosition();       
+        this._showCurrentSlide(); 
+        this._updateCurrentSlide();      
       break;	
       case HOME:  
-        this._currentIndex = 0;
-        this._refresh();
-        this._SlideShowServer.postCurrentIndex(this._currentIndex, this._showIDE);      
+        this.position._currentIndex = 0;
+        this._showCurrentSlide();
+        this._updateCurrentSlide();
+        this.position.postCurrentIndex();      
       break;		    
     }
   },	

@@ -141,20 +141,6 @@ CodeSlide.prototype = {
     this._node.querySelector('#get_code').addEventListener('click',
       function(e) { _t.getAndExecuteCode(); }, false
     );        
-  },  
-
-  _update: function(slide_index) {
-    this.showCurrentCodeHelper(slide_index);
-    code = this.lastExecution();
-    if (code != '') { this._editor.updateEditor(code); this.executeCode(); return; }
-    code = this._currentCodeHelper().codeToDisplay();
-    if (code != '') { this._editor.updateEditor(code); this.executeCode(); return; }
-    code = this._currentCodeHelper().codeToAdd();
-    if (code != '') { this.executeCode(); return; }
-  },
-  
-  lastExecution: function() {
-    return getResource('/code_last_execution' + '/' + this._codeHelper_current_index).split(SEPARATOR)[0];
   },
   
   _clearCodeHelpers: function() {
@@ -192,10 +178,45 @@ CodeSlide.prototype = {
 
   getAndExecuteCode: function() {  
     get_url = "/code_get_last_teacher_run" + "/" + this._codeHelper_current_index;
-    code = getResource(get_url);
+    code = getResource(get_url).split(SEPARATOR)[0];
     this._editor.updateEditor(code);
     this.executeCode();
+  }, 
+
+  lastExecution: function(context) {
+    url = '/code_last_execution'
+    if (context == 'blackboard') { url = '/code_get_last_teacher_run'; }
+    return getResource(url + '/' + this._codeHelper_current_index);
   },  
+  
+  _updateEditorAndExecuteCode: function(context) {
+    lastexecution = this.lastExecution(context); 
+    if (lastexecution != '') { 
+      if (lastexecution.split(SEPARATOR)[0] != this._editor.content()) { 
+        this._editor.updateEditor(lastexecution.split(SEPARATOR)[0]); 
+        this.executeCode();
+      };
+      return;
+    }
+    codeToDisplay = this._currentCodeHelper().codeToDisplay(); 
+    if (codeToDisplay != '') { 
+      if (codeToDisplay != this._editor.content()) { 
+        this._editor.updateEditor(codeToDisplay); 
+        this.executeCode();
+        };
+      return;
+    }
+    codeToAdd = this._currentCodeHelper().codeToAdd();
+    if (codeToAdd != '') {
+      this._editor.updateEditor(''); 
+      this.executeCode();
+    }
+  },
+  
+  _update: function(slide_index, context) {
+    this.showCurrentCodeHelper(slide_index);
+    this._updateEditorAndExecuteCode(context);
+  },
   
 };
 

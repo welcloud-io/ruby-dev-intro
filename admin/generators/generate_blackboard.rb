@@ -67,7 +67,7 @@ template =
 code_editor.setReadOnly(true);
 </script>
 
-<script src="slideshow-attendee.js"></script>
+<script src="slideshow-blackboard.js"></script>
 
 
 

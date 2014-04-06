@@ -1,15 +1,16 @@
 // ----------------------------------
-// TEACHER SLIDESHOW CLASS / EXTENDS SLIDESHOW
+// ATTENDEE SLIDESHOW CLASS / EXTENDS SLIDESHOW
 // ----------------------------------
 var AttendeeSlideShow = function(slides) {
   SlideShow.call(this, slides);
+  this._updateCurrentSlide();    
 };
 
 AttendeeSlideShow.prototype = {
   handleKeys: function(e) {
     switch (e.keyCode) {
       case SPACE:  
-        this.synchronise(); 
+        this._refresh()
       break;	      
     }
   },	
@@ -23,5 +24,5 @@ for(key in SlideShow.prototype) {
 // INITIALIZE SLIDESHOW
 // ----------------------------------  
 var attendeeSlideshow = new AttendeeSlideShow(queryAll(document, '.slide'));
-var slideshowTimer = setInterval( function(){ attendeeSlideshow.synchronise(); },1000);
+var slideshowTimer = setInterval( function(){ attendeeSlideshow._refresh(); },1000);
 
