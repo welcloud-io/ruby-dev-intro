@@ -64,6 +64,8 @@ template =
 
 <%= EDITOR_CONFIG %>
 
+<%= PREVENT_DEFAULT_KEYS %>
+
 <script src="slideshow-teacher.js"></script>
 
 

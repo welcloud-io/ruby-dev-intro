@@ -53,6 +53,8 @@ template =
 
 <%= EDITOR_CONFIG %>
 
+<%= PREVENT_DEFAULT_KEYS %>
+
 <script src="slideshow-attendee.js"></script>
 
 

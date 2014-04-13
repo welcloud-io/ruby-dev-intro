@@ -63,6 +63,9 @@ template =
 <script src="slideshow.js"></script>
 
 <%= EDITOR_CONFIG %>
+
+<%= PREVENT_DEFAULT_KEYS %>
+
 <script>
 code_editor.setReadOnly(true);
 </script>

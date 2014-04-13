@@ -40,8 +40,8 @@ db.execute_sql("drop table if exists #{nom_de_table}")
 puts "Creation de la table <#{nom_de_table}>"
 db.execute_sql("create table #{nom_de_table} (#{colonnes})")
 
-puts "Initialisation du compteur de table <#{nom_de_table}> avec 30"
-db.execute_sql("insert into #{nom_de_table} values (30)")
+puts "Initialisation du compteur de table <#{nom_de_table}> avec 0"
+db.execute_sql("insert into #{nom_de_table} values (0)")
 
 # ############
 nom_de_table = 'teacher_current_slide'; 

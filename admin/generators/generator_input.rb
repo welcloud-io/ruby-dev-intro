@@ -62,6 +62,17 @@ code_editor.setFontSize('14px');
 </script>
 }
 
+PREVENT_DEFAULT_KEYS =
+%Q{
+<script>
+preventDefaultKeys = function(e) {
+  if (e.keyCode == F5) e.preventDefault();
+  if (e.keyCode == BACK_SPACE) e.preventDefault();    
+  if (e.ctrlKey && e.which == R) e.preventDefault();
+}
+</script>
+}
+
 MIME_TYPE_PUZZLE =
 %Q{
 <div style="font-size: 0.55em">
