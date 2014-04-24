@@ -17,7 +17,7 @@ template =
 <html>
 
 <head>
-<link href="slideshow.css" rel="stylesheet" media="screen"/>
+<link href="//ruby-dev-intro.herokuapp.com/slideshow.css" rel="stylesheet" media="screen"/>
 <style>
 <%= STYLE %>   
 </style>   
