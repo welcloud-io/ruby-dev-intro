@@ -62,6 +62,7 @@ template =
 <script src="slides.js"></script>
 <script src="slideshow.js"></script>
 
+<script src="ace-builds/src-min-noconflict/ace.js" type="text/javascript" charset="utf-8"></script>
 <%= EDITOR_CONFIG %>
 
 <%= PREVENT_DEFAULT_KEYS %>

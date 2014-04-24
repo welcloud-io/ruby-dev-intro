@@ -51,7 +51,6 @@ background-color: black;
 
 EDITOR_CONFIG = 
 %Q{
-<script src="ace-builds/src-min-noconflict/ace.js" type="text/javascript" charset="utf-8"></script>
 <script>
 var code_editor = ace.edit(document.getElementById('code_input'));
 Editor.prototype.updateEditor = function (code) { code_editor.setValue(code, -1); };

@@ -75,6 +75,7 @@ template =
 <script src="//ruby-dev-intro.herokuapp.com/slides.js"></script>
 <script src="//ruby-dev-intro.herokuapp.com/slideshow.js"></script>
 
+<script src="//ruby-dev-intro.herokuapp.com/ace-builds/src-min-noconflict/ace.js" type="text/javascript" charset="utf-8"></script>
 <%= EDITOR_CONFIG %>
 
 <%= PREVENT_DEFAULT_KEYS %>
