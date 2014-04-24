@@ -5,3 +5,6 @@ ruby generate_attendee_presentation.rb > ../../views/slideshow-attendee.html
 
 echo "ruby generate_blackboard.rb > ../../views/blackboard.html"
 ruby generate_blackboard.rb > ../../views/blackboard.html
+
+echo "ruby generate_blackboard_hangout.rb > ../../views/blackboard_hangout.xml"
+ruby generate_blackboard_hangout.rb > ../../views/blackboard_hangout.xml
