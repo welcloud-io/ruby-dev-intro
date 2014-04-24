@@ -22,6 +22,10 @@ get '/blackboard' do
   send_file "views/blackboard.html"
 end
 
+get '/blackboard_hangout.xml' do
+  send_file "views/blackboard_hangout.xml"
+end
+
 get '/teacher-x1973' do
   session[:user_id] = '0'
   send_file "views/slideshow-teacher.1973x.html"

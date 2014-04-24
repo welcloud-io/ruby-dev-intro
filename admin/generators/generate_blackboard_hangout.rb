@@ -5,8 +5,7 @@ require 'erb'
 require_relative 'generator_input'
 
 template = 
-%Q{
-<?xml version="1.0" encoding="UTF-8" ?>
+%Q{<?xml version="1.0" encoding="UTF-8" ?>
 <Module>
 
 <ModulePrefs title="Hangout Starter">
