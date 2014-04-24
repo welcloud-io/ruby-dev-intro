@@ -5,14 +5,28 @@ require 'erb'
 require_relative 'generator_input'
 
 template = 
-%Q{<html>
+%Q{
+<?xml version="1.0" encoding="UTF-8" ?>
+<Module>
+
+<ModulePrefs title="Hangout Starter">
+  <Require feature="rpc" />
+</ModulePrefs>
+
+<Content type="html"><![CDATA[
+
+<html>
+
 <head>
 <link href="slideshow.css" rel="stylesheet" media="screen"/>
 <style>
 <%= STYLE %>   
 </style>   
 </head>
+
 <body>
+
+<script src="//plus.google.com/hangouts/_/api/v1/hangout.js"></script>
 
 <div class="presentation">
 
@@ -76,6 +90,11 @@ code_editor.setReadOnly(true);
 
 </body>
 </html>
+
+]]>
+</Content>
+</Module>
+
 }
 
 puts ERB.new(template).result()
