@@ -32,6 +32,7 @@ get '/teacher-x1973' do
 end
 
 get '/teacher_current_slide' do
+  response.headers['Access-Control-Allow-Origin'] = '*'  
   current_slide_id
 end
 
