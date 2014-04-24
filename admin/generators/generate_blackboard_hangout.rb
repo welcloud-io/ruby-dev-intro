@@ -71,9 +71,9 @@ template =
 
 </div> <!--presentation-->
 
-<script src="common.js"></script>
-<script src="slides.js"></script>
-<script src="slideshow.js"></script>
+<script src="//ruby-dev-intro.herokuapp.com/common.js"></script>
+<script src="//ruby-dev-intro.herokuapp.com/slides.js"></script>
+<script src="//ruby-dev-intro.herokuapp.com/slideshow.js"></script>
 
 <%= EDITOR_CONFIG %>
 
@@ -83,7 +83,7 @@ template =
 code_editor.setReadOnly(true);
 </script>
 
-<script src="slideshow-blackboard.js"></script>
+<script src="//ruby-dev-intro.herokuapp.com/slideshow-blackboard.js"></script>
 
 
 
