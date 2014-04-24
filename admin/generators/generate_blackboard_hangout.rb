@@ -80,6 +80,7 @@ template =
 <%= PREVENT_DEFAULT_KEYS %>
 
 <script>
+SERVER_PATH = '//ruby-dev-intro.herokuapp.com'
 code_editor.setReadOnly(true);
 </script>
 

@@ -2379,6 +2379,7 @@ preventDefaultKeys = function(e) {
 
 
 <script>
+SERVER_PATH = '//ruby-dev-intro.herokuapp.com'
 code_editor.setReadOnly(true);
 </script>
 
