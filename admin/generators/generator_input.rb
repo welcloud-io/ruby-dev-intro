@@ -322,11 +322,12 @@ SLIDES = [
 },
 { :Subtitle => "LES CHAINES DE CARACTERES", 
 			:Section => [
-			"</br>",			
+			"<p>",
 			"Affichez sur la sortie standard", 
-			"</br></br>",			
+      "</p>",
+      "<p>",
 			"la chaine de caractères", 			
-			"</br></br>",
+      "</p>",
 			"<span class='help_string'>\"BIENVENUE A L'INITIATION RUBY\"</span>"
 			] 
 },
