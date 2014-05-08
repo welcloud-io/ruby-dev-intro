@@ -33,6 +33,7 @@ template =
 </div>
 <%end %>
 
+<div class="code_author" style="color: black">1</div>
 
 <input type="button" id="execute" value="RUN (ALT-R)">
 <input type="button" id="send_code" value="RUN & SEND (ALT-S)">

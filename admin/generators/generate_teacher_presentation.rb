@@ -36,6 +36,7 @@ template =
 
 <div class="code" id="code_input"></div>
 
+
 <% SLIDES.each do |slide| %>
   <div class="code_helper">
   <% if slide[:Subtitle] then %><h2><center><%= slide[:Subtitle] %></center></h2><% end %>
@@ -45,6 +46,8 @@ template =
   <% end %>
   </div>
 <%end %>
+
+<div class="code_author">AUTHOR: <span id="author_name">TEACHER</span></div>
 
 <input type="button" id="execute" value="RUN (ALT-R)">
 <input type="button" id="send_code" value="RUN & SEND (ALT-S)" disabled>
