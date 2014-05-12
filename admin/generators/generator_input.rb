@@ -10,6 +10,7 @@ color: #000000;
 margin-left: 1%;
 margin-right: 1%;
 margin-bottom: 1%;
+margin-top: 3%;
 }
 .code_result {
 
@@ -66,7 +67,7 @@ PREVENT_DEFAULT_KEYS =
 <script>
 preventDefaultKeys = function(e) {
   if (e.keyCode == F5) e.preventDefault();
-  if (e.keyCode == BACK_SPACE) e.preventDefault();    
+  // if (e.keyCode == BACK_SPACE) e.preventDefault();    
   if (e.ctrlKey && e.which == R) e.preventDefault();
 }
 </script>
@@ -298,10 +299,13 @@ CONNEXION_SLIDE = "
 
 TITLE = 'INITIATION A RUBY'    
 SLIDES = [
-{			:Section => [
+{		:Section => [
 			"<h3 style='text-align:center'>INTRODUCTION A RUBY</h3>",
 			"<h3 style='color: red; text-align:center'>CONNECTEZ VOUS SUR :</h3>",
 			"<h4 style='color: blue; font-size: 1.3em; text-align:center'>http://ruby-dev-intro.herokuapp.com</h4>",
+      "<h3 style='text-align:center'>ET</h3>",
+      "<h3 style='text-align:center'>Entrez Votre Nom</h3>",
+      "<div style='text-align: center'><input id='attendee_name' type='text'></input></div>",
 			'<div class="code_to_display"> puts "CONNEXION REUSSIE, BIENVENUE"</div>',
 			],			
 },

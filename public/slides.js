@@ -73,7 +73,7 @@ Editor.prototype = {
 // ----------------------------------
 // CODE HELPER (MINI-SLIDE)
 // ----------------------------------
-var CodeHelper = function(node) {
+var CodeHelper = function(node, slideNode) {
   this._node = node;
 }
 
@@ -92,7 +92,7 @@ CodeHelper.prototype = {
     if (this._node.querySelector('.code_to_display') ) 
       code = this._node.querySelector('.code_to_display').innerHTML;
     return code.replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&amp;/g, '&');
-  },  
+  },
 }
 
 // ----------------------------------
@@ -101,14 +101,17 @@ CodeHelper.prototype = {
 var CodeSlide = function(node) {
   Slide.call(this, node);
   
+  var _s = this;
+  
   this._codeHelpers = (queryAll(node, '.code_helper')).map(function(element) {
-    return new CodeHelper(element); 
+    return new CodeHelper(element, _s); 
   });
   
   this._codeHelper_current_index = 0;
   this._declareEvents();
   this._editor = new Editor(this._node.querySelector('#code_input'));
-  this._author = '';
+  this._author = getResource('/session_id');
+  this._node.querySelector('#author_name').innerHTML = this._author;  
   
 };
 
@@ -133,14 +136,25 @@ CodeSlide.prototype = {
   },
   
   _declareEvents: function() {  
-    var _t = this;	  
+    var _t = this;   
+    if (_t._node.querySelector('#attendee_name')) {
+      _attendee_name = this._node.querySelector('#attendee_name')
+      _attendee_name.addEventListener('keydown',
+        function(e) { if (e.keyCode == RETURN) {
+          if (_attendee_name.value == '') return;
+          _t._author = _attendee_name.value;            
+          postResource('session_id', 'attendee_name=' + _t._author, SYNCHRONOUS)
+          _t._node.querySelector('#author_name').innerHTML = _t._author; 
+          _attendee_name.value = '' } }, false
+      );
+    }
     this._node.querySelector('#code_input').addEventListener('keydown',
       function(e) { _t._keyHandling(e); }, false
     );
     this._node.querySelector('#execute').addEventListener('click',
       function(e) { 
         _t._node.querySelector('#execute').style.background = "red"; 
-        _t._author = '';
+        //~ _t._author = '';
         _t.executeCode(); 
         _t._node.querySelector('#execute').style.background = "";}, false
     );     
@@ -212,23 +226,23 @@ CodeSlide.prototype = {
   },    
   
   _updateEditorAndExecuteCode: function(slideShowType) {
+    var local_author = this._author;
     if (slideShowType == 'teacher') {
       attendeeLastSend = this.attendeesLastSend(slideShowType);
       if (attendeeLastSend == '') {
-        this._author = '';
         lastexecution = this.lastExecution(slideShowType); 
       } else {
-        this._author = attendeeLastSend.split('#|||||#')[0];
+        local_author = attendeeLastSend.split('#|||||#')[0];
         lastexecution = attendeeLastSend.split('#|||||#')[1];
       }
-    } else {
-      this._author = '';      
+    } else {   
       lastexecution = this.lastExecution(slideShowType);
     }
     if (lastexecution != '') { 
       if (lastexecution.split(SEPARATOR)[0] != this._editor.content()) { 
         this._editor.updateEditor(lastexecution.split(SEPARATOR)[0]);        
         this.executeCode(slideShowType);
+        this._node.querySelector('#author_name').innerHTML = local_author;
       };
       return;
     }

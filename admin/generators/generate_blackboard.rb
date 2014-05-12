@@ -9,7 +9,7 @@ template =
 <head>
 <link href="slideshow.css" rel="stylesheet" media="screen"/>
 <style>
-<%= STYLE %>   
+<%= STYLE %>
 </style>   
 </head>
 <body>

@@ -10,6 +10,9 @@ template =
 <link href="slideshow.css" rel="stylesheet" media="screen"/>
 <style>
 <%= STYLE %>   
+#attendee_name {
+  display: none;
+}
 </style>   
 </head>
 <body>
@@ -47,7 +50,7 @@ template =
   </div>
 <%end %>
 
-<div class="code_author">AUTHOR: <span id="author_name">TEACHER</span></div>
+<div class="code_author"><span id="author_name">#</span></div>
 
 <input type="button" id="execute" value="RUN (ALT-R)">
 <input type="button" id="send_code" value="RUN & SEND (ALT-S)" disabled>
