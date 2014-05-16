@@ -71,6 +71,40 @@ Editor.prototype = {
 }
 
 // ----------------------------------
+// AUTHOR BAR
+// ----------------------------------
+var AuthorBar = function(node) {
+  this._node = node;
+  this.getCurrentAuthor();
+  this.updateWith(this._author);
+}
+
+AuthorBar.prototype = {
+  
+  getCurrentAuthor: function() {
+    this._author = getResource('/session_id');
+  },
+  
+  sendNewAuthor: function(newAuthor) {
+    postResource('session_id/attendee_name', 'attendee_name=' + newAuthor, SYNCHRONOUS);
+    this._author = newAuthor;
+  },
+  
+  updateWith: function(author) {
+    if (is_a_number(author)) author = '#';
+    if (this._node) { 
+      if (author.split('_')[1]) author = author.split('_')[1];
+      this._node.innerHTML = author;
+    };
+  },
+  
+  refresh: function() {
+    this.updateWith(this._author);
+  },
+  
+}
+
+// ----------------------------------
 // CODE HELPER (MINI-SLIDE)
 // ----------------------------------
 var CodeHelper = function(node, slideNode) {
@@ -110,9 +144,8 @@ var CodeSlide = function(node) {
   this._codeHelper_current_index = 0;
   this._declareEvents();
   this._editor = new Editor(this._node.querySelector('#code_input'));
-  this._author = getResource('/session_id');
-  this._node.querySelector('#author_name').innerHTML = this._author;  
-  
+  this._authorBar = new AuthorBar(this._node.querySelector('#author_name'));
+
 };
 
 CodeSlide.prototype = {
@@ -142,10 +175,10 @@ CodeSlide.prototype = {
       _attendee_name.addEventListener('keydown',
         function(e) { if (e.keyCode == RETURN) {
           if (_attendee_name.value == '') return;
-          _t._author = _attendee_name.value;            
-          postResource('session_id', 'attendee_name=' + _t._author, SYNCHRONOUS)
-          _t._node.querySelector('#author_name').innerHTML = _t._author; 
-          _attendee_name.value = '' } }, false
+          _t._authorBar.sendNewAuthor(_attendee_name.value);
+          _t._authorBar.updateWith(_attendee_name.value);
+          _attendee_name.value = '';
+        } }, false
       );
     }
     this._node.querySelector('#code_input').addEventListener('keydown',
@@ -154,7 +187,6 @@ CodeSlide.prototype = {
     this._node.querySelector('#execute').addEventListener('click',
       function(e) { 
         _t._node.querySelector('#execute').style.background = "red"; 
-        //~ _t._author = '';
         _t.executeCode(); 
         _t._node.querySelector('#execute').style.background = "";}, false
     );     
@@ -198,7 +230,7 @@ CodeSlide.prototype = {
     run_url = "/code_run_result" + "/" + this._codeHelper_current_index;
     if (slideShowType == 'blackboard') { run_url = '/code_run_result_blackboard' + "/" + this._codeHelper_current_index; }    
     this._node.querySelector('#code_output').value = postResource(run_url , this.codeToExecute(), SYNCHRONOUS);
-    this._node.querySelector('#author_name').innerHTML = this._author;    
+    this._authorBar.refresh();
   },
   
   executeAndSendCode: function() {
@@ -223,42 +255,58 @@ CodeSlide.prototype = {
   attendeesLastSend: function(slideShowType) {
     url = '/code_attendees_last_send'
     return getResource(url + '/' + this._codeHelper_current_index);
-  },    
-  
-  _updateEditorAndExecuteCode: function(slideShowType) {
-    var local_author = this._author;
-    if (slideShowType == 'teacher') {
+  }, 
+
+  _updateEditorWithLastSendAndExecute: function(slideShowType) {
       attendeeLastSend = this.attendeesLastSend(slideShowType);
-      if (attendeeLastSend == '') {
-        lastexecution = this.lastExecution(slideShowType); 
-      } else {
-        local_author = attendeeLastSend.split('#|||||#')[0];
-        lastexecution = attendeeLastSend.split('#|||||#')[1];
-      }
-    } else {   
-      lastexecution = this.lastExecution(slideShowType);
-    }
-    if (lastexecution != '') { 
+      if (attendeeLastSend != '') {
+        if (attendeeLastSend.split('#|||||#')[1] != '') { 
+          this._editor.updateEditor(attendeeLastSend.split('#|||||#')[1].split(SEPARATOR)[0]);        
+          this.executeCode(slideShowType);
+          this._authorBar.updateWith(attendeeLastSend.split('#|||||#')[0]);
+        };        
+        return true;     
+      };
+  },
+  
+  _updateEditorWithLastUserRunAndExecute: function(slideShowType) {
+    lastexecution = this.lastExecution(slideShowType);
+    if (lastexecution != '') {
       if (lastexecution.split(SEPARATOR)[0] != this._editor.content()) { 
         this._editor.updateEditor(lastexecution.split(SEPARATOR)[0]);        
         this.executeCode(slideShowType);
-        this._node.querySelector('#author_name').innerHTML = local_author;
       };
-      return;
-    }
+      return true;
+    };
+  },
+  
+  _updateEditorWithCodeToDisplayAndExecute: function(slideShowType) {
     codeToDisplay = this._currentCodeHelper().codeToDisplay(); 
     if (codeToDisplay != '') { 
       if (codeToDisplay != this._editor.content()) { 
         this._editor.updateEditor(codeToDisplay); 
         this.executeCode(slideShowType);
         };
-      return;
-    }
+      return true;
+    };
+  },
+  
+  _updateEditorWithCodeToAddAndExecute: function(slideShowType) {
     codeToAdd = this._currentCodeHelper().codeToAdd();
     if (codeToAdd != '') {
       this._editor.updateEditor(''); 
       this.executeCode(slideShowType);
+      return  true;
     }
+  },
+  
+  _updateEditorAndExecuteCode: function(slideShowType) {
+    if (slideShowType == 'teacher') {
+      if (this._updateEditorWithLastSendAndExecute(slideShowType)) return;
+    };
+    if (this._updateEditorWithLastUserRunAndExecute(slideShowType)) return;
+    if (this._updateEditorWithCodeToDisplayAndExecute(slideShowType)) return;
+    if (this._updateEditorWithCodeToAddAndExecute(slideShowType)) return;
   },
   
   _update: function(slide_index, slideShowType) {

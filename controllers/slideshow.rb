@@ -99,6 +99,6 @@ post '/code_send_result/*' do
   run_ruby("send", code.force_encoding("UTF-8"), user_id, slide_index)
 end
 
-post '/session_id' do
-  session[:user_id] = params[:attendee_name]
+post '/session_id/attendee_name' do
+  session[:user_id] = session[:user_id].split('_')[0] + '_' + params[:attendee_name]
 end
