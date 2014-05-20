@@ -178,7 +178,7 @@ CodeSlide.prototype = {
           _t._authorBar.sendNewAuthor(_attendee_name.value);
           _t._authorBar.updateWith(_attendee_name.value);
           _attendee_name.value = '';
-        } }, false
+        } else {e.stopPropagation(); } }, false
       );
     }
     this._node.querySelector('#code_input').addEventListener('keydown',
