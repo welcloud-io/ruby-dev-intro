@@ -60,6 +60,7 @@ get '/code_get_last_teacher_run/*' do
 end
 
 get '/session_id' do
+  response.headers['Access-Control-Allow-Origin'] = '*'  
   session[:user_id]
 end
 
