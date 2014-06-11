@@ -50,11 +50,12 @@ template =
   </div>
 <%end %>
 
-<div class="code_author"><span id="author_name">#</span></div>
+<div class="code_author"><span id="last_send_attendee_name">+</span><span id="author_name">#</span></div>
 
 <input type="button" id="execute" value="RUN (ALT-R)">
 <input type="button" id="send_code" value="RUN & SEND (ALT-S)" disabled>
 <input type="button" id="get_code" value="GET & RUN (ALT-G)" disabled>
+<input type="button" id="get_last_send" value=">>">
 
 <textarea class="code_result" id="code_output" readonly></textarea>
 

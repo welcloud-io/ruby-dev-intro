@@ -91,7 +91,9 @@ AuthorBar.prototype = {
   },
   
   updateWith: function(author) {
-    if (is_a_number(author)) author = '#';
+    if (is_a_number(author)) {
+      if (author == '0') { author = '#'; } else { author = '?'; }
+    }
     if (this._node) { 
       if (author.split('_')[1]) author = author.split('_')[1];
       this._node.innerHTML = author;
@@ -163,6 +165,7 @@ CodeSlide.prototype = {
       if (e.which == R) { this._node.querySelector('#execute').click(); }
       if (e.which == S) { this._node.querySelector('#send_code').click(); }
       if (e.which == G) { this._node.querySelector('#get_code').click(); }
+      if (e.which == N) { this._node.querySelector('#get_last_send').click();}
     } else {
       e.stopPropagation()
     }    
@@ -204,7 +207,16 @@ CodeSlide.prototype = {
         _t._node.querySelector('#get_code').style.background = "red";
         _t.getAndExecuteCode(); 
         _t._node.querySelector('#get_code').style.background = "";}, false
-    );        
+    );
+    if (this._node.querySelector('#get_last_send')) {
+    this._node.querySelector('#get_last_send').addEventListener('click',
+      function(e) {
+        _t._node.querySelector('#code_output').value = '' ;      
+        _t._node.querySelector('#get_last_send').style.background = "red";
+        _t._updateEditorWithLastSendAndExecute(); 
+        _t._node.querySelector('#get_last_send').style.background = "";}, false
+    );
+    };
   },
   
   _clearCodeHelpers: function() {
@@ -243,15 +255,17 @@ CodeSlide.prototype = {
   },
 
   getAndExecuteCode: function() {         
-    get_url = "/code_get_last_teacher_run" + "/" + this._codeHelper_current_index;
-    code = getResource(get_url).split(SEPARATOR)[0];
-    this._editor.updateEditor(code);
-    this.executeCode();
+    get_url = "/code_get_last_send_to_blackboard" + "/" + this._codeHelper_current_index;
+    code = getResource(get_url)
+    if (code.split('#|||||#')[1]) {
+      code = code.split('#|||||#')[1].split(SEPARATOR)[0];
+      this._editor.updateEditor(code);
+      this.executeCode();
+    }
   }, 
 
   lastExecution: function(slideShowType) {
     url = '/code_last_execution'
-    if (slideShowType == 'blackboard') { url = '/code_get_last_teacher_run'; }
     return getResource(url + '/' + this._codeHelper_current_index);
   },  
 
@@ -265,7 +279,7 @@ CodeSlide.prototype = {
       if (attendeeLastSend != '') {
         if (attendeeLastSend.split('#|||||#')[1] != '') { 
           this._editor.updateEditor(attendeeLastSend.split('#|||||#')[1].split(SEPARATOR)[0]);        
-          this.executeCode(slideShowType);
+          this.executeAndSendCode(slideShowType);
           this._authorBar.updateWith(attendeeLastSend.split('#|||||#')[0]);
         };        
         return true;     
@@ -303,17 +317,47 @@ CodeSlide.prototype = {
     }
   },
   
-  _updateEditorAndExecuteCode: function(slideShowType) {
-    if (slideShowType == 'teacher') {
-      if (this._updateEditorWithLastSendAndExecute(slideShowType)) return;
+  lastSendToBlackboard: function(slideShowType) {
+    url = '/code_get_last_send_to_blackboard';
+    return getResource(url + '/' + this._codeHelper_current_index);
+  },    
+  
+  _updateEditorWithLastSendToBlackboardAndExecute: function(slideShowType) {
+    lastSendToBlackboard = this.lastSendToBlackboard(slideShowType);
+    if (lastSendToBlackboard != '') {
+      if (lastSendToBlackboard.split('#|||||#')[1]) {
+        if (lastSendToBlackboard.split('#|||||#')[1].split(SEPARATOR)[0] != this._editor.content()) { 
+          this._editor.updateEditor(lastSendToBlackboard.split('#|||||#')[1].split(SEPARATOR)[0]);        
+          this.executeCode(slideShowType);
+          this._authorBar.updateWith(lastSendToBlackboard.split('#|||||#')[0]);        
+        };
+        return true;
+      };
     };
-    if (this._updateEditorWithLastUserRunAndExecute(slideShowType)) return;
+  },  
+  
+  _updateEditorAndExecuteCode: function(slideShowType) {
+    if (slideShowType == 'blackboard') {
+      if (this._updateEditorWithLastSendToBlackboardAndExecute(slideShowType)) return;
+    } else {
+      if (this._updateEditorWithLastUserRunAndExecute(slideShowType)) return;
+    }
     if (this._updateEditorWithCodeToDisplayAndExecute(slideShowType)) return;
     if (this._updateEditorWithCodeToAddAndExecute(slideShowType)) return;
   },
   
+  _updateLastSendAttendeeName: function(slide_index, slideShowType) {
+    if ( this._node.querySelector('#last_send_attendee_name') ) {
+      attendee_name =  this.attendeesLastSend().split('#|||||#')[0]
+      if (attendee_name.split('_')[1]) attendee_name = attendee_name.split('_')[1];
+      if (attendee_name != '' ) attendee_name = attendee_name + ' >> ';
+      this._node.querySelector('#last_send_attendee_name').innerHTML = attendee_name;
+    }
+  },
+  
   _update: function(slide_index, slideShowType) {
     this.showCurrentCodeHelper(slide_index);
+    this._updateLastSendAttendeeName();
     this._updateEditorAndExecuteCode(slideShowType);
   },
   
