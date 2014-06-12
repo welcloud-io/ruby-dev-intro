@@ -230,11 +230,15 @@ CodeSlide.prototype = {
     return this._codeHelpers[this._codeHelper_current_index]
   },   
   
-  showCodeHelper: function(slide_index) {
+  showCodeHelper: function(slide_index, slideShowType) {
     if (this._codeHelpers.length == 0) return;
     this._clearCodeHelpers();
-    if ( (is_a_number(this._authorBar._author) &&  this._authorBar._author != 0) ||  this._authorBar._author == '') {
-      this._codeHelpers[0].setState('current');
+    if (slideShowType != 'blackboard') {
+      if ( (is_a_number(this._authorBar._author) &&  this._authorBar._author != 0) ||  this._authorBar._author == '') {
+        this._codeHelpers[0].setState('current');
+      } else {
+        this._codeHelpers[slide_index].setState('current');
+      }
     } else {
       this._codeHelpers[slide_index].setState('current');
     }
@@ -365,7 +369,7 @@ CodeSlide.prototype = {
   },
   
   _update: function(slide_index, slideShowType) {
-    this.showCodeHelper(slide_index);
+    this.showCodeHelper(slide_index, slideShowType);
     this._updateLastSendAttendeeName();
     this._updateEditorAndExecuteCode(slideShowType);
   },
