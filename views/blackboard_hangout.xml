@@ -59,7 +59,10 @@ span.help_integer {
 color: yellowgreen;
 background-color: black;
 }
-   
+
+#attendee_name {
+  display: none;
+}
 </style>   
 </head>
 

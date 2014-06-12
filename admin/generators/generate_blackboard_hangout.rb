@@ -19,7 +19,10 @@ template =
 <head>
 <link href="//ruby-dev-intro.herokuapp.com/slideshow.css" rel="stylesheet" media="screen"/>
 <style>
-<%= STYLE %>   
+<%= STYLE %>
+#attendee_name {
+  display: none;
+}
 </style>   
 </head>
 
