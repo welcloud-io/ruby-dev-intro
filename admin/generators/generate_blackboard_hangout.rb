@@ -59,7 +59,7 @@ template =
   </div>
 <%end %>
 
-<div class="code_author">AUTHOR: <span id="author_name">TEACHER</span></div>
+<div class="code_author"><span id="last_send_attendee_name">+</span><span id="author_name">#</span></div>
 
 <input type="button" id="execute" value="RUN (ALT-R)" disabled>
 <input type="button" id="send_code" value="RUN & SEND (ALT-S)" disabled>
