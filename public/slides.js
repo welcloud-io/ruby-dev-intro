@@ -233,7 +233,11 @@ CodeSlide.prototype = {
   showCodeHelper: function(slide_index) {
     if (this._codeHelpers.length == 0) return;
     this._clearCodeHelpers();
-    this._codeHelpers[slide_index].setState('current');
+    if ( (is_a_number(this._authorBar._author) &&  this._authorBar._author != 0) ||  this._authorBar._author == '') {
+      this._codeHelpers[0].setState('current');
+    } else {
+      this._codeHelpers[slide_index].setState('current');
+    }
     this._codeHelper_current_index = slide_index;    	  
   }, 
 
