@@ -37,19 +37,52 @@ var queryAll = function(node, query) {
   return Array.prototype.slice.call(nodeList, 0);
 };
 
-var postResource = function(path, params, synchronous_asynchronous) {
-  var xmlhttp = new XMLHttpRequest();	
-  xmlhttp.open("POST", SERVER_PATH + path, synchronous_asynchronous);
-  xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-  xmlhttp.send(params);	
-  return xmlhttp.responseText;
+var Resource = function() {
 };
 
-var getResource = function(path) {
-  var xmlhttp = new XMLHttpRequest();
-  xmlhttp.open("GET", SERVER_PATH + path, false);
-  xmlhttp.send();
-  return xmlhttp.responseText;
+Resource.prototype = {
+
+  _asynchronousRequestDone: function(xmlhttp) {
+    return (xmlhttp.readyState==4 && xmlhttp.status==200)
+  },
+  
+  _xmlhttpResponseText: function(xmlhttp) {
+    return xmlhttp.responseText;
+  },  
+  
+  _getResourceWithCallBack: function(xmlhttp, path, object, callback) {
+      _t = this;
+      xmlhttp.onreadystatechange=function()
+      {
+        if (_t._asynchronousRequestDone(xmlhttp))
+        {
+          callback.call(object, _t._xmlhttpResponseText(xmlhttp));
+        }
+      }
+      xmlhttp.open("GET", SERVER_PATH + path, true, callback);
+      xmlhttp.send();
+  },
+  
+  get: function(path, synchronous_asynchronous, object, callback) {
+    var xmlhttp = new XMLHttpRequest();
+
+    if (synchronous_asynchronous == ASYNCHRONOUS) {  
+      this._getResourceWithCallBack(xmlhttp, path, object, callback);
+    } else {
+      xmlhttp.open("GET", SERVER_PATH + path, false);
+      xmlhttp.send();    
+      return xmlhttp.responseText;
+    }
+  },
+  
+  post: function(path, params, synchronous_asynchronous) {
+    var xmlhttp = new XMLHttpRequest();	
+    xmlhttp.open("POST", SERVER_PATH + path, synchronous_asynchronous);
+    xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+    xmlhttp.send(params);	
+    return xmlhttp.responseText;
+  },
+
 };
 
 var preventDefaultKeys = function(e) {};

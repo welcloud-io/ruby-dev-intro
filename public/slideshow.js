@@ -1,39 +1,59 @@
 // ----------------------------------
 // SLIDE POSITION ON SERVER 
 // ----------------------------------
-var Position = function() {
+var Position = function(slideshow) {
+  this._slideshow = slideshow;
   this._currentIndex = 0;
-  this._IDEDisplayed  = false;
-  this._previousIndex = undefined;
-  this._previousIDEDisplayed = undefined;
-  this.slideShowType = undefined;
+  this._IDEDisplayed = false;
+  this._positionResource = new Resource();
 };
 
 Position.prototype = {
   
-  _synchronise: function() {
-    serverData = getResource('/teacher_current_slide');
-    if (serverData) {
-      serverIndex = parseInt(serverData.split(';')[0]);
-      if ( is_a_number(serverIndex) ) {
-        this._previousIndex = this._currentIndex;
-        this._currentIndex = serverIndex;
-        serverIDEDisplayed = serverData.split(';')[1]
-        if (serverIDEDisplayed) {
-          this._previousIDEDisplayed = this._IDEDisplayed;
-          if (serverIDEDisplayed == 'true') this._IDEDisplayed = true;
-          if (serverIDEDisplayed == 'false') this._IDEDisplayed = false;
-        }
-      }
+  _getPosition: function(synchronous_asynchronous) {
+    if (synchronous_asynchronous == ASYNCHRONOUS) { 
+      this._positionResource.get('/teacher_current_slide', ASYNCHRONOUS, this, this._updateSlideShowWith);
+    } else {
+      return this._positionResource.get('/teacher_current_slide');
     }
   },
   
-  postCurrentIndex: function() {
-    postResource('/teacher_current_slide', 'index=' +   this._currentIndex + '&' + 'ide_displayed=' + this._IDEDisplayed, ASYNCHRONOUS);  
-  }, 
+  _postPosition: function(index, IDEDisplayed) {
+    this._positionResource.post('/teacher_current_slide', 'index=' +   index + '&' + 'ide_displayed=' + IDEDisplayed, ASYNCHRONOUS);
+    this._currentIndex = index; this._IDEDisplayed = IDEDisplayed;
+  },  
   
-  hasChanged: function() {
-    return this._currentIndex != this._previousIndex || this._IDEDisplayed != this._previousIDEDisplayed
+  _updateSlideShow: function() {
+    if (this._slideshow._currentIndex != this._currentIndex || this._slideshow._IDEDisplayed != this._IDEDisplayed ) { 
+      this._slideshow._currentIndex = this._currentIndex;
+      this._slideshow._IDEDisplayed = this._IDEDisplayed; 
+      this._slideshow._update();
+    }    
+  },
+
+  _parsePosition: function(teacherPosition) {
+    this._currentIndex = parseInt(teacherPosition.split(';')[0]);
+    this._currentIndex = is_a_number(this._currentIndex) ? this._currentIndex : 0
+    this._IDEDisplayed = teacherPosition.split(';')[1] == 'true' ? true : false    
+  },
+  
+  _updateSlideShowWith: function(teacherPosition) {
+      this._parsePosition(teacherPosition);
+      this._updateSlideShow();
+  },  
+
+  updateWith: function(index, IDEDisplayed) {
+    this._postPosition(index, IDEDisplayed);
+    this._updateSlideShow();
+  },
+  
+  updateWithTeacherPosition: function() {
+    if (FLIP_GET_POSITION_SYNC_ASYNC == ASYNCHRONOUS) {
+      this._getPosition(ASYNCHRONOUS);      
+    } else {
+      teacherPosition = this._getPosition(SYNCHRONOUS);
+      this._updateSlideShowWith(teacherPosition);
+    }
   },
   
 };
@@ -42,31 +62,42 @@ Position.prototype = {
 // SLIDESHOW CLASS
 // ----------------------------------  
 var SlideShow = function(slides) {
-  this._slides = (slides).map(function(element) { 
-	  if (element.querySelector('#execute') != null) { return new CodeSlide(element); };
-	  if (element.querySelector('.poll_response_rate') != null) { return new PollSlide(element); };
-    return new Slide(element); 
-  });
-  this._numberOfSlides = this._slides.length;
-  this._currentSlide = this._slides[0];  
-
-  var _t = this;
-  document.addEventListener('keydown', function(e) { _t.handleKeys(e); }, false );
-
-  this.position = new Position();
-  this._refreshPosition();
-  this._showCurrentSlide();
-
+  this._numberOfSlides = slides.length;  
+  this.initEvents();
+  this.initSlides(slides);
+  this.initPosition();
 };
-
 
 
 SlideShow.prototype = {
   _slides : [],
-  _currentSlide : undefined,
+  _currentIndex: undefined,
+  _IDEDisplayed: undefined,
   _numberOfSlides : 0,
 
+  initEvents: function() {
+    var _t = this;    
+    document.addEventListener('keydown', function(e) { _t.handleKeys(e); }, false );
+  },
+  
+  initSlides: function(slides) {
+    var _t = this;
+    this._slides = (slides).map(function(element) { 
+      if (element.querySelector('#execute') != null) { return new CodeSlide(element, _t); };
+      if (element.querySelector('.poll_response_rate') != null) { return new PollSlide(element, _t); };
+      return new Slide(element, _t); 
+    });
+  },  
 
+  initPosition: function() {
+    this.position = new Position(this);
+    this.position.updateWithTeacherPosition();    
+  },  
+  
+  _refresh: function() {
+    this.position.updateWithTeacherPosition();     
+  },
+  
   handleKeys: function(e) {
     preventDefaultKeys(e);
   },
@@ -75,75 +106,22 @@ SlideShow.prototype = {
     for(var slideIndex in this._slides) { this._slides[slideIndex].setState('') }
   },
   
-  _showClassicSlide: function() {
-    if (this._slides[this.position._currentIndex]) this._currentSlide = this._slides[this.position._currentIndex];
-    this._clear();	    
-    this._currentSlide.setState('current');
-  },
-
   _last_slide:function() {
     return this._slides[this._numberOfSlides-1]
   },  
   
-  _showIDESlide: function() {
-    this._clear();
-    this._currentSlide = this._last_slide();  
-    this._currentSlide.setState('current');
-  },
-  
-  _refreshPosition: function() {
-    this.position._synchronise();
-  },     
-    
-  _showCurrentSlide: function() {  
-    if (this._slides.length == 0) return;       
-    if (this.position._IDEDisplayed) 
-      this._showIDESlide();
+  currentSlide: function() {
+    if (this._IDEDisplayed) 
+      return this._last_slide();  
     else
-      this._showClassicSlide();
-    window.console && window.console.log("Refreshed with this._currentIndex = " + this.position._currentIndex + " and this._showIDE = " + this.position._IDEDisplayed);
+      if (this._slides[this._currentIndex]) { return this._slides[this._currentIndex]; } else { return  this._slides[0]; }
   },
-
-  _updateCurrentSlide: function() {
-    if (this._slides.length == 0) return; 
-    this._currentSlide._update(this.position._currentIndex, this.position.slideShowType);
+  
+  _update: function() { 
+    if (this._slides.length == 0) return;  
+    this._clear();	    
+    this.currentSlide().setState('current'); 
+    this.currentSlide()._update(this._currentIndex);    
   },  
-  
-  _refresh: function() {
-    this._refreshPosition();  
-    if (this.position.hasChanged()) { this._showCurrentSlide(); this._updateCurrentSlide();}
-  },
-
-  prev: function() {
-    if (this.position._currentIndex <= 0) return;
-    this.position._currentIndex -= 1;
-    this._showCurrentSlide();	 
-    this._updateCurrentSlide();    
-    this.position.postCurrentIndex();
-  },
-
-  next: function() {
-    if (this.position._currentIndex >= (this._numberOfSlides - 1) ) return;
-    if (this._slides[this.position._currentIndex+1] && this._slides[this.position._currentIndex+1]._isCodingSlide()) return;		  
-    this.position._currentIndex += 1;		  
-    this._showCurrentSlide();
-    this._updateCurrentSlide();    
-    this.position.postCurrentIndex();    
-  },
-  
-  down: function() {
-    if (! this._last_slide()._isCodingSlide()) return;    
-    this.position._IDEDisplayed = true;
-    this._showCurrentSlide(); 
-    this._updateCurrentSlide();    
-    this.position.postCurrentIndex();
-  },
-  
-  up: function() {
-    this.position._IDEDisplayed = false;	  
-    this._showCurrentSlide();
-    this._updateCurrentSlide();    
-    this.position.postCurrentIndex();     
-  },
   
 };
