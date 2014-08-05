@@ -1,6 +1,6 @@
 #encoding: utf-8
 
-require_relative 'generator_input_constants'
+require_relative 'globals'
 
 TITLE = 'INITIATION A RUBY'
 

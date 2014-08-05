@@ -10,7 +10,7 @@ enable :sessions; set :session_secret, 'secret'
 
 require_relative 'slideshow_helper'
 
-require_relative '../views/presentation/generator_input'
+require_relative '../views/presentation/content'
 
 # ---------
 # GETs
