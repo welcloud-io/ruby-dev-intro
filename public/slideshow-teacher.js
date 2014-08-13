@@ -47,16 +47,18 @@ TeacherCodeSlide.prototype = {
   
   executeCode: function() {
     CodeSlide.prototype.executeCode.call(this);
-    this._authorBar.refreshWithSessionID();
-  },  
+    this._editor._authorBar.refreshSessionUserName();
+  }, 
   
   _updateEditorWithLastSendAndExecute: function() {
-    this.getExecutionContextAtAndExecuteCodeAt(this._attendeesLastSendResource, this._sendResource);
+    this._serverExecutionContext.updateWithResource(this._attendeesLastSendResource); 
+    if (this._serverExecutionContext.isEmpty()) return;
+    if (this._editor.updateWithServerExecutionContext()) { this.executeCodeAt(this._sendResource); }
   },  
   
  _updateLastSendAttendeeName: function(slide_index) {
     this._serverExecutionContext.updateWithResource(this._attendeesLastSendResource);
-    this._authorBar.updateLastSendAttendeeNameWith(this._serverExecutionContext.author);
+    this._editor._authorBar.updateLastSendAttendeeNameWith(this._serverExecutionContext.author);
   },  
   
   _update: function(slide_index) {
