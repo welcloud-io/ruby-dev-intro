@@ -1,12 +1,7 @@
 <html>
 <head>
 <link href="slideshow.css" rel="stylesheet" media="screen"/>
-<style>
-<%= STYLE %>
-#attendee_name {
-  display: none;
-}
-</style>   
+<link href="local.slideshow.css" rel="stylesheet" media="screen"/>   
 </head>
 <body>
 
@@ -57,10 +52,12 @@
 <script src="slides.js"></script>
 <script src="slideshow.js"></script>
 
+<!-- EDITOR_CONFIG -->
 <script src="ace-builds/src-min-noconflict/ace.js" type="text/javascript" charset="utf-8"></script>
-<%= EDITOR_CONFIG %>
+<script src="local.ace_editor_config.js"></script>
 
-<%= PREVENT_DEFAULT_KEYS %>
+<!-- PREVENT DEFAULT KEYS -->
+<script src="local.prevent_default_keys.js"></script>
 
 <script>
 code_editor.setReadOnly(true);

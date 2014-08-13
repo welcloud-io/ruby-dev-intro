@@ -93,7 +93,7 @@ SlideShow.prototype = {
   initPosition: function() {
     this.position = new Position(this);
     this.position.updateWithTeacherPosition(); 
-  },  
+  },
   
   _refresh: function() {
     this.position.updateWithTeacherPosition();     

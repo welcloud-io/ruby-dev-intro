@@ -11,12 +11,7 @@
 
 <head>
 <link href="//ruby-dev-intro.herokuapp.com/slideshow.css" rel="stylesheet" media="screen"/>
-<style>
-<%= STYLE %>
-#attendee_name {
-  display: none;
-}
-</style>   
+<link href="//ruby-dev-intro.herokuapp.com/local.slideshow.css" rel="stylesheet" media="screen"/>   
 </head>
 
 <body>
@@ -70,10 +65,12 @@
 <script src="//ruby-dev-intro.herokuapp.com/slides.js"></script>
 <script src="//ruby-dev-intro.herokuapp.com/slideshow.js"></script>
 
+<!-- EDITOR_CONFIG -->
 <script src="//ruby-dev-intro.herokuapp.com/ace-builds/src-min-noconflict/ace.js" type="text/javascript" charset="utf-8"></script>
-<%= EDITOR_CONFIG %>
+<script src="//ruby-dev-intro.herokuapp.com/local.ace_editor_config.js"></script>
 
-<%= PREVENT_DEFAULT_KEYS %>
+<!-- PREVENT DEFAULT KEYS -->
+<script src="local.prevent_default_keys.js"></script>
 
 <script>
 SERVER_PATH = '//ruby-dev-intro.herokuapp.com'

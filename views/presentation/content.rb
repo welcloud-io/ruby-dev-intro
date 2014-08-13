@@ -1,7 +1,3 @@
-#encoding: utf-8
-
-require_relative 'globals'
-
 TITLE = 'INITIATION A RUBY'
 
 $slides = []
