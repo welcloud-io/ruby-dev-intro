@@ -299,7 +299,7 @@ CodeSlide.prototype = {
       function(e) { 
         if (e.keyCode == RETURN) { 
           _t._editor._authorBar._setSessionUserName(this.value); this.value = '';
-          _t._codeHelpers.update();
+          _t._codeHelpers.update();          
         } }, false
     );
     }
