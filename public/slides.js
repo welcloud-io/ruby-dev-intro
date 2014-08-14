@@ -276,7 +276,7 @@ CodeSlide.prototype = {
   
   _keyHandling: function(e) {
     
-    slideshow._preventDefaultKeys(e);
+    this._slideshow._preventDefaultKeys(e);
     
     if ( e.altKey ) { 
       this._bindKeys(e);
