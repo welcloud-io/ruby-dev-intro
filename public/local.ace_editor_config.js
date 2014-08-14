@@ -4,3 +4,5 @@ Editor.prototype.content = function () { return code_editor.getValue();  };
 code_editor.setTheme('ace/theme/vibrant_ink');
 code_editor.getSession().setMode('ace/mode/ruby');
 code_editor.setFontSize('14px');
+code_editor.getSession().setTabSize(2);
+code_editor.getSession().setUseSoftTabs(true);

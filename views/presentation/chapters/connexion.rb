@@ -9,7 +9,7 @@ $slides += [
       "<h3 style='text-align:center'>ET</h3>",
       "<h3 style='text-align:center'>Entrez Votre Nom</h3>",
       "<div style='text-align: center'><input id='attendee_name' type='text'></input></div>",
-      '<div class="code_to_display"> puts "CONNEXION REUSSIE, BIENVENUE"</div>',
+      '<div class="code_to_display">puts "CONNEXION REUSSIE, BIENVENUE"</div>',
     ],			
   )
 ]
