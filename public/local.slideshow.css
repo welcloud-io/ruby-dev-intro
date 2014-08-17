@@ -27,7 +27,8 @@ margin-top: 1%;
 .code_result {
 font-size: 0.6em;
 background-color: #332;      
-color: yellow;      
+color: yellow;
+height: 24%;
 }
 
 .code_helper.current {
