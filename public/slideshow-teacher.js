@@ -48,15 +48,19 @@ TeacherCodeSlide.prototype = {
     );
   },
   
-  executeCode: function() {
-    CodeSlide.prototype.executeCode.call(this);
+  run: function() {
+    CodeSlide.prototype.run.call(this);
     this._editor._authorBar.refreshSessionUserName();
   }, 
   
   _updateEditorWithLastSendAndExecute: function() {
     this._serverExecutionContext.updateWithResource(this._attendeesLastSendResource); 
     if (this._serverExecutionContext.isEmpty()) return;
-    if (this._editor.updateWithServerExecutionContext()) { this.executeCodeAt(this._sendResource); }
+    if (this._editor.updateWithServerExecutionContext()) { 
+      this.runAndSend(); 
+      this._editor._authorBar.updateAuthorNameWith(this._serverExecutionContext.author);   
+      this._editor._authorBar.updateLastSendAttendeeNameWith('');
+    }
   },  
   
  _updateLastSendAttendeeName: function(slide_index) {

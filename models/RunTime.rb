@@ -23,8 +23,6 @@ def run_ruby(type, ruby_code, user, slide_index)
   File.delete(undef_file)
   File.delete(editor_file)
   File.delete(run_file)
-  
-  RunTimeEvent.new(user, type, slide_index, ruby_code, result).save
 
   result
 end
@@ -58,6 +56,10 @@ class RunTimeEvent
   def RunTimeEvent.find_last_user_execution_on_slide(user_id, slide_index)
     (RunTimeEvent.find_all.select { |event|  event.slide_index == slide_index && event.user == user_id && (event.type == 'run' ||  event.type == 'send') }).last
   end
+  
+  #~ def RunTimeEvent.find_last_user_execution_context_on_slide(user_id, slide_index)
+    #~ (RunTimeEvent.find_all.select { |event|  event.slide_index == slide_index && event.user == user_id && (event.type == 'run' ||  event.type == 'send') }).last
+  #~ end  
   
   def RunTimeEvent.find_attendees_last_send_on_slide(user_id, slide_index)
     last_user_send = (RunTimeEvent.find_all.select { |event|  event.slide_index == slide_index && event.user == $teacher_session_id &&  ( event.type == 'send' ) }).last
