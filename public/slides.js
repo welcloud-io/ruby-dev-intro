@@ -61,6 +61,7 @@ for(key in Slide.prototype) {
 var ServerExecutionContext = function(slide) {
   this._slide = slide;
   this.author = '';
+  this.type = '';
   this.code = '';
   this.code_to_add = '';
   this._executionContextResource = new Resource();  
@@ -86,6 +87,7 @@ ServerExecutionContext.prototype = {
   updateWithResource: function(resourceURL) {
     newServerExecutionContext = this.getContextOnServer(resourceURL + '/' + this._slide._codeHelpers._currentIndex);   
     this.author = (newServerExecutionContext.author) ? newServerExecutionContext.author : '';
+    this.type = (newServerExecutionContext.type) ? newServerExecutionContext.type : '';
     this.code = (newServerExecutionContext.code) ? newServerExecutionContext.code : '';
     this.code_to_add = (newServerExecutionContext.code_to_add) ? newServerExecutionContext.code_to_add : '';
   },
@@ -165,8 +167,7 @@ Editor.prototype = {
   updateWithServerExecutionContext: function() {
     if (  this._slide._serverExecutionContext.codeToExecute() == this._slide.codeToExecute() 
           && this._authorBar.userName == this._slide._serverExecutionContext.author) return false;
-    this.updateWithText(this._slide._serverExecutionContext.code);
-    //~ this._authorBar.updateAuthorNameWith(this._slide._serverExecutionContext.author);      
+    this.updateWithText(this._slide._serverExecutionContext.code);     
     return true
   },
   
@@ -271,7 +272,6 @@ var CodeSlide = function(node, slideshow) {
   this._codeHelpers = new CodeHelpers(queryAll(node, '.code_helper'), this);   
   
   this._runResource = '/code_run_result';
-  this._sendResource = '/code_send_result';
   this._getAndRunResource = '/code_get_last_send_to_blackboard'    
   this._updateResource = '/code_last_execution'
   
@@ -300,8 +300,7 @@ CodeSlide.prototype = {
   _bindKeys: function(e) {  
       if (e.which == R) { this._node.querySelector('#execute').click(); }
       if (e.which == S) { this._node.querySelector('#send_code').click(); }
-      if (e.which == G) { this._node.querySelector('#get_code').click(); }
-      if (e.which == N) { this._node.querySelector('#get_last_send').click();}    
+      if (e.which == G) { this._node.querySelector('#get_code').click(); }    
   },
   
   _declareEvents: function() {  
@@ -371,12 +370,12 @@ CodeSlide.prototype = {
   },  
 
   runAndSend: function() {
-    this._displayRunResult(this._runResource);
+    this._displayRunResult();
     this._saveRunResult("send");
   },  
 
   run: function() { // Overloader in teacher slideshow (try to remove from it)
-    this._displayRunResult(this._runResource);
+    this._displayRunResult();
     this._saveRunResult("run");
   },
 
