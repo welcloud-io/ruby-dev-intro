@@ -9,10 +9,6 @@ set :show_exceptions, false
 
 enable :sessions; set :session_secret, 'secret'
 
-configure :production do
-  require 'newrelic_rpm'
-end
-
 require_relative 'slideshow_helper'
 
 require_relative "slideshow-login"
