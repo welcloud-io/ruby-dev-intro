@@ -30,6 +30,7 @@ require_relative '../db/Accesseur'
 $db = Accesseur.new
 
 $teacher_session_id = '0_#'
+$blackboard_session_id = '0_blackboard'
 
 class RunTimeEvent
   attr_accessor :timestamp, :user, :type, :slide_index, :code_input, :code_output, :user_name
@@ -84,26 +85,26 @@ class RunTimeEvent
   def RunTimeEvent.find_last_user_execution_on_slide(user_id, slide_index)
     (RunTimeEvent.find_all.select { |event|  
       event.slide_index == slide_index && 
-      event.user == user_id && 
+      event.user == user_id && event.user != $blackboard_session_id &&
       (event.type == 'run' ||  event.type == 'send') 
     }).last
   end 
   
   def RunTimeEvent.find_attendees_last_send_on_slide(user_id, slide_index)
-    last_user_send = (RunTimeEvent.find_all.select { |event|  
+    last_teacher_send = (RunTimeEvent.find_all.select { |event|  
       event.slide_index == slide_index && 
       event.user == $teacher_session_id &&  
-      ( event.type == 'send' ) 
+      event.type == 'send' 
     }).last
 
-    last_user_send_timestamp = ''
-    last_user_send_timestamp = last_user_send.timestamp if last_user_send
+    last_teacher_send_timestamp = ''
+    last_teacher_send_timestamp = last_teacher_send.timestamp if last_teacher_send
 
     (RunTimeEvent.find_all.select { |event|  
       event.slide_index == slide_index && 
       event.user != $teacher_session_id &&  
-      ( event.type == 'send' ) && 
-      event.timestamp > last_user_send_timestamp
+      event.type == 'send' && 
+      event.timestamp > last_teacher_send_timestamp
     }).last
   end    
   
@@ -111,18 +112,14 @@ class RunTimeEvent
     last_teacher_run_or_send_on_blackboard = (RunTimeEvent.find_all.select { |event|  
       event.slide_index == slide_index && 
       event.user == $teacher_session_id && 
-      (event.type == 'run' || event.type == 'refresh' || event.type == 'send')
+      (event.type == 'run' || event.type == 'send')
     }).last
 
     if last_teacher_run_or_send_on_blackboard == nil then return nil end
 
     if last_teacher_run_or_send_on_blackboard.type == 'run' then 
       return last_teacher_run_or_send_on_blackboard 
-    end
-
-    if last_teacher_run_or_send_on_blackboard.type == 'refresh' then 
-      return last_teacher_run_or_send_on_blackboard 
-    end    
+    end  
 
     if last_teacher_run_or_send_on_blackboard.type == 'send' then 
       return (RunTimeEvent.find_all.select { |event| 
