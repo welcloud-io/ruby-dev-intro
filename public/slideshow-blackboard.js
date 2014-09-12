@@ -91,6 +91,9 @@ for(key in SlideShow.prototype) {
 // ----------------------------------
 // INITIALIZE SLIDESHOW
 // ----------------------------------  
+alert("bbb")
 var blackboardSlideShow = new BlackboardSlideShow(queryAll(document, '.slide'));
+alert("abb")
 var slideshowTimer = setInterval( function(){ blackboardSlideShow._refresh(); },1000);
+alert("atimer")
 
