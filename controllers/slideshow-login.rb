@@ -8,13 +8,13 @@ get '/' do
 end
 
 get '/blackboard' do
-  session[:user_session_id] = "0_blackboard" 
+  session[:user_session_id] = "0_blackboard"
   erb :slideshow_blackboard
 end
 
 get '/blackboard_hangout.xml' do
   content_type 'text/xml'
-  session[:user_session_id] = "0_blackboard_hangout"  
+  session[:user_session_id] = "0_blackboard"  
   erb :slideshow_blackboard_hangout
 end
 

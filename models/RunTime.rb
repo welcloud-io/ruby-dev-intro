@@ -32,12 +32,12 @@ $db = Accesseur.new
 $teacher_session_id = '0_#'
 
 class RunTimeEvent
-  attr_accessor :timestamp, :user, :type, :slide_index, :code_input, :code_output
+  attr_accessor :timestamp, :user, :type, :slide_index, :code_input, :code_output, :user_name
   
   def initialize(user, type, slide_index, code_input, code_output, timestamp = nil)
     @timestamp = timestamp || Time.now.to_f
     @user = user
-    @user_name = (user.split('_')[1..-1]).join('_') if @user
+    @user_name = (user.split('_')[1..-1]).join('_') if (@user and user.split('_')[1..-1])
     @type = type
     @code_input = code_input
     @code_output = code_output
@@ -111,13 +111,18 @@ class RunTimeEvent
     last_teacher_run_or_send_on_blackboard = (RunTimeEvent.find_all.select { |event|  
       event.slide_index == slide_index && 
       event.user == $teacher_session_id && 
-      (event.type == 'run' || event.type == 'send')
+      (event.type == 'run' || event.type == 'refresh' || event.type == 'send')
     }).last
 
     if last_teacher_run_or_send_on_blackboard == nil then return nil end
+
     if last_teacher_run_or_send_on_blackboard.type == 'run' then 
       return last_teacher_run_or_send_on_blackboard 
     end
+
+    if last_teacher_run_or_send_on_blackboard.type == 'refresh' then 
+      return last_teacher_run_or_send_on_blackboard 
+    end    
 
     if last_teacher_run_or_send_on_blackboard.type == 'send' then 
       return (RunTimeEvent.find_all.select { |event| 
