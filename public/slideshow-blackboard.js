@@ -31,7 +31,6 @@ BlackboardCodeSlide.prototype = {
   },
 
   _update: function() {
-    alert("update");
     this._codeHelpers.update();
     this._serverExecutionContext.updateWithResource(this._updateResource);  
     if (this._editor.update()) {
@@ -67,7 +66,6 @@ BlackboardSlideShow.prototype = {
   },
   
   _refresh: function() {
-        alert("_refresh");
     this.position.updateWithTeacherPosition();   
     this.currentSlide()._update();     
   },  
