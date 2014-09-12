@@ -1,3 +1,4 @@
+alert("begin blackboardSlideShow")
 // ----------------------------------
 // BLACKBOARD POLL SLIDE / EXTENDS CODE SLIDE
 // ----------------------------------
