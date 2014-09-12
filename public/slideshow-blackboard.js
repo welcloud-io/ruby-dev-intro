@@ -67,6 +67,7 @@ BlackboardSlideShow.prototype = {
   },
   
   _refresh: function() {
+        alert("_refresh");
     this.position.updateWithTeacherPosition();   
     this.currentSlide()._update();     
   },  
