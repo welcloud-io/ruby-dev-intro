@@ -21,6 +21,8 @@ var BlackboardCodeSlide = function(node, slideshow) {
   this._runResource = '/code_run_result'; 
   this._updateResource = '/code_get_last_send_to_blackboard'
   this._attendeesLastSendResource = '/code_attendees_last_send';   
+
+  this._saveURL = "/code_save_blackboard_execution_context";  
 };
 
 BlackboardCodeSlide.prototype = {
