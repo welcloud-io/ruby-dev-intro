@@ -35,8 +35,7 @@ BlackboardCodeSlide.prototype = {
     this._serverExecutionContext.updateWithResource(this._updateResource);  
     if (this._editor.update()) {
       this.run();  
-      this._editor._authorBar.updateAuthorNameWith(this._serverExecutionContext.author); 
-      this._refreshed = false; 
+      this._editor._authorBar.updateAuthorNameWith(this._serverExecutionContext.author);
     }
     this._updateLastSendAttendeeName();    
   },  
